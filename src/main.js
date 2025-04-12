@@ -43,8 +43,10 @@ import Sparkline from './vc-sparkline/vc-sparkline.js';
 import TextArea from './vc-textarea/vc-textarea.js';
 import { Timeline } from './vc-timeline/vc-timeline.js';
 import TopAppBar from './vc-top-app-bar/vc-top-app-bar.js';
+import Spacer from './vc-spacer/vc-spacer.js';
 
 export {
+    Spacer,
     TopAppBar,
     Timeline,
     TextArea,
