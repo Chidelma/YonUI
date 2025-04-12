@@ -1,270 +1,246 @@
-// material-2-image.js
-// A custom web component inspired by Vuetify's v-img
+// material2-image.js - Material 2 Image web component inspired by Vuetify v3
+class Material2Image extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
 
-class Image extends HTMLElement {
-    // Define observed attributes
+        // Default values
+        this._src = '';
+        this._alt = '';
+        this._aspectRatio = null;
+        this._cover = false;
+        this._contain = false;
+        this._eager = false;
+        this._gradient = '';
+        this._height = 'auto';
+        this._width = '100%';
+        this._rounded = false;
+        this._isLoading = true;
+        this._hasError = false;
+    }
+
     static get observedAttributes() {
         return [
             'src',
             'alt',
-            'width',
-            'height',
             'aspect-ratio',
             'cover',
             'contain',
-            'lazy-load',
-            'transition',
-            'gradient'
+            'eager',
+            'gradient',
+            'height',
+            'width',
+            'rounded'
         ];
     }
 
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this._loaded = false;
-        this._error = false;
-
-        // Create internal elements
-        this._container = document.createElement('div');
-        this._container.className = 'vc-img-container';
-
-        this._placeholder = document.createElement('div');
-        this._placeholder.className = 'vc-img-placeholder';
-
-        this._image = document.createElement('img');
-        this._image.className = 'vc-img-image';
-
-        this._gradient = document.createElement('div');
-        this._gradient.className = 'vc-img-gradient';
-
-        this._overlay = document.createElement('div');
-        this._overlay.className = 'vc-img-overlay';
-
-        // Setup event listeners
-        this._image.addEventListener('load', this._onLoad.bind(this));
-        this._image.addEventListener('error', this._onError.bind(this));
-
-        // Append internal elements to shadow DOM
-        this._container.appendChild(this._placeholder);
-        this._container.appendChild(this._image);
-        this._container.appendChild(this._gradient);
-        this._container.appendChild(this._overlay);
-
-        // Set up slot for content
-        const slot = document.createElement('slot');
-        this._overlay.appendChild(slot);
-
-        // Apply base styles
-        this._applyStyles();
-    }
-
     connectedCallback() {
-        this.shadowRoot.appendChild(this._container);
-        this._updateComponent();
-        this._setupIntersectionObserver();
-    }
-
-    _applyStyles() {
-        const style = document.createElement('style');
-        style.textContent = `
-        :host {
-          display: inline-block;
-          position: relative;
-          line-height: 0;
-          overflow: hidden;
-        }
-        
-        .vc-img-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          border-radius: inherit;
-        }
-        
-        .vc-img-placeholder {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.1);
-          transition: opacity 0.25s ease-in-out;
-          z-index: 1;
-        }
-        
-        .vc-img-image {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 2;
-          opacity: 0;
-          transition: opacity 0.25s ease-in-out;
-          object-position: center;
-        }
-        
-        .vc-img-image.loaded {
-          opacity: 1;
-        }
-        
-        .vc-img-placeholder.hidden {
-          opacity: 0;
-        }
-        
-        .vc-img-gradient {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 3;
-        }
-        
-        .vc-img-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 4;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      `;
-        this.shadowRoot.appendChild(style);
+        this.render();
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue) return;
 
-        this._updateComponent();
+        switch (name) {
+            case 'src':
+                this._src = newValue;
+                break;
+            case 'alt':
+                this._alt = newValue;
+                break;
+            case 'aspect-ratio':
+                this._aspectRatio = newValue;
+                break;
+            case 'cover':
+                this._cover = newValue !== null;
+                break;
+            case 'contain':
+                this._contain = newValue !== null;
+                break;
+            case 'eager':
+                this._eager = newValue !== null;
+                break;
+            case 'gradient':
+                this._gradient = newValue;
+                break;
+            case 'height':
+                this._height = newValue;
+                break;
+            case 'width':
+                this._width = newValue;
+                break;
+            case 'rounded':
+                this._rounded = newValue !== null;
+                break;
+        }
+
+        this.render();
     }
 
-    _updateComponent() {
-        // Update image source
-        const src = this.getAttribute('src');
-        if (src && !this.getAttribute('lazy-load')) {
-            this._image.src = src;
-        }
+    _handleImageLoad() {
+        this._isLoading = false;
+        this._hasError = false;
+        this.render();
+        this.dispatchEvent(new CustomEvent('load', { bubbles: true }));
+    }
 
-        // Update image alt text
-        const alt = this.getAttribute('alt');
-        if (alt) {
-            this._image.alt = alt;
-        }
+    _handleImageError() {
+        this._isLoading = false;
+        this._hasError = true;
+        this.render();
+        this.dispatchEvent(new CustomEvent('error', { bubbles: true }));
+    }
 
-        // Update width and height
-        const width = this.getAttribute('width');
-        const height = this.getAttribute('height');
+    render() {
+        const objectFit = this._cover ? 'cover' : this._contain ? 'contain' : 'fill';
+        const loading = this._eager ? 'eager' : 'lazy';
 
-        if (width) {
-            this.style.width = this._addUnitIfNeeded(width);
-        }
-
-        if (height) {
-            this.style.height = this._addUnitIfNeeded(height);
-        }
-
-        // Handle aspect-ratio
-        const aspectRatio = this.getAttribute('aspect-ratio');
-        if (aspectRatio && !height) {
-            const [w, h] = aspectRatio.split(':').map(v => parseFloat(v));
-            if (!isNaN(w) && !isNaN(h) && h > 0) {
-                this.style.paddingBottom = `${(h / w * 100)}%`;
-                this.style.height = '0';
+        // Create aspect ratio padding if needed
+        let aspectRatioPadding = '';
+        if (this._aspectRatio) {
+            const [width, height] = this._aspectRatio.split('/').map(Number);
+            if (!isNaN(width) && !isNaN(height) && height > 0) {
+                const paddingPercent = (height / width) * 100;
+                aspectRatioPadding = `padding-bottom: ${paddingPercent}%;`;
             }
         }
 
-        // Handle cover and contain
-        if (this.hasAttribute('cover')) {
-            this._image.style.objectFit = 'cover';
-        } else if (this.hasAttribute('contain')) {
-            this._image.style.objectFit = 'contain';
+        this.shadowRoot.innerHTML = `
+        <style>
+          :host {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            width: ${this._width};
+            height: ${this._aspectRatio ? '0' : this._height};
+            ${aspectRatioPadding}
+            ${this._rounded ? 'border-radius: 4px;' : ''}
+          }
+          
+          .img-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: ${objectFit};
+            transition: opacity 0.3s ease;
+            opacity: ${this._isLoading ? 0 : 1};
+          }
+          
+          .placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            display: ${this._isLoading ? 'flex' : 'none'};
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .error {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fafafa;
+            color: #f44336;
+            display: ${this._hasError ? 'flex' : 'none'};
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: ${this._gradient || 'none'};
+            pointer-events: none;
+            display: ${this._gradient ? 'block' : 'none'};
+          }
+          
+          .content-slot {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+          }
+          
+          .content-slot ::slotted(*) {
+            pointer-events: auto;
+          }
+          
+          .loading-spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: #1976d2;
+            animation: spin 1s linear infinite;
+          }
+          
+          @keyframes spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+        
+        <div class="img-wrapper">
+          <img 
+            src="${this._src}"
+            alt="${this._alt}"
+            loading="${loading}"
+            @load="${this._handleImageLoad.bind(this)}"
+            @error="${this._handleImageError.bind(this)}"
+          />
+        </div>
+        
+        <div class="placeholder">
+          <div class="loading-spinner"></div>
+        </div>
+        
+        <div class="error">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        
+        <div class="gradient"></div>
+        
+        <div class="content-slot">
+          <slot></slot>
+        </div>
+      `;
+
+        // Fix for @load and @error attributes - need to add event listeners manually
+        const img = this.shadowRoot.querySelector('img');
+        if (img) {
+            img.removeEventListener('load', this._handleImageLoad.bind(this));
+            img.removeEventListener('error', this._handleImageError.bind(this));
+            img.addEventListener('load', this._handleImageLoad.bind(this));
+            img.addEventListener('error', this._handleImageError.bind(this));
         }
-
-        // Handle transition
-        const transition = this.getAttribute('transition');
-        if (transition) {
-            this._image.style.transition = `opacity ${transition}`;
-            this._placeholder.style.transition = `opacity ${transition}`;
-        }
-
-        // Handle gradient
-        const gradient = this.getAttribute('gradient');
-        if (gradient) {
-            this._gradient.style.background = gradient;
-        } else {
-            this._gradient.style.background = 'none';
-        }
-    }
-
-    _addUnitIfNeeded(value) {
-        return /^\d+$/.test(value) ? `${value}px` : value;
-    }
-
-    _onLoad() {
-        this._loaded = true;
-        this._error = false;
-        this._image.classList.add('loaded');
-        this._placeholder.classList.add('hidden');
-
-        // Dispatch load event
-        this.dispatchEvent(new CustomEvent('vc-img:load', {
-            bubbles: true,
-            composed: true
-        }));
-    }
-
-    _onError() {
-        this._loaded = false;
-        this._error = true;
-
-        // Dispatch error event
-        this.dispatchEvent(new CustomEvent('vc-img:error', {
-            bubbles: true,
-            composed: true
-        }));
-    }
-
-    _setupIntersectionObserver() {
-        if (this.hasAttribute('lazy-load') && 'IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const src = this.getAttribute('src');
-                        if (src && !this._image.src) {
-                            this._image.src = src;
-                        }
-                        observer.unobserve(this);
-                    }
-                });
-            }, {
-                rootMargin: '50px 0px',
-                threshold: 0.1
-            });
-
-            observer.observe(this);
-        }
-    }
-
-    // Public methods
-    getSrc() {
-        return this._image.src;
-    }
-
-    isLoaded() {
-        return this._loaded;
-    }
-
-    hasError() {
-        return this._error;
     }
 }
 
-// Define the custom element
-customElements.define('vc-img', Image);
-
-export default Image;
+// Register the web component
+customElements.define('vc-img', Material2Image);

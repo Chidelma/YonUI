@@ -3,301 +3,137 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Material 2 Image Component Examples</title>
-    <script src="./vc-img.js"></script>
+    <title>Material 2 Image Component Example</title>
+    <script src="vc-img.js"></script>
     <style>
       body {
         font-family: "Roboto", sans-serif;
-        margin: 0;
+        max-width: 1200px;
+        margin: 0 auto;
         padding: 20px;
-        background-color: #f5f5f5;
       }
 
       .container {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .example-section {
-        background-color: white;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-        padding: 20px;
-      }
-
-      h1 {
-        color: #333;
-        font-weight: 400;
-      }
-
-      h2 {
-        color: #555;
-        font-weight: 400;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 8px;
-      }
-
-      .example-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
+        margin-top: 20px;
       }
 
-      .overlay-text {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 8px 16px;
+      .image-card {
         border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
-      .code-block {
-        background-color: #f8f8f8;
-        border-radius: 4px;
+      .image-caption {
         padding: 16px;
-        margin-top: 16px;
-        overflow-x: auto;
-        font-family: monospace;
-        font-size: 14px;
+        background-color: white;
+      }
+
+      .image-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
+    <h1>Material 2 Image Component Examples</h1>
+
     <div class="container">
-      <h1>Material 2 Image Component Examples</h1>
-
-      <!-- Basic Usage -->
-      <section class="example-section">
-        <h2>Basic Usage</h2>
-        <div class="example-grid">
-          <div>
-            <vc-img
-              src="https://picsum.photos/id/237/400/300"
-              alt="A black dog"
-              width="100%"
-              height="250"
-              cover
-            >
-            </vc-img>
-            <div class="code-block">
-              &lt;vc-img src="https://picsum.photos/id/237/400/300" alt="A black
-              dog" width="100%" height="250" cover&gt; &lt;/vc-img&gt;
-            </div>
-          </div>
+      <!-- Basic usage -->
+      <div class="image-card">
+        <vc-img
+          src="https://picsum.photos/id/1018/500/300"
+          alt="Mountain landscape"
+          height="300px"
+        >
+        </vc-img>
+        <div class="image-caption">
+          <h3>Basic Image</h3>
+          <p>Default image with specified height</p>
         </div>
-      </section>
+      </div>
 
-      <!-- Aspect Ratio -->
-      <section class="example-section">
-        <h2>Aspect Ratio</h2>
-        <div class="example-grid">
-          <div>
-            <vc-img
-              src="https://picsum.photos/id/1018/600/400"
-              alt="Mountain landscape"
-              width="100%"
-              aspect-ratio="16:9"
-              cover
-            >
-            </vc-img>
-            <div class="code-block">
-              &lt;vc-img src="https://picsum.photos/id/1018/600/400"
-              alt="Mountain landscape" width="100%" aspect-ratio="16:9"
-              cover&gt; &lt;/vc-img&gt;
-            </div>
-          </div>
+      <!-- Aspect ratio example -->
+      <div class="image-card">
+        <vc-img
+          src="https://picsum.photos/id/1015/500/300"
+          alt="Mountain lake"
+          aspect-ratio="16/9"
+        >
+        </vc-img>
+        <div class="image-caption">
+          <h3>Aspect Ratio</h3>
+          <p>Image with 16:9 aspect ratio</p>
         </div>
-      </section>
+      </div>
 
-      <!-- Contain vs Cover -->
-      <section class="example-section">
-        <h2>Contain vs Cover</h2>
-        <div class="example-grid">
-          <div>
-            <vc-img
-              src="https://picsum.photos/id/1015/600/600"
-              alt="River and mountains"
-              width="100%"
-              height="200"
-              contain
-            >
-            </vc-img>
-            <div class="code-block">
-              &lt;vc-img src="https://picsum.photos/id/1015/600/600" alt="River
-              and mountains" width="100%" height="200" contain&gt;
-              &lt;/vc-img&gt;
-            </div>
-          </div>
-          <div>
-            <vc-img
-              src="https://picsum.photos/id/1015/600/600"
-              alt="River and mountains"
-              width="100%"
-              height="200"
-              cover
-            >
-            </vc-img>
-            <div class="code-block">
-              &lt;vc-img src="https://picsum.photos/id/1015/600/600" alt="River
-              and mountains" width="100%" height="200" cover&gt; &lt;/vc-img&gt;
-            </div>
-          </div>
+      <!-- Cover example -->
+      <div class="image-card">
+        <vc-img
+          src="https://picsum.photos/id/1019/500/300"
+          alt="Forest landscape"
+          height="300px"
+          cover
+        >
+        </vc-img>
+        <div class="image-caption">
+          <h3>Cover Mode</h3>
+          <p>Using object-fit: cover</p>
         </div>
-      </section>
+      </div>
 
-      <!-- Gradient Overlay -->
-      <section class="example-section">
-        <h2>Gradient Overlay</h2>
-        <div class="example-grid">
-          <div>
-            <vc-img
-              src="https://picsum.photos/id/1019/600/400"
-              alt="Mountain scenery"
-              width="100%"
-              height="250"
-              gradient="linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.7) 100%)"
-              cover
-            >
-              <span class="overlay-text">Gradient Overlay Example</span>
-            </vc-img>
-            <div class="code-block">
-              &lt;vc-img src="https://picsum.photos/id/1019/600/400"
-              alt="Mountain scenery" width="100%" height="250"
-              gradient="linear-gradient(to bottom, rgba(0,0,0,0) 50%,
-              rgba(0,0,0,0.7) 100%)" cover&gt; &lt;span
-              class="overlay-text"&gt;Gradient Overlay Example&lt;/span&gt;
-              &lt;/vc-img&gt;
-            </div>
-          </div>
+      <!-- Contain example -->
+      <div class="image-card">
+        <vc-img
+          src="https://picsum.photos/id/1025/500/300"
+          alt="Dog portrait"
+          height="300px"
+          contain
+        >
+        </vc-img>
+        <div class="image-caption">
+          <h3>Contain Mode</h3>
+          <p>Using object-fit: contain</p>
         </div>
-      </section>
+      </div>
 
-      <!-- Lazy Loading -->
-      <section class="example-section">
-        <h2>Lazy Loading</h2>
-        <div class="example-grid">
-          <div>
-            <vc-img
-              src="https://picsum.photos/id/1035/600/400"
-              alt="Mountain lake"
-              width="100%"
-              height="250"
-              lazy-load
-              cover
-            >
-            </vc-img>
-            <div class="code-block">
-              &lt;vc-img src="https://picsum.photos/id/1035/600/400"
-              alt="Mountain lake" width="100%" height="250" lazy-load cover&gt;
-              &lt;/vc-img&gt;
-            </div>
-          </div>
+      <!-- Gradient overlay example -->
+      <div class="image-card">
+        <vc-img
+          src="https://picsum.photos/id/1039/500/300"
+          alt="Mountain lake"
+          height="300px"
+          gradient="linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)"
+        >
+          <div class="image-overlay">Image with gradient overlay</div>
+        </vc-img>
+        <div class="image-caption">
+          <h3>Gradient Overlay</h3>
+          <p>With content slot for overlay text</p>
         </div>
-      </section>
+      </div>
 
-      <!-- Custom Transition -->
-      <section class="example-section">
-        <h2>Custom Transition</h2>
-        <div class="example-grid">
-          <div>
-            <vc-img
-              src="https://picsum.photos/id/1039/600/400"
-              alt="Waterfall"
-              width="100%"
-              height="250"
-              transition="0.5s ease-in-out"
-              cover
-            >
-            </vc-img>
-            <div class="code-block">
-              &lt;vc-img src="https://picsum.photos/id/1039/600/400"
-              alt="Waterfall" width="100%" height="250" transition="0.5s
-              ease-in-out" cover&gt; &lt;/vc-img&gt;
-            </div>
-          </div>
+      <!-- Rounded example -->
+      <div class="image-card" style="box-shadow: none; background: transparent">
+        <vc-img
+          src="https://picsum.photos/id/1043/500/300"
+          alt="Mountain landscape"
+          height="300px"
+          rounded
+        >
+        </vc-img>
+        <div class="image-caption">
+          <h3>Rounded Corners</h3>
+          <p>Image with rounded corners</p>
         </div>
-      </section>
-
-      <!-- Content Overlay -->
-      <section class="example-section">
-        <h2>Content Overlay</h2>
-        <div class="example-grid">
-          <div>
-            <vc-img
-              src="https://picsum.photos/id/1043/600/400"
-              alt="Mountain view"
-              width="100%"
-              height="250"
-              cover
-            >
-              <div
-                style="
-                  position: absolute;
-                  bottom: 16px;
-                  left: 16px;
-                  right: 16px;
-                "
-              >
-                <div class="overlay-text">
-                  <h3 style="margin: 0">Beautiful Mountains</h3>
-                  <p style="margin: 4px 0 0 0">Lorem ipsum dolor sit amet</p>
-                </div>
-              </div>
-            </vc-img>
-            <div class="code-block">
-              &lt;vc-img src="https://picsum.photos/id/1043/600/400"
-              alt="Mountain view" width="100%" height="250" cover&gt; &lt;div
-              style="position: absolute; bottom: 16px; left: 16px; right:
-              16px;"&gt; &lt;div class="overlay-text"&gt; &lt;h3 style="margin:
-              0"&gt;Beautiful Mountains&lt;/h3&gt; &lt;p style="margin: 4px 0 0
-              0"&gt;Lorem ipsum dolor sit amet&lt;/p&gt; &lt;/div&gt;
-              &lt;/div&gt; &lt;/vc-img&gt;
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Event Handling -->
-      <section class="example-section">
-        <h2>Event Handling</h2>
-        <div class="example-grid">
-          <div>
-            <vc-img
-              id="event-demo"
-              src="https://picsum.photos/id/1044/600/400"
-              alt="Waterfall"
-              width="100%"
-              height="250"
-              cover
-            >
-            </vc-img>
-            <div id="event-status">Image status: Loading...</div>
-            <div class="code-block">
-              &lt;vc-img id="event-demo"
-              src="https://picsum.photos/id/1044/600/400" alt="Waterfall"
-              width="100%" height="250" cover&gt; &lt;/vc-img&gt; &lt;script&gt;
-              const img = document.getElementById('event-demo'); const status =
-              document.getElementById('event-status');
-              img.addEventListener('vc-img:load', () => { status.textContent =
-              'Image status: Loaded successfully!'; });
-              img.addEventListener('vc-img:error', () => { status.textContent =
-              'Image status: Failed to load!'; }); &lt;/script&gt;
-            </div>
-            <script>
-              const img = document.getElementById("event-demo");
-              const status = document.getElementById("event-status");
-
-              img.addEventListener("vc-img:load", () => {
-                status.textContent = "Image status: Loaded successfully!";
-              });
-
-              img.addEventListener("vc-img:error", () => {
-                status.textContent = "Image status: Failed to load!";
-              });
-            </script>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   </body>
 </html>

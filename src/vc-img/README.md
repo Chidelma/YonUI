@@ -1,113 +1,89 @@
-# Material 2 Image Web Component (vc-img)
+# Material 2 Image Web Component
 
-A lightweight, responsive, and feature-rich image web component inspired by Vuetify's v-img. This component is built using the Web Components standard, making it framework-agnostic and usable in any modern web application.
+A lightweight, flexible and reusable image web component inspired by Vuetify v3's `v-img` component. This component is built using native Web Component technology, making it framework-agnostic and easy to use in any project.
 
 ## Features
 
-- **Responsive Design**: Automatically adapts to container size
-- **Aspect Ratio Support**: Maintain specific aspect ratios for images
-- **Loading States**: Shows a placeholder while the image loads
-- **Cover/Contain Modes**: Control how the image fills its container
-- **Lazy Loading**: Only load images when they enter the viewport
-- **Gradient Overlays**: Apply customizable gradients over images
-- **Content Overlay**: Add text or other elements on top of images
-- **Custom Transitions**: Control the animation when images load
-- **Event Handling**: Monitor loading and error states
+- 🖼️ Responsive image display with aspect ratio support
+- 🔄 Loading state with spinner
+- ⚠️ Error state handling
+- 🎨 Gradient overlay support
+- 📏 Aspect ratio control
+- 🔍 Object-fit options (cover, contain)
+- 🚀 Lazy loading with eager option
+- 🔲 Rounded corners option
+- 📦 Slot for custom content overlays
 
 ## Installation
 
-Simply include the `material-2-image.js` file in your project:
+Simply include the `material2-image.js` file in your project:
 
 ```html
-<script src="path/to/material-2-image.js"></script>
+<script src="path/to/material2-image.js"></script>
+```
+
+Or import it in your JavaScript:
+
+```javascript
+import './path/to/material2-image.js';
 ```
 
 ## Usage
 
-Once you've included the script, you can use the `<vc-img>` element in your HTML:
+Once included, you can use the `<vc-img>` element in your HTML:
 
 ```html
 <vc-img 
   src="path/to/image.jpg" 
-  alt="Description of image" 
-  width="100%" 
-  height="300"
-  cover>
+  alt="Description of image"
+  aspect-ratio="16/9">
 </vc-img>
 ```
 
-## Attributes
+## Props/Attributes
 
-| Attribute | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `src` | String | - | URL of the image |
-| `alt` | String | - | Alternative text for the image |
-| `width` | String | - | Width of the component (px, %, etc.) |
-| `height` | String | - | Height of the component (px, %, etc.) |
-| `aspect-ratio` | String | - | Sets a specific aspect ratio (e.g., "16:9") |
-| `cover` | Boolean | false | Sets object-fit to cover |
-| `contain` | Boolean | false | Sets object-fit to contain |
-| `lazy-load` | Boolean | false | Enables lazy loading for the image |
-| `transition` | String | "0.25s ease-in-out" | Custom transition for image loading |
-| `gradient` | String | - | CSS gradient overlay for the image |
+| Attribute     | Type      | Default | Description                                       |
+|---------------|-----------|---------|---------------------------------------------------|
+| src           | String    | ''      | The source URL of the image                       |
+| alt           | String    | ''      | Alt text for the image                            |
+| aspect-ratio  | String    | null    | Sets a fixed aspect ratio (e.g., '16/9', '4/3')   |
+| cover         | Boolean   | false   | Sets object-fit to 'cover'                        |
+| contain       | Boolean   | false   | Sets object-fit to 'contain'                      |
+| eager         | Boolean   | false   | Loads image immediately instead of lazy loading   |
+| gradient      | String    | ''      | CSS gradient overlay (e.g., 'linear-gradient...') |
+| height        | String    | 'auto'  | Sets the height of the component                  |
+| width         | String    | '100%'  | Sets the width of the component                   |
+| rounded       | Boolean   | false   | Applies rounded corners to the image              |
+
+## Events
+
+| Event Name | Description                                         |
+|------------|-----------------------------------------------------|
+| load       | Emitted when the image is successfully loaded       |
+| error      | Emitted when there's an error loading the image     |
 
 ## Slots
 
-The component accepts content as a slot, allowing you to overlay text or other elements on top of the image:
+The component provides a default slot that can be used to overlay content on top of the image:
 
 ```html
-<vc-img src="path/to/image.jpg" width="100%" height="300" cover>
-  <div class="overlay-content">
+<vc-img src="background.jpg" gradient="linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8))">
+  <div style="position: absolute; bottom: 0; padding: 16px; color: white;">
     <h3>Image Title</h3>
-    <p>Image description goes here</p>
+    <p>Image description or caption</p>
   </div>
 </vc-img>
 ```
 
-## Events
-
-The component dispatches the following custom events:
-
-| Event | Description |
-|-------|-------------|
-| `vc-img:load` | Fired when the image is successfully loaded |
-| `vc-img:error` | Fired when the image fails to load |
-
-### Event Examples
-
-```javascript
-const image = document.querySelector('vc-img');
-
-image.addEventListener('vc-img:load', () => {
-  console.log('Image loaded successfully!');
-});
-
-image.addEventListener('vc-img:error', () => {
-  console.log('Image failed to load!');
-});
-```
-
-## Public Methods
-
-The component exposes the following methods:
-
-| Method | Return Type | Description |
-|--------|-------------|-------------|
-| `getSrc()` | String | Returns the current image source URL |
-| `isLoaded()` | Boolean | Returns true if the image has loaded |
-| `hasError()` | Boolean | Returns true if there was an error loading the image |
-
 ## Examples
 
-### Basic Example
+### Basic Usage
 
 ```html
 <vc-img 
-  src="path/to/image.jpg" 
-  alt="Description" 
-  width="100%" 
-  height="250"
-  cover>
+  src="image.jpg" 
+  alt="My image" 
+  height="300px">
 </vc-img>
 ```
 
@@ -115,45 +91,45 @@ The component exposes the following methods:
 
 ```html
 <vc-img 
-  src="path/to/image.jpg" 
-  alt="Description" 
-  width="100%" 
-  aspect-ratio="16:9"
+  src="image.jpg" 
+  alt="My image" 
+  aspect-ratio="16/9">
+</vc-img>
+```
+
+### With Cover Mode
+
+```html
+<vc-img 
+  src="image.jpg" 
+  alt="My image" 
+  height="300px"
   cover>
 </vc-img>
 ```
 
-### With Gradient Overlay
+### With Gradient Overlay and Content
 
 ```html
 <vc-img 
-  src="path/to/image.jpg" 
-  alt="Description" 
-  width="100%" 
-  height="250"
-  gradient="linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.7) 100%)"
-  cover>
-  <span class="overlay-text">Text over gradient</span>
-</vc-img>
-```
-
-### Lazy Loading
-
-```html
-<vc-img 
-  src="path/to/image.jpg" 
-  alt="Description" 
-  width="100%" 
-  height="250"
-  lazy-load
-  cover>
+  src="image.jpg" 
+  alt="My image" 
+  height="300px"
+  gradient="linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)">
+  <div style="position: absolute; bottom: 0; padding: 16px; color: white;">
+    <h3>Image Title</h3>
+  </div>
 </vc-img>
 ```
 
 ## Browser Support
 
-This component uses modern web standards and should work in all browsers that support Web Components. For older browsers, consider using a polyfill.
+This component uses Web Components which are supported by all modern browsers. For older browsers, you might need to use polyfills.
 
 ## License
 
-MIT License
+MIT
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
