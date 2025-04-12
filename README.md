@@ -12,12 +12,14 @@ Yon UI is a lightweight and customizable user interface library designed to simp
 
 ## Installation
 
-To install Yon UI, use npm or yarn:
+To install Yon UI, use npm, yarn or bun:
 
 ```bash
-npm install yon-ui
+npm install @vyckr/yon-ui
 # or
-yarn add yon-ui
+yarn add @vyckr/yon-ui
+# or 
+bun install @vykr/yon-ui
 ```
 
 ## Usage
@@ -25,7 +27,7 @@ yarn add yon-ui
 Import and use components in your project:
 
 ```javascript
-import { Button } from 'yon-ui';
+import Button from 'yon-ui';
 
 function App() {
     return <Button label="Click Me" />;
@@ -43,7 +45,3 @@ Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTIN
 ## License
 
 Yon UI is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-For questions or support, please reach out to [support@yonui.com](mailto:support@yonui.com).
