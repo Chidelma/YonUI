@@ -176,4 +176,4 @@ class BreadcrumbItem extends HTMLElement {
 customElements.define('vc-breadcrumbs', Breadcrumbs);
 customElements.define('vc-breadcrumb-item',BreadcrumbItem);
 
-export { MaterialBreadcrumbs, MaterialBreadcrumbItem };
+export { Breadcrumbs, BreadcrumbItem };

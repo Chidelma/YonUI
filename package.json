@@ -1,17 +1,26 @@
 {
-    "name": "yon-ui",
-    "version": "1.0.0",
-    "description": "Yon UI - A modern and lightweight UI component library.",
-    "keywords": [
-        "ui",
-        "components",
-        "library",
-        "frontend",
-        "design"
-    ],
-    "author": "Chidelma",
-    "license": "MIT",
-    "devDependencies": {
-        "@types/bun": "^1.2.9"
-    }
+  "name": "@vyckr/yon-ui",
+  "version": "1.0.0",
+  "author": "Chidelma",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chidelma/YonUI.git"
+  },
+  "devDependencies": {
+    "@types/bun": "~1.2.8"
+  },
+  "bugs": {
+    "url": "https://github.com/Chidelma/YonUI/issues"
+  },
+  "main": "src/main.js",
+  "keywords": [
+    "Yon UI",
+    "ui",
+    "libary",
+    "javacript",
+    "bun",
+    "web components"
+  ],
+  "license": "MIT",
+  "type": "module"
 }
