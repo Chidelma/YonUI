@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Breadcrumbs Example</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="vc-breadcrumbs.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .card {
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 16px;
+        border-radius: 4px;
+        overflow: auto;
+      }
+
+      .dark-theme {
+        background-color: #1e1e1e;
+        color: white;
+        padding: 16px;
+        border-radius: 4px;
+      }
+
+      h1 {
+        margin-top: 0;
+        font-weight: 400;
+      }
+
+      h2 {
+        font-weight: 500;
+        margin-top: 32px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material Breadcrumbs Web Component</h1>
+
+    <div class="section">
+      <h2>Basic Usage</h2>
+      <div class="card">
+        <vc-breadcrumbs>
+          <vc-breadcrumb-item href="/">Home</vc-breadcrumb-item>
+          <vc-breadcrumb-item href="/products">Products</vc-breadcrumb-item>
+          <vc-breadcrumb-item>Electronics</vc-breadcrumb-item>
+        </vc-breadcrumbs>
+      </div>
+      <pre><code>&lt;vc-breadcrumbs&gt;
+  &lt;vc-breadcrumb-item href="/"&gt;Home&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item href="/products"&gt;Products&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item&gt;Electronics&lt;/vc-breadcrumb-item&gt;
+&lt;/vc-breadcrumbs&gt;</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>Custom Divider</h2>
+      <div class="card">
+        <vc-breadcrumbs divider=">">
+          <vc-breadcrumb-item href="/">Home</vc-breadcrumb-item>
+          <vc-breadcrumb-item href="/blog">Blog</vc-breadcrumb-item>
+          <vc-breadcrumb-item>How to Use Web Components</vc-breadcrumb-item>
+        </vc-breadcrumbs>
+      </div>
+      <pre><code>&lt;vc-breadcrumbs divider="&gt;"&gt;
+  &lt;vc-breadcrumb-item href="/"&gt;Home&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item href="/blog"&gt;Blog&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item&gt;How to Use Web Components&lt;/vc-breadcrumb-item&gt;
+&lt;/vc-breadcrumbs&gt;</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>With Disabled Item</h2>
+      <div class="card">
+        <vc-breadcrumbs>
+          <vc-breadcrumb-item href="/">Home</vc-breadcrumb-item>
+          <vc-breadcrumb-item disabled>Categories</vc-breadcrumb-item>
+          <vc-breadcrumb-item href="/products/tech"
+            >Technology</vc-breadcrumb-item
+          >
+          <vc-breadcrumb-item>Smartphones</vc-breadcrumb-item>
+        </vc-breadcrumbs>
+      </div>
+      <pre><code>&lt;vc-breadcrumbs&gt;
+  &lt;vc-breadcrumb-item href="/"&gt;Home&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item disabled&gt;Categories&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item href="/products/tech"&gt;Technology&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item&gt;Smartphones&lt;/vc-breadcrumb-item&gt;
+&lt;/vc-breadcrumbs&gt;</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>Dark Theme</h2>
+      <div class="dark-theme">
+        <vc-breadcrumbs dark>
+          <vc-breadcrumb-item href="/">Home</vc-breadcrumb-item>
+          <vc-breadcrumb-item href="/account">Account</vc-breadcrumb-item>
+          <vc-breadcrumb-item>Settings</vc-breadcrumb-item>
+        </vc-breadcrumbs>
+      </div>
+      <pre><code>&lt;div class="dark-theme"&gt;
+  &lt;vc-breadcrumbs dark&gt;
+    &lt;vc-breadcrumb-item href="/"&gt;Home&lt;/vc-breadcrumb-item&gt;
+    &lt;vc-breadcrumb-item href="/account"&gt;Account&lt;/vc-breadcrumb-item&gt;
+    &lt;vc-breadcrumb-item&gt;Settings&lt;/vc-breadcrumb-item&gt;
+  &lt;/vc-breadcrumbs&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>Manual Active State</h2>
+      <div class="card">
+        <vc-breadcrumbs>
+          <vc-breadcrumb-item href="/">Home</vc-breadcrumb-item>
+          <vc-breadcrumb-item href="/dashboard">Dashboard</vc-breadcrumb-item>
+          <vc-breadcrumb-item href="/dashboard/reports" active
+            >Reports</vc-breadcrumb-item
+          >
+          <vc-breadcrumb-item>Annual Summary</vc-breadcrumb-item>
+        </vc-breadcrumbs>
+      </div>
+      <pre><code>&lt;vc-breadcrumbs&gt;
+  &lt;vc-breadcrumb-item href="/"&gt;Home&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item href="/dashboard"&gt;Dashboard&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item href="/dashboard/reports" active&gt;Reports&lt;/vc-breadcrumb-item&gt;
+  &lt;vc-breadcrumb-item&gt;Annual Summary&lt;/vc-breadcrumb-item&gt;
+&lt;/vc-breadcrumbs&gt;</code></pre>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VC-Chip Web Component Example</title>
+    <script src="vc-chip.js"></script>
+    <style>
+      body {
+        font-family: Roboto, "Segoe UI", Arial, sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 8px;
+      }
+
+      .example-container {
+        padding: 16px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        margin-bottom: 16px;
+      }
+
+      .chip-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .code-block {
+        background-color: #f8f8f8;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 16px;
+        overflow: auto;
+        margin-top: 16px;
+      }
+
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+      }
+
+      button {
+        font-family: Roboto, "Segoe UI", Arial, sans-serif;
+        font-size: 14px;
+        padding: 8px 16px;
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        margin-right: 8px;
+        cursor: pointer;
+      }
+
+      input {
+        font-family: Roboto, "Segoe UI", Arial, sans-serif;
+        font-size: 14px;
+        padding: 8px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        margin-right: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Chips Web Component Examples</h1>
+
+    <section>
+      <h2>Basic Chips</h2>
+      <div class="example-container">
+        <div class="chip-group">
+          <vc-chip>Basic Chip</vc-chip>
+          <vc-chip color="primary">Primary</vc-chip>
+          <vc-chip color="secondary">Secondary</vc-chip>
+          <vc-chip color="success">Success</vc-chip>
+          <vc-chip color="warning">Warning</vc-chip>
+          <vc-chip color="error">Error</vc-chip>
+        </div>
+      </div>
+      <div class="code-block">
+        <pre><code>&lt;vc-chip&gt;Basic Chip&lt;/vc-chip&gt;
+&lt;vc-chip color="primary"&gt;Primary&lt;/vc-chip&gt;
+&lt;vc-chip color="secondary"&gt;Secondary&lt;/vc-chip&gt;
+&lt;vc-chip color="success"&gt;Success&lt;/vc-chip&gt;
+&lt;vc-chip color="warning"&gt;Warning&lt;/vc-chip&gt;
+&lt;vc-chip color="error"&gt;Error&lt;/vc-chip&gt;</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Removable Chips</h2>
+      <div class="example-container">
+        <div class="chip-group">
+          <vc-chip removable>Removable</vc-chip>
+          <vc-chip removable color="primary">Removable Primary</vc-chip>
+          <vc-chip removable color="secondary">Removable Secondary</vc-chip>
+        </div>
+      </div>
+      <div class="code-block">
+        <pre><code>&lt;vc-chip removable&gt;Removable&lt;/vc-chip&gt;
+&lt;vc-chip removable color="primary"&gt;Removable Primary&lt;/vc-chip&gt;
+&lt;vc-chip removable color="secondary"&gt;Removable Secondary&lt;/vc-chip&gt;</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Disabled Chips</h2>
+      <div class="example-container">
+        <div class="chip-group">
+          <vc-chip disabled>Disabled</vc-chip>
+          <vc-chip disabled color="primary">Disabled Primary</vc-chip>
+          <vc-chip disabled removable>Disabled Removable</vc-chip>
+        </div>
+      </div>
+      <div class="code-block">
+        <pre><code>&lt;vc-chip disabled&gt;Disabled&lt;/vc-chip&gt;
+&lt;vc-chip disabled color="primary"&gt;Disabled Primary&lt;/vc-chip&gt;
+&lt;vc-chip disabled removable&gt;Disabled Removable&lt;/vc-chip&gt;</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Chips with Icons</h2>
+      <div class="example-container">
+        <div class="chip-group">
+          <vc-chip icon="👤">User</vc-chip>
+          <vc-chip icon="📍" color="primary">Location</vc-chip>
+          <vc-chip icon="🔍" removable>Search</vc-chip>
+        </div>
+      </div>
+      <div class="code-block">
+        <pre><code>&lt;vc-chip icon="👤"&gt;User&lt;/vc-chip&gt;
+&lt;vc-chip icon="📍" color="primary"&gt;Location&lt;/vc-chip&gt;
+&lt;vc-chip icon="🔍" removable&gt;Search&lt;/vc-chip&gt;</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Interactive Example</h2>
+      <div class="example-container">
+        <div>
+          <input type="text" id="chipText" placeholder="Enter chip text" />
+          <select id="chipColor">
+            <option value="">Default</option>
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+            <option value="error">Error</option>
+          </select>
+          <input type="checkbox" id="chipRemovable" /> Removable
+          <input type="checkbox" id="chipDisabled" /> Disabled
+          <button id="addChip">Add Chip</button>
+        </div>
+        <div class="chip-group" id="chipContainer"></div>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const addChipButton = document.getElementById("addChip");
+          const chipContainer = document.getElementById("chipContainer");
+          const chipTextInput = document.getElementById("chipText");
+          const chipColorSelect = document.getElementById("chipColor");
+          const chipRemovableCheckbox =
+            document.getElementById("chipRemovable");
+          const chipDisabledCheckbox = document.getElementById("chipDisabled");
+
+          addChipButton.addEventListener("click", () => {
+            const chipText = chipTextInput.value || "Chip";
+            const chipColor = chipColorSelect.value;
+            const isRemovable = chipRemovableCheckbox.checked;
+            const isDisabled = chipDisabledCheckbox.checked;
+
+            const chip = document.createElement("vc-chip");
+            chip.textContent = chipText;
+
+            if (chipColor) {
+              chip.setAttribute("color", chipColor);
+            }
+
+            if (isRemovable) {
+              chip.setAttribute("removable", "");
+            }
+
+            if (isDisabled) {
+              chip.setAttribute("disabled", "");
+            }
+
+            chip.addEventListener("remove", (e) => {
+              chipContainer.removeChild(e.target);
+            });
+
+            chipContainer.appendChild(chip);
+            chipTextInput.value = "";
+          });
+
+          // Listen for remove events on the container using event delegation
+          chipContainer.addEventListener("remove", (e) => {
+            if (e.target.tagName.toLowerCase() === "vc-chip") {
+              chipContainer.removeChild(e.target);
+            }
+          });
+        });
+      </script>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Tabs - Web Component Example</title>
+    <style>
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        padding: 24px;
+        color: rgba(0, 0, 0, 0.87);
+        background-color: #f5f5f5;
+      }
+
+      .card {
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 24px auto;
+        max-width: 800px;
+        overflow: hidden;
+      }
+
+      .header {
+        padding: 24px;
+        background-color: #673ab7;
+        color: white;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: normal;
+      }
+
+      .content-panel {
+        background-color: #f9f9f9;
+        padding: 16px;
+        margin-top: 16px;
+        border-radius: 4px;
+        border-left: 4px solid #673ab7;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 16px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: "Courier New", monospace;
+      }
+
+      button {
+        background-color: #673ab7;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-top: 16px;
+      }
+
+      button:hover {
+        background-color: #5e35b1;
+      }
+    </style>
+    <!-- Import the Web Component -->
+    <script src="vc-tabs.js" defer></script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Material 2 Tabs - Web Component Demo</h1>
+    </div>
+
+    <div class="card">
+      <vc-tabs id="demo-tabs">
+        <!-- Tab Headers -->
+        <vc-tab slot="tab">HOME</vc-tab>
+        <vc-tab slot="tab">PROFILE</vc-tab>
+        <vc-tab slot="tab">MESSAGES</vc-tab>
+        <vc-tab slot="tab">SETTINGS</vc-tab>
+
+        <!-- Tab Contents -->
+        <div slot="content">
+          <h2>Home</h2>
+          <p>
+            Welcome to the Material 2 Tabs demo! This tab shows the home
+            content.
+          </p>
+          <div class="content-panel">
+            <p>
+              The tabs component provides a simple way to navigate between
+              different sections of content.
+            </p>
+          </div>
+        </div>
+
+        <div slot="content">
+          <h2>Profile</h2>
+          <p>
+            This is the profile section where user information would be
+            displayed.
+          </p>
+          <div class="content-panel">
+            <p>In a real application, you might show:</p>
+            <ul>
+              <li>User details</li>
+              <li>Profile picture</li>
+              <li>Account settings</li>
+            </ul>
+          </div>
+        </div>
+
+        <div slot="content">
+          <h2>Messages</h2>
+          <p>Your message inbox would appear here.</p>
+          <div class="content-panel">
+            <p>No new messages.</p>
+          </div>
+        </div>
+
+        <div slot="content">
+          <h2>Settings</h2>
+          <p>Adjust your application settings here.</p>
+          <div class="content-panel">
+            <p>Example settings:</p>
+            <ul>
+              <li>Notifications: On</li>
+              <li>Dark Mode: Off</li>
+              <li>Language: English</li>
+            </ul>
+          </div>
+        </div>
+      </vc-tabs>
+
+      <div style="padding: 16px">
+        <h3>Programmatic Control</h3>
+        <button onclick="document.getElementById('demo-tabs').selectTab(0)">
+          Home
+        </button>
+        <button onclick="document.getElementById('demo-tabs').selectTab(1)">
+          Profile
+        </button>
+        <button onclick="document.getElementById('demo-tabs').selectTab(2)">
+          Messages
+        </button>
+        <button onclick="document.getElementById('demo-tabs').selectTab(3)">
+          Settings
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="padding: 24px">
+        <h2>Usage Example</h2>
+        <pre><code>&lt;!-- Include the Web Component --&gt;
+&lt;script src="vc-tabs.js"&gt;&lt;/script&gt;
+
+&lt;!-- Basic Usage --&gt;
+&lt;vc-tabs&gt;
+  &lt;!-- Tab Headers --&gt;
+  &lt;vc-tab slot="tab"&gt;TAB 1&lt;/vc-tab&gt;
+  &lt;vc-tab slot="tab"&gt;TAB 2&lt;/vc-tab&gt;
+  &lt;vc-tab slot="tab"&gt;TAB 3&lt;/vc-tab&gt;
+  
+  &lt;!-- Tab Contents --&gt;
+  &lt;div slot="content"&gt;Content for Tab 1&lt;/div&gt;
+  &lt;div slot="content"&gt;Content for Tab 2&lt;/div&gt;
+  &lt;div slot="content"&gt;Content for Tab 3&lt;/div&gt;
+&lt;/vc-tabs&gt;</code></pre>
+      </div>
+    </div>
+
+    <script>
+      // Event listener example
+      document
+        .getElementById("demo-tabs")
+        .addEventListener("tabs-changed", (e) => {
+          console.log("Tab changed:", e.detail.selectedIndex);
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Switch - Web Component Example</title>
+    <style>
+      body {
+        font-family: Roboto, Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 24px;
+      }
+
+      .switch-group {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+      }
+
+      .switch-container {
+        margin: 10px 0;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      .code-label {
+        font-weight: bold;
+        margin-top: 15px;
+      }
+
+      .state-display {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+    </style>
+    <!-- Import the Web Component -->
+    <script src="vc-switch.js"></script>
+  </head>
+  <body>
+    <h1>Material 2 Switch - Web Component Demo</h1>
+
+    <div class="switch-group">
+      <h2>Basic Examples</h2>
+
+      <div class="switch-container">
+        <vc-switch label="Default Switch"></vc-switch>
+      </div>
+
+      <div class="switch-container">
+        <vc-switch label="Checked Switch" checked></vc-switch>
+      </div>
+
+      <div class="switch-container">
+        <vc-switch label="Disabled Switch" disabled></vc-switch>
+      </div>
+
+      <div class="switch-container">
+        <vc-switch
+          label="Checked & Disabled Switch"
+          checked
+          disabled
+        ></vc-switch>
+      </div>
+
+      <div class="switch-container">
+        <vc-switch id="js-controlled"></vc-switch>
+      </div>
+
+      <div class="state-display" id="switch-state">Switch state: unchecked</div>
+    </div>
+
+    <div class="switch-group">
+      <h2>Usage Examples</h2>
+
+      <div class="code-label">Basic Usage:</div>
+      <pre>&lt;vc-switch label="Default Switch"&gt;&lt;/vc-switch&gt;</pre>
+
+      <div class="code-label">Checked Switch:</div>
+      <pre>
+&lt;vc-switch label="Checked Switch" checked&gt;&lt;/vc-switch&gt;</pre
+      >
+
+      <div class="code-label">Disabled Switch:</div>
+      <pre>
+&lt;vc-switch label="Disabled Switch" disabled&gt;&lt;/vc-switch&gt;</pre
+      >
+
+      <div class="code-label">JavaScript Control:</div>
+      <pre>
+const switchElement = document.querySelector('#my-switch');
+
+// Get current state
+console.log('Is checked:', switchElement.checked);
+
+// Set new state
+switchElement.checked = true;
+
+// Listen for changes
+switchElement.addEventListener('change', (event) => {
+  console.log('Switch changed:', event.detail.checked);
+});
+    </pre
+      >
+    </div>
+
+    <script>
+      // JavaScript control example
+      const jsControlled = document.getElementById("js-controlled");
+      const stateDisplay = document.getElementById("switch-state");
+
+      // Set initial label
+      jsControlled.label = "JavaScript Controlled Switch";
+
+      // Listen for changes
+      jsControlled.addEventListener("change", (event) => {
+        stateDisplay.textContent = `Switch state: ${
+          event.detail.checked ? "checked" : "unchecked"
+        }`;
+      });
+
+      // Toggle the switch every 3 seconds for demo
+      let count = 0;
+      const interval = setInterval(() => {
+        jsControlled.checked = !jsControlled.checked;
+        count++;
+
+        if (count > 5) {
+          clearInterval(interval);
+        }
+      }, 3000);
+    </script>
+  </body>
+</html>

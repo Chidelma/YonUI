@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Image List Example</title>
+    <script src="vc-image-list.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+        background-color: #f5f5f5;
+      }
+
+      h1,
+      h2 {
+        color: #1976d2;
+      }
+
+      section {
+        margin-bottom: 40px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .controls {
+        margin-bottom: 16px;
+      }
+
+      button {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 8px;
+        margin-bottom: 8px;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+
+      label {
+        margin-right: 8px;
+      }
+
+      input[type="number"] {
+        width: 60px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        margin-right: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Image List Examples</h1>
+
+    <!-- Standard Image List Example -->
+    <section>
+      <h2>Standard Image List</h2>
+      <div class="controls">
+        <label for="standard-columns">Columns:</label>
+        <input type="number" id="standard-columns" min="1" max="6" value="3" />
+
+        <label for="standard-gap">Gap (px):</label>
+        <input type="number" id="standard-gap" min="0" max="24" value="8" />
+
+        <button id="standard-update">Update</button>
+      </div>
+
+      <vc-image-list variant="standard" columns="3" gap="8">
+        <vc-image-list-item
+          primary-text="Mountain View"
+          secondary-text="Landscape"
+        >
+          <img
+            src="https://picsum.photos/id/10/300/300"
+            alt="Mountain landscape"
+          />
+        </vc-image-list-item>
+        <vc-image-list-item primary-text="Beach Sunset" secondary-text="Nature">
+          <img src="https://picsum.photos/id/11/300/300" alt="Beach sunset" />
+        </vc-image-list-item>
+        <vc-image-list-item primary-text="City Skyline" secondary-text="Urban">
+          <img src="https://picsum.photos/id/12/300/300" alt="City skyline" />
+        </vc-image-list-item>
+        <vc-image-list-item primary-text="Forest Path" secondary-text="Nature">
+          <img src="https://picsum.photos/id/13/300/300" alt="Forest path" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Desert View"
+          secondary-text="Landscape"
+        >
+          <img src="https://picsum.photos/id/14/300/300" alt="Desert view" />
+        </vc-image-list-item>
+        <vc-image-list-item primary-text="Ocean View" secondary-text="Seascape">
+          <img src="https://picsum.photos/id/15/300/300" alt="Ocean view" />
+        </vc-image-list-item>
+      </vc-image-list>
+    </section>
+
+    <!-- Masonry Image List Example -->
+    <section>
+      <h2>Masonry Image List</h2>
+      <div class="controls">
+        <label for="masonry-columns">Columns:</label>
+        <input type="number" id="masonry-columns" min="1" max="6" value="3" />
+
+        <label for="masonry-gap">Gap (px):</label>
+        <input type="number" id="masonry-gap" min="0" max="24" value="8" />
+
+        <button id="masonry-update">Update</button>
+      </div>
+
+      <vc-image-list variant="masonry" columns="3" gap="8">
+        <vc-image-list-item
+          primary-text="Mountain View"
+          secondary-text="Landscape"
+          text-protection
+        >
+          <img
+            src="https://picsum.photos/id/10/300/400"
+            alt="Mountain landscape"
+          />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Beach Sunset"
+          secondary-text="Nature"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/11/300/250" alt="Beach sunset" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="City Skyline"
+          secondary-text="Urban"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/12/300/350" alt="City skyline" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Forest Path"
+          secondary-text="Nature"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/13/300/450" alt="Forest path" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Desert View"
+          secondary-text="Landscape"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/14/300/300" alt="Desert view" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Ocean View"
+          secondary-text="Seascape"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/15/300/320" alt="Ocean view" />
+        </vc-image-list-item>
+      </vc-image-list>
+    </section>
+
+    <!-- Quilted Image List Example -->
+    <section>
+      <h2>Quilted Image List</h2>
+      <div class="controls">
+        <label for="quilted-columns">Columns:</label>
+        <input type="number" id="quilted-columns" min="2" max="6" value="4" />
+
+        <label for="quilted-gap">Gap (px):</label>
+        <input type="number" id="quilted-gap" min="0" max="24" value="8" />
+
+        <button id="quilted-update">Update</button>
+      </div>
+
+      <vc-image-list variant="quilted" columns="4" gap="8">
+        <vc-image-list-item
+          primary-text="Featured Image"
+          secondary-text="Special"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/20/600/600" alt="Featured image" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Standard Item"
+          secondary-text="Regular"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/21/300/300" alt="Standard item" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Standard Item"
+          secondary-text="Regular"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/22/300/300" alt="Standard item" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Tall Item"
+          secondary-text="Vertical"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/23/300/600" alt="Tall item" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Wide Item"
+          secondary-text="Horizontal"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/24/600/300" alt="Wide item" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Featured Image"
+          secondary-text="Special"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/25/600/600" alt="Featured image" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Standard Item"
+          secondary-text="Regular"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/26/300/300" alt="Standard item" />
+        </vc-image-list-item>
+        <vc-image-list-item
+          primary-text="Standard Item"
+          secondary-text="Regular"
+          text-protection
+        >
+          <img src="https://picsum.photos/id/27/300/300" alt="Standard item" />
+        </vc-image-list-item>
+      </vc-image-list>
+    </section>
+
+    <script>
+      // Add controls for each image list variant
+      document
+        .getElementById("standard-update")
+        .addEventListener("click", () => {
+          const columns = document.getElementById("standard-columns").value;
+          const gap = document.getElementById("standard-gap").value;
+          const imageList = document.querySelector(
+            'vc-image-list[variant="standard"]'
+          );
+
+          imageList.columns = columns;
+          imageList.gap = gap;
+        });
+
+      document
+        .getElementById("masonry-update")
+        .addEventListener("click", () => {
+          const columns = document.getElementById("masonry-columns").value;
+          const gap = document.getElementById("masonry-gap").value;
+          const imageList = document.querySelector(
+            'vc-image-list[variant="masonry"]'
+          );
+
+          imageList.columns = columns;
+          imageList.gap = gap;
+        });
+
+      document
+        .getElementById("quilted-update")
+        .addEventListener("click", () => {
+          const columns = document.getElementById("quilted-columns").value;
+          const gap = document.getElementById("quilted-gap").value;
+          const imageList = document.querySelector(
+            'vc-image-list[variant="quilted"]'
+          );
+
+          imageList.columns = columns;
+          imageList.gap = gap;
+        });
+    </script>
+  </body>
+</html>

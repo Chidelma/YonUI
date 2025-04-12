@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vc-data-table Example</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 24px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: #212121;
+        font-weight: 400;
+        margin-bottom: 24px;
+      }
+
+      .example-section {
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 24px;
+        margin-bottom: 32px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      h2 {
+        color: #424242;
+        font-weight: 500;
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 16px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      button {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-bottom: 16px;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+
+      .actions {
+        margin-bottom: 16px;
+      }
+
+      #selection-info {
+        margin-top: 16px;
+        padding: 12px;
+        background-color: #e3f2fd;
+        border-radius: 4px;
+        display: none;
+      }
+    </style>
+    <script src="vc-data-table.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>vc-data-table Web Component Examples</h1>
+
+      <div class="example-section">
+        <h2>Basic Data Table</h2>
+        <div class="actions">
+          <button id="add-row">Add Row</button>
+          <button id="clear-data">Clear Data</button>
+        </div>
+        <vc-data-table id="basic-table"></vc-data-table>
+      </div>
+
+      <div class="example-section">
+        <h2>Selectable Data Table</h2>
+        <vc-data-table id="selectable-table" selectable></vc-data-table>
+        <div id="selection-info"></div>
+      </div>
+
+      <div class="example-section">
+        <h2>Data Table with Custom Formatting</h2>
+        <vc-data-table id="formatted-table" page-size="5"></vc-data-table>
+      </div>
+
+      <div class="example-section">
+        <h2>Usage Example</h2>
+        <pre>
+&lt;!-- Include the web component script -->
+&lt;script src="vc-data-table.js">&lt;/script>
+
+&lt;!-- Basic usage -->
+&lt;vc-data-table id="my-table">&lt;/vc-data-table>
+
+&lt;!-- Configure the table with JavaScript -->
+&lt;script>
+  const table = document.getElementById('my-table');
+  
+  // Define columns
+  table.columns = [
+    { key: 'id', label: 'ID' },
+    { key: 'name', label: 'Name' },
+    { key: 'email', label: 'Email Address' }
+  ];
+  
+  // Set data
+  table.data = [
+    { id: 1, name: 'John Doe', email: 'john@example.com' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
+  ];
+&lt;/script>
+      </pre
+        >
+      </div>
+    </div>
+
+    <script>
+      // Basic table setup
+      const basicTable = document.getElementById("basic-table");
+      basicTable.columns = [
+        { key: "id", label: "ID" },
+        { key: "name", label: "Name" },
+        { key: "email", label: "Email" },
+      ];
+
+      basicTable.data = [
+        { id: 1, name: "John Doe", email: "john@example.com" },
+        { id: 2, name: "Jane Smith", email: "jane@example.com" },
+        { id: 3, name: "Bob Johnson", email: "bob@example.com" },
+      ];
+
+      // Add row button
+      document.getElementById("add-row").addEventListener("click", () => {
+        const newId = basicTable.data.length + 1;
+        basicTable.data = [
+          ...basicTable.data,
+          {
+            id: newId,
+            name: `New User ${newId}`,
+            email: `user${newId}@example.com`,
+          },
+        ];
+      });
+
+      // Clear data button
+      document.getElementById("clear-data").addEventListener("click", () => {
+        basicTable.data = [];
+      });
+
+      // Selectable table setup
+      const selectableTable = document.getElementById("selectable-table");
+      const selectionInfo = document.getElementById("selection-info");
+
+      selectableTable.columns = [
+        { key: "id", label: "ID" },
+        { key: "name", label: "Name" },
+        { key: "role", label: "Role" },
+      ];
+
+      selectableTable.data = [
+        { id: 101, name: "Alice Williams", role: "Developer" },
+        { id: 102, name: "Charlie Brown", role: "Designer" },
+        { id: 103, name: "David Miller", role: "Manager" },
+        { id: 104, name: "Eva Green", role: "Developer" },
+        { id: 105, name: "Frank Wilson", role: "QA Engineer" },
+      ];
+
+      selectableTable.addEventListener("selection-change", (e) => {
+        const selectedRows = e.detail.selectedRows;
+        if (selectedRows.length > 0) {
+          selectionInfo.style.display = "block";
+          selectionInfo.textContent = `Selected ${
+            selectedRows.length
+          } rows: ${selectedRows.map((row) => row.name).join(", ")}`;
+        } else {
+          selectionInfo.style.display = "none";
+        }
+      });
+
+      // Formatted table setup
+      const formattedTable = document.getElementById("formatted-table");
+
+      formattedTable.columns = [
+        { key: "id", label: "ID" },
+        { key: "product", label: "Product" },
+        {
+          key: "price",
+          label: "Price",
+          formatter: (value) => `$${value.toFixed(2)}`,
+        },
+        {
+          key: "inStock",
+          label: "In Stock",
+          formatter: (value) => (value ? "✓" : "✗"),
+        },
+        {
+          key: "rating",
+          label: "Rating",
+          formatter: (value) =>
+            "★".repeat(Math.round(value)) + "☆".repeat(5 - Math.round(value)),
+        },
+      ];
+
+      formattedTable.data = [
+        {
+          id: 201,
+          product: "Laptop",
+          price: 999.99,
+          inStock: true,
+          rating: 4.5,
+        },
+        {
+          id: 202,
+          product: "Smartphone",
+          price: 699.99,
+          inStock: true,
+          rating: 4.0,
+        },
+        {
+          id: 203,
+          product: "Headphones",
+          price: 149.99,
+          inStock: false,
+          rating: 3.5,
+        },
+        {
+          id: 204,
+          product: "Keyboard",
+          price: 59.99,
+          inStock: true,
+          rating: 5.0,
+        },
+        { id: 205, product: "Mouse", price: 29.99, inStock: true, rating: 4.2 },
+        {
+          id: 206,
+          product: "Monitor",
+          price: 299.99,
+          inStock: false,
+          rating: 3.8,
+        },
+        {
+          id: 207,
+          product: "Printer",
+          price: 199.99,
+          inStock: true,
+          rating: 2.5,
+        },
+        {
+          id: 208,
+          product: "Speakers",
+          price: 89.99,
+          inStock: true,
+          rating: 4.7,
+        },
+      ];
+    </script>
+  </body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vc-badge Web Component Examples</title>
+    <script src="./vc-badge.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      h1,
+      h2 {
+        color: #1976d2;
+      }
+
+      .example-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .example-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        min-width: 150px;
+      }
+
+      .example-item h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: #424242;
+      }
+
+      button,
+      .avatar {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: #f5f5f5;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: #424242;
+        height: 36px;
+        margin: 8px;
+      }
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #e0e0e0;
+        color: #424242;
+        font-weight: bold;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>vc-badge Web Component Examples</h1>
+
+    <h2>Basic Usage</h2>
+    <div class="example-container">
+      <div class="example-item">
+        <h3>Default Badge</h3>
+        <vc-badge content="4">
+          <button>Notifications</button>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="4"&gt;
+  &lt;button&gt;Notifications&lt;/button&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Dot Badge</h3>
+        <vc-badge dot>
+          <button>Notifications</button>
+        </vc-badge>
+        <pre>
+&lt;vc-badge dot&gt;
+  &lt;button&gt;Notifications&lt;/button&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+    </div>
+
+    <h2>Colors</h2>
+    <div class="example-container">
+      <div class="example-item">
+        <h3>Primary (Default)</h3>
+        <vc-badge content="1" color="primary">
+          <div class="avatar">A</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="1" color="primary"&gt;
+  &lt;div class="avatar"&gt;A&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Secondary</h3>
+        <vc-badge content="2" color="secondary">
+          <div class="avatar">B</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="2" color="secondary"&gt;
+  &lt;div class="avatar"&gt;B&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Success</h3>
+        <vc-badge content="3" color="success">
+          <div class="avatar">C</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="3" color="success"&gt;
+  &lt;div class="avatar"&gt;C&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Error</h3>
+        <vc-badge content="4" color="error">
+          <div class="avatar">D</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="4" color="error"&gt;
+  &lt;div class="avatar"&gt;D&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Warning</h3>
+        <vc-badge content="5" color="warning">
+          <div class="avatar">E</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="5" color="warning"&gt;
+  &lt;div class="avatar"&gt;E&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Info</h3>
+        <vc-badge content="6" color="info">
+          <div class="avatar">F</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="6" color="info"&gt;
+  &lt;div class="avatar"&gt;F&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Custom Color</h3>
+        <vc-badge content="7" color="#9C27B0">
+          <div class="avatar">G</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="7" color="#9C27B0"&gt;
+  &lt;div class="avatar"&gt;G&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+    </div>
+
+    <h2>Position</h2>
+    <div class="example-container">
+      <div class="example-item">
+        <h3>Top Right (Default)</h3>
+        <vc-badge content="1" position="top-right">
+          <div class="avatar">TR</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="1" position="top-right"&gt;
+  &lt;div class="avatar"&gt;TR&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Top Left</h3>
+        <vc-badge content="2" position="top-left">
+          <div class="avatar">TL</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="2" position="top-left"&gt;
+  &lt;div class="avatar"&gt;TL&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Bottom Right</h3>
+        <vc-badge content="3" position="bottom-right">
+          <div class="avatar">BR</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="3" position="bottom-right"&gt;
+  &lt;div class="avatar"&gt;BR&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Bottom Left</h3>
+        <vc-badge content="4" position="bottom-left">
+          <div class="avatar">BL</div>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="4" position="bottom-left"&gt;
+  &lt;div class="avatar"&gt;BL&lt;/div&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+    </div>
+
+    <h2>Advanced Features</h2>
+    <div class="example-container">
+      <div class="example-item">
+        <h3>Max Value</h3>
+        <vc-badge content="42" max="99">
+          <button>Regular max</button>
+        </vc-badge>
+        <vc-badge content="120" max="99">
+          <button>Exceeded max</button>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="42" max="99"&gt;
+  &lt;button&gt;Regular max&lt;/button&gt;
+&lt;/vc-badge&gt;
+
+&lt;vc-badge content="120" max="99"&gt;
+  &lt;button&gt;Exceeded max&lt;/button&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Bordered</h3>
+        <vc-badge content="8" bordered>
+          <button>Bordered Badge</button>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="8" bordered&gt;
+  &lt;button&gt;Bordered Badge&lt;/button&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Offset</h3>
+        <vc-badge content="9" offset-x="10" offset-y="-10">
+          <button>Offset Badge</button>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="9" offset-x="10" offset-y="-10"&gt;
+  &lt;button&gt;Offset Badge&lt;/button&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+
+      <div class="example-item">
+        <h3>Hidden Badge</h3>
+        <vc-badge content="10" model-value="false">
+          <button>Hidden Badge</button>
+        </vc-badge>
+        <pre>
+&lt;vc-badge content="10" model-value="false"&gt;
+  &lt;button&gt;Hidden Badge&lt;/button&gt;
+&lt;/vc-badge&gt;</pre
+        >
+      </div>
+    </div>
+
+    <h2>Inline Badges</h2>
+    <div class="example-container">
+      <div class="example-item">
+        <h3>Inline Badge</h3>
+        <div>
+          This text has an
+          <vc-badge content="5" color="error" inline>inline</vc-badge> badge.
+        </div>
+        <pre>
+&lt;div&gt;
+  This text has an &lt;vc-badge content="5" color="error" inline&gt;inline&lt;/vc-badge&gt; badge.
+&lt;/div&gt;</pre
+        >
+      </div>
+    </div>
+  </body>
+</html>

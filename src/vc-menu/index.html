@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vc-menu Web Component Example</title>
+    <script src="vc-menu.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 0;
+      }
+
+      .example-section {
+        margin: 30px 0;
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+      }
+
+      .example-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      button {
+        background-color: #6200ee;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+        margin-right: 10px;
+      }
+
+      button:hover {
+        background-color: #3700b3;
+      }
+
+      .demo-area {
+        min-height: 200px;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .menu-item .material-icons {
+        margin-right: 8px;
+      }
+
+      .result {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        min-height: 24px;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material 2 Menu Web Component</h1>
+
+      <div class="example-section">
+        <div class="example-title">Basic Menu Example</div>
+        <div class="demo-area">
+          <div>
+            <button id="basic-menu-trigger">Open Menu</button>
+            <div class="result" id="basic-result">
+              Click a menu item to see the result
+            </div>
+
+            <!-- Basic menu with button items -->
+            <vc-menu id="basic-menu" position="bottom-start">
+              <button value="refresh">Refresh</button>
+              <button value="settings">Settings</button>
+              <hr class="divider" />
+              <button value="logout">Logout</button>
+            </vc-menu>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">Menu with Icons</div>
+        <div class="demo-area">
+          <div>
+            <button id="icon-menu-trigger">Menu with Icons</button>
+            <div class="result" id="icon-result">
+              Click a menu item to see the result
+            </div>
+
+            <!-- Menu with icons -->
+            <vc-menu id="icon-menu" position="bottom-start">
+              <button value="edit">
+                <span class="material-icons">edit</span>Edit
+              </button>
+              <button value="delete">
+                <span class="material-icons">delete</span>Delete
+              </button>
+              <button value="share">
+                <span class="material-icons">share</span>Share
+              </button>
+            </vc-menu>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">Different Menu Positions</div>
+        <div class="demo-area">
+          <div>
+            <button id="top-start-trigger">Top Start</button>
+            <vc-menu id="top-start-menu" position="top-start">
+              <button value="item1">Item 1</button>
+              <button value="item2">Item 2</button>
+              <button value="item3">Item 3</button>
+            </vc-menu>
+          </div>
+
+          <div>
+            <button id="top-end-trigger">Top End</button>
+            <vc-menu id="top-end-menu" position="top-end">
+              <button value="item1">Item 1</button>
+              <button value="item2">Item 2</button>
+              <button value="item3">Item 3</button>
+            </vc-menu>
+          </div>
+
+          <div>
+            <button id="bottom-start-trigger">Bottom Start</button>
+            <vc-menu id="bottom-start-menu" position="bottom-start">
+              <button value="item1">Item 1</button>
+              <button value="item2">Item 2</button>
+              <button value="item3">Item 3</button>
+            </vc-menu>
+          </div>
+
+          <div>
+            <button id="bottom-end-trigger">Bottom End</button>
+            <vc-menu id="bottom-end-menu" position="bottom-end">
+              <button value="item1">Item 1</button>
+              <button value="item2">Item 2</button>
+              <button value="item3">Item 3</button>
+            </vc-menu>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-section">
+        <div class="example-title">Disabled Menu Items</div>
+        <div class="demo-area">
+          <div>
+            <button id="disabled-menu-trigger">With Disabled Items</button>
+            <div class="result" id="disabled-result">
+              Click a menu item to see the result
+            </div>
+
+            <!-- Menu with disabled items -->
+            <vc-menu id="disabled-menu" position="bottom-start">
+              <button value="item1">Available Item</button>
+              <button value="item2" disabled>Disabled Item</button>
+              <hr class="divider" />
+              <button value="item3">Another Item</button>
+            </vc-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Setup the menu triggers
+      document.addEventListener("DOMContentLoaded", function () {
+        // Basic menu
+        const basicMenuTrigger = document.getElementById("basic-menu-trigger");
+        const basicMenu = document.getElementById("basic-menu");
+        const basicResult = document.getElementById("basic-result");
+
+        basicMenu.setTrigger(basicMenuTrigger);
+        basicMenu.addEventListener("menu-select", (e) => {
+          basicResult.textContent = `Selected: ${e.detail.value}`;
+        });
+
+        // Icon menu
+        const iconMenuTrigger = document.getElementById("icon-menu-trigger");
+        const iconMenu = document.getElementById("icon-menu");
+        const iconResult = document.getElementById("icon-result");
+
+        iconMenu.setTrigger(iconMenuTrigger);
+        iconMenu.addEventListener("menu-select", (e) => {
+          iconResult.textContent = `Selected: ${e.detail.value}`;
+        });
+
+        // Position menus
+        const positions = [
+          "top-start",
+          "top-end",
+          "bottom-start",
+          "bottom-end",
+        ];
+        positions.forEach((pos) => {
+          const trigger = document.getElementById(`${pos}-trigger`);
+          const menu = document.getElementById(`${pos}-menu`);
+          menu.setTrigger(trigger);
+        });
+
+        // Disabled menu
+        const disabledMenuTrigger = document.getElementById(
+          "disabled-menu-trigger"
+        );
+        const disabledMenu = document.getElementById("disabled-menu");
+        const disabledResult = document.getElementById("disabled-result");
+
+        disabledMenu.setTrigger(disabledMenuTrigger);
+        disabledMenu.addEventListener("menu-select", (e) => {
+          disabledResult.textContent = `Selected: ${e.detail.value}`;
+        });
+      });
+    </script>
+  </body>
+</html>

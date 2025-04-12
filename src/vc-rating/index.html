@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Rating Component Demo</title>
+    <script src="vc-rating.js"></script>
+    <style>
+      body {
+        font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        margin: 0;
+        padding: 20px;
+        color: rgba(0, 0, 0, 0.87);
+        line-height: 1.5;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 24px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        margin-top: 0;
+        font-weight: 400;
+        color: #212121;
+        font-size: 24px;
+      }
+
+      .example-section {
+        margin-bottom: 32px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      h2 {
+        font-weight: 400;
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 16px;
+        color: #424242;
+      }
+
+      .subtitle {
+        color: rgba(0, 0, 0, 0.6);
+        margin-bottom: 16px;
+      }
+
+      .example-row {
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .example-label {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.6);
+        margin-bottom: 4px;
+      }
+
+      .output {
+        margin-top: 8px;
+        font-size: 14px;
+        color: #1976d2;
+      }
+
+      button {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material 2 Rating Component</h1>
+      <p class="subtitle">
+        Inspired by Vuetify v3 using Web Component technology
+      </p>
+
+      <div class="example-section">
+        <h2>Basic Usage</h2>
+        <div class="example-row">
+          <div class="example-label">Default Rating:</div>
+          <vc-rating value="3"></vc-rating>
+          <div id="basic-output" class="output">Value: 3</div>
+        </div>
+      </div>
+
+      <div class="example-section">
+        <h2>Customization</h2>
+
+        <div class="example-row">
+          <div class="example-label">Custom Colors:</div>
+          <vc-rating
+            value="4"
+            color="#9C27B0"
+            empty-color="#E1BEE7"
+            hover-color="#7B1FA2"
+          ></vc-rating>
+        </div>
+
+        <div class="example-row">
+          <div class="example-label">Larger Size (32px):</div>
+          <vc-rating value="3.5" size="32"></vc-rating>
+        </div>
+
+        <div class="example-row">
+          <div class="example-label">Dense Mode:</div>
+          <vc-rating value="2" dense></vc-rating>
+        </div>
+
+        <div class="example-row">
+          <div class="example-label">Custom Maximum (10 stars):</div>
+          <vc-rating value="7" max="10"></vc-rating>
+        </div>
+      </div>
+
+      <div class="example-section">
+        <h2>States</h2>
+
+        <div class="example-row">
+          <div class="example-label">Read-only:</div>
+          <vc-rating value="4.5" readonly></vc-rating>
+        </div>
+
+        <div class="example-row">
+          <div class="example-label">Programmatic Control:</div>
+          <vc-rating id="controlled-rating" value="2"></vc-rating>
+          <div>
+            <button id="decrease-btn">-</button>
+            <button id="increase-btn">+</button>
+            <button id="reset-btn">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Handle value changes for basic example
+      const basicRating = document.querySelector("vc-rating");
+      const basicOutput = document.getElementById("basic-output");
+
+      basicRating.addEventListener("change", (event) => {
+        basicOutput.textContent = `Value: ${event.detail.value}`;
+      });
+
+      // Handle programmatic control
+      const controlledRating = document.getElementById("controlled-rating");
+      const decreaseBtn = document.getElementById("decrease-btn");
+      const increaseBtn = document.getElementById("increase-btn");
+      const resetBtn = document.getElementById("reset-btn");
+
+      decreaseBtn.addEventListener("click", () => {
+        controlledRating.value = Math.max(0, controlledRating.value - 0.5);
+      });
+
+      increaseBtn.addEventListener("click", () => {
+        controlledRating.value = Math.min(5, controlledRating.value + 0.5);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        controlledRating.value = 2;
+      });
+    </script>
+  </body>
+</html>

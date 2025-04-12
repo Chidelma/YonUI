@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VC-Sparkline Demo</title>
+    <script src="vc-sparkline.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .demo-section {
+        background: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 24px;
+        padding: 24px;
+      }
+      h1 {
+        color: #1976d2;
+        margin-bottom: 32px;
+      }
+      h2 {
+        color: #424242;
+        margin-top: 0;
+      }
+      .example-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        margin-top: 16px;
+      }
+      .example-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 16px;
+      }
+      .example-card h3 {
+        margin-top: 0;
+        color: #616161;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+      }
+      pre {
+        background: #f5f5f5;
+        border-radius: 4px;
+        padding: 8px;
+        overflow-x: auto;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      button {
+        background: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s;
+      }
+      button:hover {
+        background: #1565c0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Sparklines Web Component Demo</h1>
+
+    <div class="demo-section">
+      <h2>Basic Examples</h2>
+
+      <div class="example-container">
+        <div class="example-card">
+          <h3>Trend Line (Default)</h3>
+          <vc-sparkline
+            value="[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]"
+            color="primary"
+            height="100"
+            line-width="2"
+          ></vc-sparkline>
+          <pre>
+&lt;vc-sparkline
+  value='[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]'
+  color="primary"
+  height="100"
+  line-width="2"
+&gt;&lt;/vc-sparkline&gt;</pre
+          >
+        </div>
+
+        <div class="example-card">
+          <h3>Smooth Line</h3>
+          <vc-sparkline
+            value="[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]"
+            color="info"
+            smooth="true"
+            height="100"
+          ></vc-sparkline>
+          <pre>
+&lt;vc-sparkline
+  value='[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]'
+  color="info"
+  smooth="true"
+  height="100"
+&gt;&lt;/vc-sparkline&gt;</pre
+          >
+        </div>
+
+        <div class="example-card">
+          <h3>Bar Chart</h3>
+          <vc-sparkline
+            value="[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]"
+            color="success"
+            type="bar"
+            height="100"
+          ></vc-sparkline>
+          <pre>
+&lt;vc-sparkline
+  value='[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]'
+  color="success"
+  type="bar"
+  height="100"
+&gt;&lt;/vc-sparkline&gt;</pre
+          >
+        </div>
+
+        <div class="example-card">
+          <h3>Area Chart</h3>
+          <vc-sparkline
+            value="[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]"
+            color="warning"
+            fill="true"
+            type="area"
+            height="100"
+          ></vc-sparkline>
+          <pre>
+&lt;vc-sparkline
+  value='[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]'
+  color="warning"
+  fill="true"
+  type="area"
+  height="100"
+&gt;&lt;/vc-sparkline&gt;</pre
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Advanced Features</h2>
+
+      <div class="example-container">
+        <div class="example-card">
+          <h3>With Labels</h3>
+          <vc-sparkline
+            value="[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]"
+            labels='["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]'
+            color="error"
+            show-labels="true"
+            height="120"
+          ></vc-sparkline>
+          <pre>
+&lt;vc-sparkline
+  value='[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]'
+  labels='["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]'
+  color="error"
+  show-labels="true"
+  height="120"
+&gt;&lt;/vc-sparkline&gt;</pre
+          >
+        </div>
+
+        <div class="example-card">
+          <h3>With Gradient</h3>
+          <vc-sparkline
+            value="[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]"
+            gradient='["#E040FB", "#00BCD4"]'
+            gradient-direction="right"
+            fill="true"
+            smooth="true"
+            height="100"
+          ></vc-sparkline>
+          <pre>
+&lt;vc-sparkline
+  value='[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]'
+  gradient='["#E040FB", "#00BCD4"]'
+  gradient-direction="right"
+  fill="true"
+  smooth="true"
+  height="100"
+&gt;&lt;/vc-sparkline&gt;</pre
+          >
+        </div>
+
+        <div class="example-card">
+          <h3>Auto Draw Animation</h3>
+          <vc-sparkline
+            id="autoDrawSparkline"
+            value="[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]"
+            color="#673AB7"
+            auto-draw="true"
+            auto-draw-duration="1500"
+            smooth="true"
+            height="100"
+          ></vc-sparkline>
+          <div class="controls">
+            <button id="redrawBtn">Redraw</button>
+          </div>
+          <pre>
+&lt;vc-sparkline
+  value='[0, 2, 5, 9, 5, 10, 3, 5, 0, 7, 5]'
+  color="#673AB7"
+  auto-draw="true"
+  auto-draw-duration="1500"
+  smooth="true"
+  height="100"
+&gt;&lt;/vc-sparkline&gt;</pre
+          >
+        </div>
+
+        <div class="example-card">
+          <h3>Dynamic Data</h3>
+          <vc-sparkline
+            id="dynamicSparkline"
+            value="[5, 5, 5, 5, 5, 5, 5, 5, 5, 5]"
+            color="#2196F3"
+            smooth="true"
+            fill="true"
+            fill-opacity="0.3"
+            height="100"
+          ></vc-sparkline>
+          <div class="controls">
+            <button id="randomizeBtn">Randomize</button>
+          </div>
+          <pre>
+&lt;vc-sparkline
+  id="dynamicSparkline"
+  value='[5, 5, 5, 5, 5, 5, 5, 5, 5, 5]'
+  color="#2196F3"
+  smooth="true"
+  fill="true"
+  fill-opacity="0.3"
+  height="100"
+&gt;&lt;/vc-sparkline&gt;
+
+// JavaScript
+document.getElementById('randomizeBtn').addEventListener('click', () => {
+  const sparkline = document.getElementById('dynamicSparkline');
+  const newData = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
+  sparkline.setAttribute('value', JSON.stringify(newData));
+});</pre
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Demo functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        // Auto draw redraw button
+        document.getElementById("redrawBtn").addEventListener("click", () => {
+          const sparkline = document.getElementById("autoDrawSparkline");
+          const currentValue = JSON.parse(sparkline.getAttribute("value"));
+          sparkline.setAttribute("value", JSON.stringify(currentValue));
+        });
+
+        // Randomize data button
+        document
+          .getElementById("randomizeBtn")
+          .addEventListener("click", () => {
+            const sparkline = document.getElementById("dynamicSparkline");
+            const newData = Array.from({ length: 10 }, () =>
+              Math.floor(Math.random() * 10)
+            );
+            sparkline.setAttribute("value", JSON.stringify(newData));
+          });
+      });
+    </script>
+  </body>
+</html>

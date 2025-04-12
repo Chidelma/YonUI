@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VC-Select Web Component Demo</title>
+    <style>
+      body {
+        font-family: Roboto, "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #1976d2;
+        margin-top: 0;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .button-group {
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+
+      .output {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        min-height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>VC-Select Demo</h1>
+
+      <!-- Basic Select -->
+      <div class="form-group">
+        <vc-select id="basicSelect" label="Basic Select">
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </vc-select>
+      </div>
+
+      <!-- Select with placeholder -->
+      <div class="form-group">
+        <vc-select
+          id="placeholderSelect"
+          placeholder="Choose an option"
+          label="With Custom Placeholder"
+        >
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
+        </vc-select>
+      </div>
+
+      <!-- Select with disabled options -->
+      <div class="form-group">
+        <vc-select id="disabledOptionSelect" label="With Disabled Options">
+          <option value="apple">Apple</option>
+          <option value="banana">Banana</option>
+          <option value="orange" disabled>Orange (Unavailable)</option>
+          <option value="grape">Grape</option>
+        </vc-select>
+      </div>
+
+      <!-- Disabled Select -->
+      <div class="form-group">
+        <vc-select id="disabledSelect" disabled label="Disabled Select">
+          <option value="one">One</option>
+          <option value="two">Two</option>
+          <option value="three">Three</option>
+        </vc-select>
+      </div>
+
+      <!-- Button controls -->
+      <div class="button-group">
+        <button id="getValue">Get Values</button>
+        <button id="setValue">Set Values</button>
+        <button id="toggleDisabled">Toggle Disabled</button>
+      </div>
+
+      <!-- Output display -->
+      <div class="output" id="output"></div>
+    </div>
+
+    <!-- Import the web component -->
+    <script src="./vc-select.js"></script>
+
+    <script>
+      // Demo interaction
+      document.addEventListener("DOMContentLoaded", () => {
+        const basicSelect = document.getElementById("basicSelect");
+        const placeholderSelect = document.getElementById("placeholderSelect");
+        const disabledOptionSelect = document.getElementById(
+          "disabledOptionSelect"
+        );
+        const disabledSelect = document.getElementById("disabledSelect");
+        const output = document.getElementById("output");
+
+        // Listen for change events
+        [
+          basicSelect,
+          placeholderSelect,
+          disabledOptionSelect,
+          disabledSelect,
+        ].forEach((select) => {
+          select.addEventListener("change", (event) => {
+            output.textContent = `Changed: ${event.target.id}, New value: ${event.detail.value}`;
+          });
+        });
+
+        // Get values button
+        document.getElementById("getValue").addEventListener("click", () => {
+          output.innerHTML = `
+          <strong>Current Values:</strong><br>
+          Basic Select: ${basicSelect.value}<br>
+          Placeholder Select: ${placeholderSelect.value}<br>
+          Disabled Option Select: ${disabledOptionSelect.value}<br>
+          Disabled Select: ${disabledSelect.value}
+        `;
+        });
+
+        // Set values button
+        document.getElementById("setValue").addEventListener("click", () => {
+          basicSelect.value = "option3";
+          placeholderSelect.value = "blue";
+          disabledOptionSelect.value = "grape";
+          disabledSelect.value = "two";
+
+          output.textContent = "Values have been set programmatically";
+        });
+
+        // Toggle disabled button
+        document
+          .getElementById("toggleDisabled")
+          .addEventListener("click", () => {
+            disabledSelect.disabled = !disabledSelect.disabled;
+            output.textContent = `Disabled select is now ${
+              disabledSelect.disabled ? "disabled" : "enabled"
+            }`;
+          });
+      });
+    </script>
+  </body>
+</html>

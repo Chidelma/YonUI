@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VC Radio Component Example</title>
+    <script src="vc-radio.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      .example-section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        color: #1a73e8;
+        font-weight: 500;
+      }
+
+      .radio-group {
+        margin-bottom: 16px;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        margin: 12px 0;
+        cursor: pointer;
+      }
+
+      .radio-option label {
+        margin-left: 8px;
+        cursor: pointer;
+      }
+
+      .radio-option.disabled label {
+        color: rgba(0, 0, 0, 0.38);
+        cursor: default;
+      }
+
+      .code-example {
+        background-color: #f5f5f5;
+        padding: 16px;
+        border-radius: 4px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        margin-top: 20px;
+      }
+
+      .selection-info {
+        margin-top: 16px;
+        padding: 12px;
+        background-color: #e8f0fe;
+        border-radius: 4px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material Design 2 Radio Button Web Component</h1>
+
+    <div class="example-section">
+      <h2>Basic Radio Buttons</h2>
+      <div class="radio-group" id="basic-demo">
+        <div class="radio-option">
+          <vc-radio name="basic" value="option1" checked></vc-radio>
+          <label for="option1">Option 1</label>
+        </div>
+        <div class="radio-option">
+          <vc-radio name="basic" value="option2"></vc-radio>
+          <label for="option2">Option 2</label>
+        </div>
+        <div class="radio-option">
+          <vc-radio name="basic" value="option3"></vc-radio>
+          <label for="option3">Option 3</label>
+        </div>
+      </div>
+      <div class="selection-info" id="basic-selection">
+        Selection: <span></span>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>Disabled State</h2>
+      <div class="radio-group">
+        <div class="radio-option">
+          <vc-radio name="disabled-demo" value="enabled" checked></vc-radio>
+          <label>Enabled option</label>
+        </div>
+        <div class="radio-option disabled">
+          <vc-radio
+            name="disabled-demo"
+            value="disabled-unchecked"
+            disabled
+          ></vc-radio>
+          <label>Disabled unchecked</label>
+        </div>
+        <div class="radio-option disabled">
+          <vc-radio
+            name="disabled-demo-2"
+            value="disabled-checked"
+            disabled
+            checked
+          ></vc-radio>
+          <label>Disabled checked</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>Programmatic Control</h2>
+      <div class="radio-group" id="programmatic-demo">
+        <div class="radio-option">
+          <vc-radio name="programmatic" value="apple"></vc-radio>
+          <label>Apple</label>
+        </div>
+        <div class="radio-option">
+          <vc-radio name="programmatic" value="banana"></vc-radio>
+          <label>Banana</label>
+        </div>
+        <div class="radio-option">
+          <vc-radio name="programmatic" value="cherry"></vc-radio>
+          <label>Cherry</label>
+        </div>
+      </div>
+      <button id="select-banana">Select Banana</button>
+      <button id="add-option">Add New Option</button>
+      <button id="disable-toggle">Toggle Disable</button>
+      <div class="selection-info" id="programmatic-selection">
+        Selection: <span></span>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>HTML Usage Example</h2>
+      <div class="code-example">
+        &lt;!-- Include the web component script --> &lt;script
+        src="vc-radio.js">&lt;/script> &lt;!-- Basic usage --> &lt;vc-radio
+        name="group1" value="option1" checked>&lt;/vc-radio> &lt;label>Option
+        1&lt;/label> &lt;vc-radio name="group1" value="option2">&lt;/vc-radio>
+        &lt;label>Option 2&lt;/label> &lt;!-- Disabled state --> &lt;vc-radio
+        name="group2" value="disabled-option" disabled>&lt;/vc-radio>
+        &lt;label>Disabled Option&lt;/label> &lt;!-- JavaScript interaction -->
+        &lt;script> // Get reference to radio button const radio =
+        document.querySelector('vc-radio[value="option2"]'); // Check
+        programmatically radio.checked = true; // Listen for changes
+        radio.addEventListener('change', (event) => { console.log('Selected
+        value:', event.detail.value); }); &lt;/script>
+      </div>
+    </div>
+
+    <script>
+      // Basic demo event listeners
+      const basicRadios = document.querySelectorAll("#basic-demo vc-radio");
+      const basicSelectionInfo = document.getElementById("basic-selection");
+
+      basicRadios.forEach((radio) => {
+        radio.addEventListener("change", (event) => {
+          basicSelectionInfo.style.display = "block";
+          basicSelectionInfo.querySelector("span").textContent =
+            event.detail.value;
+        });
+      });
+
+      // Show initial selection
+      const initialChecked = document.querySelector(
+        "#basic-demo vc-radio[checked]"
+      );
+      if (initialChecked) {
+        basicSelectionInfo.style.display = "block";
+        basicSelectionInfo.querySelector("span").textContent =
+          initialChecked.value;
+      }
+
+      // Programmatic control demo
+      const programmaticRadios = document.querySelectorAll(
+        "#programmatic-demo vc-radio"
+      );
+      const programmaticSelectionInfo = document.getElementById(
+        "programmatic-selection"
+      );
+      const selectBananaBtn = document.getElementById("select-banana");
+      const addOptionBtn = document.getElementById("add-option");
+      const disableToggleBtn = document.getElementById("disable-toggle");
+      let disableState = false;
+
+      programmaticRadios.forEach((radio) => {
+        radio.addEventListener("change", (event) => {
+          programmaticSelectionInfo.style.display = "block";
+          programmaticSelectionInfo.querySelector("span").textContent =
+            event.detail.value;
+        });
+      });
+
+      // Button to programmatically select banana
+      selectBananaBtn.addEventListener("click", () => {
+        const bananaRadio = document.querySelector('vc-radio[value="banana"]');
+        bananaRadio.checked = true;
+        programmaticSelectionInfo.style.display = "block";
+        programmaticSelectionInfo.querySelector("span").textContent = "banana";
+      });
+
+      // Button to add a new option
+      addOptionBtn.addEventListener("click", () => {
+        const radioGroup = document.getElementById("programmatic-demo");
+        const newOption = document.createElement("div");
+        newOption.className = "radio-option";
+
+        const radio = document.createElement("vc-radio");
+        radio.setAttribute("name", "programmatic");
+        radio.setAttribute("value", "orange");
+
+        const label = document.createElement("label");
+        label.textContent = "Orange";
+
+        newOption.appendChild(radio);
+        newOption.appendChild(label);
+        radioGroup.appendChild(newOption);
+
+        radio.addEventListener("change", (event) => {
+          programmaticSelectionInfo.style.display = "block";
+          programmaticSelectionInfo.querySelector("span").textContent =
+            event.detail.value;
+        });
+
+        addOptionBtn.disabled = true;
+      });
+
+      // Button to toggle disable state
+      disableToggleBtn.addEventListener("click", () => {
+        disableState = !disableState;
+        programmaticRadios.forEach((radio) => {
+          radio.disabled = disableState;
+        });
+
+        disableToggleBtn.textContent = disableState
+          ? "Enable All"
+          : "Disable All";
+      });
+    </script>
+  </body>
+</html>

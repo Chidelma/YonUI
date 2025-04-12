@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Top App Bar - Usage Examples</title>
+    <style>
+      body {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      .content {
+        padding: 16px;
+        margin-bottom: 32px;
+      }
+
+      .example {
+        margin-bottom: 32px;
+        background-color: white;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      .example-description {
+        padding: 16px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 400;
+        margin: 16px 0;
+      }
+
+      h2 {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 8px 0;
+      }
+
+      .action-icon svg {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+
+      code {
+        display: block;
+        padding: 16px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        margin: 8px 0;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        overflow-x: auto;
+      }
+
+      .notification-badge {
+        position: relative;
+      }
+
+      .notification-badge::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 8px;
+        height: 8px;
+        background-color: #f44336;
+        border-radius: 50%;
+      }
+    </style>
+
+    <!-- Import our Web Component -->
+    <script src="vc-top-app-bar.js"></script>
+  </head>
+  <body>
+    <div class="content">
+      <h1>Material 2 Top App Bar Examples</h1>
+
+      <div class="example">
+        <div class="example-description">
+          <h2>Basic App Bar</h2>
+          <p>Default app bar with a title and a navigation icon.</p>
+          <code
+            >&lt;vc-top-app-bar title="Basic App
+            Bar"&gt;&lt;/vc-top-app-bar&gt;</code
+          >
+        </div>
+        <vc-top-app-bar title="Basic App Bar"></vc-top-app-bar>
+      </div>
+
+      <div class="example">
+        <div class="example-description">
+          <h2>App Bar with Custom Color</h2>
+          <p>App bar with a different color and custom title.</p>
+          <code
+            >&lt;vc-top-app-bar title="Secondary Color"
+            color="secondary"&gt;&lt;/vc-top-app-bar&gt;</code
+          >
+        </div>
+        <vc-top-app-bar
+          title="Secondary Color"
+          color="secondary"
+        ></vc-top-app-bar>
+      </div>
+
+      <div class="example">
+        <div class="example-description">
+          <h2>App Bar with Elevation</h2>
+          <p>App bar with elevation shadow.</p>
+          <code
+            >&lt;vc-top-app-bar title="Elevated App Bar"
+            elevation&gt;&lt;/vc-top-app-bar&gt;</code
+          >
+        </div>
+        <vc-top-app-bar title="Elevated App Bar" elevation></vc-top-app-bar>
+      </div>
+
+      <div class="example">
+        <div class="example-description">
+          <h2>App Bar with Action Items</h2>
+          <p>App bar with action items in the end section.</p>
+          <code
+            >&lt;vc-top-app-bar title="App Bar with Actions"&gt; &lt;div
+            slot="actions"&gt; &lt;button
+            class="vc-top-app-bar__action-item"&gt; &lt;!-- Favorite icon --&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"&gt;
+            &lt;path d="M0 0h24v24H0z" fill="none"/&gt; &lt;path d="M12
+            21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0
+            3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0
+            3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/&gt;
+            &lt;/svg&gt; &lt;/button&gt; &lt;button
+            class="vc-top-app-bar__action-item"&gt; &lt;!-- Share icon --&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"&gt;
+            &lt;path d="M0 0h24v24H0z" fill="none"/&gt; &lt;path d="M18
+            16.08c-.76 0-1.44.3-1.96.77L8.91
+            12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81
+            2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0
+            .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34
+            3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61
+            1.31 2.92 2.92 2.92 1.61 0 2.92-1.31
+            2.92-2.92s-1.31-2.92-2.92-2.92z" fill="currentColor"/&gt;
+            &lt;/svg&gt; &lt;/button&gt; &lt;button
+            class="vc-top-app-bar__action-item"&gt; &lt;!-- More icon --&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"&gt;
+            &lt;path d="M0 0h24v24H0z" fill="none"/&gt; &lt;path d="M12 8c1.1 0
+            2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2
+            2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            fill="currentColor"/&gt; &lt;/svg&gt; &lt;/button&gt; &lt;/div&gt;
+            &lt;/vc-top-app-bar&gt;</code
+          >
+        </div>
+        <vc-top-app-bar title="App Bar with Actions">
+          <div slot="actions">
+            <button class="vc-top-app-bar__action-item">
+              <!-- Favorite icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="action-icon"
+                viewBox="0 0 24 24"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <button class="vc-top-app-bar__action-item">
+              <!-- Share icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="action-icon"
+                viewBox="0 0 24 24"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <button class="vc-top-app-bar__action-item">
+              <!-- More icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="action-icon"
+                viewBox="0 0 24 24"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+        </vc-top-app-bar>
+      </div>
+
+      <div class="example">
+        <div class="example-description">
+          <h2>Custom Navigation Icon</h2>
+          <p>App bar with a custom navigation icon.</p>
+          <code
+            >&lt;vc-top-app-bar title="Custom Navigation Icon"
+            color="danger"&gt; &lt;button slot="navigation-icon"
+            class="vc-top-app-bar__navigation-icon"&gt; &lt;!-- Close icon
+            --&gt; &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24
+            24"&gt; &lt;path d="M0 0h24v24H0z" fill="none"/&gt; &lt;path d="M19
+            6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12
+            13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/&gt;
+            &lt;/svg&gt; &lt;/button&gt; &lt;/vc-top-app-bar&gt;</code
+          >
+        </div>
+        <vc-top-app-bar title="Custom Navigation Icon" color="danger">
+          <button
+            slot="navigation-icon"
+            class="vc-top-app-bar__navigation-icon"
+          >
+            <!-- Close icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="action-icon"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </vc-top-app-bar>
+      </div>
+
+      <div class="example">
+        <div class="example-description">
+          <h2>Title Suffix</h2>
+          <p>App bar with additional content next to the title.</p>
+          <code
+            >&lt;vc-top-app-bar title="Inbox" color="info" elevation&gt;
+            &lt;span slot="title-suffix" style="margin-left: 8px;
+            background-color: rgba(255,255,255,0.2); padding: 2px 6px;
+            border-radius: 4px; font-size: 14px;"&gt;23 unread&lt;/span&gt;
+            &lt;/vc-top-app-bar&gt;</code
+          >
+        </div>
+        <vc-top-app-bar title="Inbox" color="info" elevation>
+          <span
+            slot="title-suffix"
+            style="
+              margin-left: 8px;
+              background-color: rgba(255, 255, 255, 0.2);
+              padding: 2px 6px;
+              border-radius: 4px;
+              font-size: 14px;
+            "
+            >23 unread</span
+          >
+        </vc-top-app-bar>
+      </div>
+    </div>
+
+    <script>
+      // Add event listeners for demonstration
+      document.querySelectorAll("vc-top-app-bar").forEach((appBar) => {
+        appBar.addEventListener("navigation-click", (event) => {
+          console.log(
+            "Navigation icon clicked on:",
+            appBar.getAttribute("title")
+          );
+        });
+
+        appBar.addEventListener("action-click", (event) => {
+          console.log(
+            "Action item clicked:",
+            event.detail.index,
+            "on",
+            appBar.getAttribute("title")
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

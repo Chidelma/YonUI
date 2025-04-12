@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VC Snackbar Demo</title>
+    <script src="vc-snackbar.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        padding: 24px;
+        background-color: #f5f5f5;
+      }
+
+      .demo-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 24px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 0;
+      }
+
+      .button-group {
+        margin-bottom: 16px;
+      }
+
+      button {
+        background-color: #6200ee;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: #7722ff;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      input,
+      select {
+        margin-bottom: 16px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+        max-width: 300px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-container">
+      <h1>Material Design 2 Snackbar Demo</h1>
+
+      <div class="button-group">
+        <button id="show-simple">Show Simple Snackbar</button>
+        <button id="show-with-action">Show with Action</button>
+        <button id="show-long-duration">Show for 10 Seconds</button>
+        <button id="show-top-position">Show at Top</button>
+        <button id="show-bottom-center">Show Bottom Center</button>
+        <button id="show-no-timeout">Show Without Timeout</button>
+      </div>
+
+      <h3>Create Your Own Snackbar</h3>
+      <div>
+        <label for="message-input">Message:</label>
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Enter your message"
+        />
+
+        <label for="action-input">Action Text (optional):</label>
+        <input type="text" id="action-input" placeholder="Enter action text" />
+
+        <label for="duration-input">Duration (ms):</label>
+        <input type="number" id="duration-input" value="5000" />
+
+        <label for="position-select">Position:</label>
+        <select id="position-select">
+          <option value="bottom">Bottom</option>
+          <option value="top">Top</option>
+          <option value="bottom-center">Bottom Center</option>
+          <option value="top-center">Top Center</option>
+        </select>
+
+        <button id="show-custom">Show Custom Snackbar</button>
+      </div>
+    </div>
+
+    <!-- Snackbar component -->
+    <vc-snackbar id="snackbar"></vc-snackbar>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const snackbar = document.getElementById("snackbar");
+
+        // Simple snackbar
+        document.getElementById("show-simple").addEventListener("click", () => {
+          snackbar.message = "This is a simple snackbar message";
+          snackbar.action = "";
+          snackbar.duration = 5000;
+          snackbar.position = "bottom";
+          snackbar.open();
+        });
+
+        // Snackbar with action
+        document
+          .getElementById("show-with-action")
+          .addEventListener("click", () => {
+            snackbar.message = "Message archived";
+            snackbar.action = "UNDO";
+            snackbar.duration = 5000;
+            snackbar.position = "bottom";
+
+            // Set action handler
+            snackbar.setActionHandler(() => {
+              alert("Undo action clicked!");
+            });
+
+            snackbar.open();
+          });
+
+        // Snackbar with longer duration
+        document
+          .getElementById("show-long-duration")
+          .addEventListener("click", () => {
+            snackbar.message = "This message will stay for 10 seconds";
+            snackbar.action = "DISMISS";
+            snackbar.duration = 10000;
+            snackbar.position = "bottom";
+            snackbar.open();
+          });
+
+        // Snackbar at top position
+        document
+          .getElementById("show-top-position")
+          .addEventListener("click", () => {
+            snackbar.message = "This message appears at the top";
+            snackbar.action = "OK";
+            snackbar.duration = 5000;
+            snackbar.position = "top";
+            snackbar.open();
+          });
+
+        // Snackbar at bottom center
+        document
+          .getElementById("show-bottom-center")
+          .addEventListener("click", () => {
+            snackbar.message = "Centered at the bottom";
+            snackbar.action = "CLOSE";
+            snackbar.duration = 5000;
+            snackbar.position = "bottom-center";
+            snackbar.open();
+          });
+
+        // Snackbar without timeout
+        document
+          .getElementById("show-no-timeout")
+          .addEventListener("click", () => {
+            snackbar.message = "This will stay open until dismissed";
+            snackbar.action = "DISMISS";
+            snackbar.duration = -1; // No auto-close
+            snackbar.position = "bottom";
+            snackbar.open();
+          });
+
+        // Custom snackbar
+        document.getElementById("show-custom").addEventListener("click", () => {
+          const message =
+            document.getElementById("message-input").value ||
+            "Custom snackbar message";
+          const action = document.getElementById("action-input").value;
+          const duration =
+            parseInt(document.getElementById("duration-input").value, 10) ||
+            5000;
+          const position = document.getElementById("position-select").value;
+
+          snackbar.message = message;
+          snackbar.action = action;
+          snackbar.duration = duration;
+          snackbar.position = position;
+
+          if (action) {
+            snackbar.setActionHandler(() => {
+              alert(`Action "${action}" clicked!`);
+            });
+          }
+
+          snackbar.open();
+        });
+
+        // Listen for events
+        snackbar.addEventListener("vc-snackbar-open", () => {
+          console.log("Snackbar opened");
+        });
+
+        snackbar.addEventListener("vc-snackbar-close", () => {
+          console.log("Snackbar closed");
+        });
+
+        snackbar.addEventListener("vc-snackbar-action", () => {
+          console.log("Snackbar action clicked");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Dividers - Web Component Demo</title>
+    <script src="vc-divider.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 24px;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .section {
+        margin-bottom: 32px;
+      }
+
+      h1 {
+        font-weight: 400;
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+
+      h2 {
+        font-weight: 400;
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+
+      .example-items {
+        padding: 16px 0;
+      }
+
+      .example-item {
+        padding: 16px;
+      }
+
+      .vertical-container {
+        display: flex;
+        height: 100px;
+        align-items: center;
+      }
+
+      .vertical-item {
+        padding: 0 16px;
+      }
+
+      .dark-theme {
+        background-color: #303030;
+        color: white;
+        padding: 16px;
+        margin-top: 24px;
+      }
+
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+        color: #d32f2f;
+      }
+
+      .dark-theme code {
+        background-color: #424242;
+        color: #ff8a80;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="section">
+        <h1>Material 2 Dividers - Web Component Demo</h1>
+
+        <h2>Basic Divider</h2>
+        <div class="example-items">
+          <div class="example-item">Item above divider</div>
+          <vc-divider></vc-divider>
+          <div class="example-item">Item below divider</div>
+        </div>
+        <code>&lt;vc-divider&gt;&lt;/vc-divider&gt;</code>
+
+        <h2>Inset Divider</h2>
+        <div class="example-items">
+          <div class="example-item">Item above inset divider</div>
+          <vc-divider inset></vc-divider>
+          <div class="example-item">Item below inset divider</div>
+        </div>
+        <code>&lt;vc-divider inset&gt;&lt;/vc-divider&gt;</code>
+
+        <h2>Vertical Divider</h2>
+        <div class="vertical-container">
+          <div class="vertical-item">Left item</div>
+          <vc-divider vertical></vc-divider>
+          <div class="vertical-item">Right item</div>
+        </div>
+        <code>&lt;vc-divider vertical&gt;&lt;/vc-divider&gt;</code>
+
+        <h2>Vertical Inset Divider</h2>
+        <div class="vertical-container">
+          <div class="vertical-item">Left item</div>
+          <vc-divider vertical inset></vc-divider>
+          <div class="vertical-item">Right item</div>
+        </div>
+        <code>&lt;vc-divider vertical inset&gt;&lt;/vc-divider&gt;</code>
+
+        <div class="dark-theme">
+          <h2>Dark Theme Dividers</h2>
+
+          <div class="example-items">
+            <div class="example-item">Item above dark divider</div>
+            <vc-divider theme="dark"></vc-divider>
+            <div class="example-item">Item below dark divider</div>
+          </div>
+          <code>&lt;vc-divider theme="dark"&gt;&lt;/vc-divider&gt;</code>
+
+          <div class="example-items">
+            <div class="example-item">Item above dark inset divider</div>
+            <vc-divider theme="dark" inset></vc-divider>
+            <div class="example-item">Item below dark inset divider</div>
+          </div>
+          <code>&lt;vc-divider theme="dark" inset&gt;&lt;/vc-divider&gt;</code>
+
+          <div class="vertical-container">
+            <div class="vertical-item">Left item</div>
+            <vc-divider vertical theme="dark"></vc-divider>
+            <div class="vertical-item">Right item</div>
+          </div>
+          <code
+            >&lt;vc-divider vertical theme="dark"&gt;&lt;/vc-divider&gt;</code
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Avatar Web Component Example</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .example-section {
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      .avatar-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      .example-label {
+        font-size: 14px;
+        color: #666;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .avatar-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+    <script src="vc-avatar.js"></script>
+  </head>
+  <body>
+    <h1>Material 2 Avatar Web Component Examples</h1>
+
+    <div class="example-section">
+      <h2>Size Variants</h2>
+      <div class="avatar-container">
+        <div class="avatar-wrapper">
+          <vc-avatar size="x-small" text="XS"></vc-avatar>
+          <div class="example-label">x-small</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar size="small" text="SM"></vc-avatar>
+          <div class="example-label">small</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar size="medium" text="MD"></vc-avatar>
+          <div class="example-label">medium (default)</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar size="large" text="LG"></vc-avatar>
+          <div class="example-label">large</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar size="x-large" text="XL"></vc-avatar>
+          <div class="example-label">x-large</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar size="72" text="72"></vc-avatar>
+          <div class="example-label">custom (72px)</div>
+        </div>
+      </div>
+
+      <pre><code>&lt;vc-avatar size="x-small" text="XS"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar size="small" text="SM"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar size="medium" text="MD"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar size="large" text="LG"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar size="x-large" text="XL"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar size="72" text="72"&gt;&lt;/vc-avatar&gt;</code></pre>
+    </div>
+
+    <div class="example-section">
+      <h2>Color Variants</h2>
+      <div class="avatar-container">
+        <div class="avatar-wrapper">
+          <vc-avatar color="#F44336" text="R"></vc-avatar>
+          <div class="example-label">Red</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar color="#4CAF50" text="G"></vc-avatar>
+          <div class="example-label">Green</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar color="#2196F3" text="B"></vc-avatar>
+          <div class="example-label">Blue</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar color="#FF9800" text="O"></vc-avatar>
+          <div class="example-label">Orange</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar color="#9C27B0" text="P"></vc-avatar>
+          <div class="example-label">Purple</div>
+        </div>
+      </div>
+
+      <pre><code>&lt;vc-avatar color="#F44336" text="R"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar color="#4CAF50" text="G"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar color="#2196F3" text="B"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar color="#FF9800" text="O"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar color="#9C27B0" text="P"&gt;&lt;/vc-avatar&gt;</code></pre>
+    </div>
+
+    <div class="example-section">
+      <h2>Content Types</h2>
+      <div class="avatar-container">
+        <div class="avatar-wrapper">
+          <vc-avatar text="AB"></vc-avatar>
+          <div class="example-label">Text</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar icon="person"></vc-avatar>
+          <div class="example-label">Icon</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar image="https://picsum.photos/id/64/100/100"></vc-avatar>
+          <div class="example-label">Image</div>
+        </div>
+      </div>
+
+      <pre><code>&lt;vc-avatar text="AB"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar icon="person"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar image="https://picsum.photos/id/64/100/100"&gt;&lt;/vc-avatar&gt;</code></pre>
+    </div>
+
+    <div class="example-section">
+      <h2>Shape Variants</h2>
+      <div class="avatar-container">
+        <div class="avatar-wrapper">
+          <vc-avatar text="SQ"></vc-avatar>
+          <div class="example-label">Square (default)</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar rounded text="RD"></vc-avatar>
+          <div class="example-label">Rounded</div>
+        </div>
+      </div>
+
+      <pre><code>&lt;vc-avatar text="SQ"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar rounded text="RD"&gt;&lt;/vc-avatar&gt;</code></pre>
+    </div>
+
+    <div class="example-section">
+      <h2>Style Variants</h2>
+      <div class="avatar-container">
+        <div class="avatar-wrapper">
+          <vc-avatar variant="flat" color="#E91E63" text="FL"></vc-avatar>
+          <div class="example-label">Flat (default)</div>
+        </div>
+        <div class="avatar-wrapper">
+          <vc-avatar variant="outlined" color="#E91E63" text="OL"></vc-avatar>
+          <div class="example-label">Outlined</div>
+        </div>
+      </div>
+
+      <pre><code>&lt;vc-avatar variant="flat" color="#E91E63" text="FL"&gt;&lt;/vc-avatar&gt;
+&lt;vc-avatar variant="outlined" color="#E91E63" text="OL"&gt;&lt;/vc-avatar&gt;</code></pre>
+    </div>
+  </body>
+</html>

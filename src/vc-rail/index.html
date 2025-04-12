@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Navigation Rail Example</title>
+    <script src="vc-rail.js"></script>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Roboto, "Segoe UI", Arial, sans-serif;
+      }
+
+      .app {
+        display: flex;
+        height: 100vh;
+      }
+
+      .content {
+        flex: 1;
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+
+      .page {
+        display: none;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      h1 {
+        margin-top: 0;
+        color: #202124;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <!-- Navigation Rail Component -->
+      <vc-rail selected="0">
+        <!-- Navigation Items -->
+        <div
+          vc-rail-item
+          icon="<svg viewBox='0 0 24 24' width='24' height='24'><path fill='currentColor' d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/></svg>"
+          label="Home"
+        ></div>
+
+        <div
+          vc-rail-item
+          icon="<svg viewBox='0 0 24 24' width='24' height='24'><path fill='currentColor' d='M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z'/></svg>"
+          label="People"
+          badge-count="5"
+        ></div>
+
+        <div
+          vc-rail-item
+          icon="<svg viewBox='0 0 24 24' width='24' height='24'><path fill='currentColor' d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/></svg>"
+          label="Messages"
+        ></div>
+
+        <div
+          vc-rail-item
+          icon="<svg viewBox='0 0 24 24' width='24' height='24'><path fill='currentColor' d='M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z'/></svg>"
+          label="Notifications"
+          badge-count="3"
+        ></div>
+
+        <div
+          vc-rail-item
+          icon="<svg viewBox='0 0 24 24' width='24' height='24'><path fill='currentColor' d='M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z'/></svg>"
+          label="Settings"
+        ></div>
+      </vc-rail>
+
+      <!-- Content Area -->
+      <div class="content">
+        <div id="page-home" class="page active">
+          <h1>Home</h1>
+          <p>
+            This is the home page content. The navigation rail on the left
+            follows Material Design 2 guidelines.
+          </p>
+        </div>
+
+        <div id="page-people" class="page">
+          <h1>People</h1>
+          <p>This page shows your contacts and people you may know.</p>
+        </div>
+
+        <div id="page-messages" class="page">
+          <h1>Messages</h1>
+          <p>Your conversations and chats will appear here.</p>
+        </div>
+
+        <div id="page-notifications" class="page">
+          <h1>Notifications</h1>
+          <p>You have 3 unread notifications.</p>
+        </div>
+
+        <div id="page-settings" class="page">
+          <h1>Settings</h1>
+          <p>Configure your application settings here.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Handle navigation changes
+      const rail = document.querySelector("vc-rail");
+      const pages = document.querySelectorAll(".page");
+
+      rail.addEventListener("vc-rail-change", (event) => {
+        const index = event.detail.index;
+
+        // Hide all pages
+        pages.forEach((page) => {
+          page.classList.remove("active");
+        });
+
+        // Show selected page
+        const pageIds = [
+          "page-home",
+          "page-people",
+          "page-messages",
+          "page-notifications",
+          "page-settings",
+        ];
+        if (pageIds[index]) {
+          document.getElementById(pageIds[index]).classList.add("active");
+        }
+      });
+    </script>
+  </body>
+</html>

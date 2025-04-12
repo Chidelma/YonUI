@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Date Picker Web Component Example</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="vc-date-picker.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .example-section {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        color: #6200ee;
+        margin-top: 0;
+      }
+
+      h2 {
+        color: #3700b3;
+        margin-top: 0;
+      }
+
+      pre {
+        background: #f5f5f5;
+        padding: 16px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: "Courier New", monospace;
+      }
+
+      .action-row {
+        margin-top: 16px;
+        display: flex;
+        gap: 16px;
+      }
+
+      button {
+        background: #6200ee;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      button:hover {
+        background: #3700b3;
+      }
+
+      .selected-value {
+        margin-top: 16px;
+        padding: 12px;
+        background: #f5f5f5;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Date Picker Web Component</h1>
+    <p>
+      This example demonstrates the usage of the
+      <code>vc-date-picker</code> custom element that implements a Material
+      Design 2 style date picker.
+    </p>
+
+    <div class="example-section">
+      <h2>Basic Usage</h2>
+      <div class="container">
+        <div>
+          <vc-date-picker
+            id="basic-date-picker"
+            label="Select a date"
+          ></vc-date-picker>
+          <div class="selected-value">
+            Selected value: <span id="basic-date-value">none</span>
+          </div>
+          <div class="action-row">
+            <button
+              onclick="document.querySelector('#basic-date-picker').value = '2023-05-15'"
+            >
+              Set to May 15, 2023
+            </button>
+            <button
+              onclick="document.querySelector('#basic-date-picker').value = ''"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+        <div>
+          <pre><code>&lt;vc-date-picker id="basic-date-picker" label="Select a date"&gt;&lt;/vc-date-picker&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>With Min and Max Date</h2>
+      <div class="container">
+        <div>
+          <vc-date-picker
+            id="range-date-picker"
+            label="Select a date within range"
+            min="2023-01-01"
+            max="2023-12-31"
+          >
+          </vc-date-picker>
+          <div class="selected-value">
+            Selected value: <span id="range-date-value">none</span>
+          </div>
+        </div>
+        <div>
+          <pre><code>&lt;vc-date-picker 
+  id="range-date-picker" 
+  label="Select a date within range" 
+  min="2023-01-01" 
+  max="2023-12-31"&gt;
+&lt;/vc-date-picker&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>With Initial Value</h2>
+      <div class="container">
+        <div>
+          <vc-date-picker
+            id="initial-date-picker"
+            label="With initial value"
+            value="2023-07-15"
+          >
+          </vc-date-picker>
+          <div class="selected-value">
+            Selected value: <span id="initial-date-value">2023-07-15</span>
+          </div>
+        </div>
+        <div>
+          <pre><code>&lt;vc-date-picker 
+  id="initial-date-picker" 
+  label="With initial value" 
+  value="2023-07-15"&gt;
+&lt;/vc-date-picker&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>Disabled Date Picker</h2>
+      <div class="container">
+        <div>
+          <vc-date-picker
+            id="disabled-date-picker"
+            label="Disabled date picker"
+            value="2023-06-10"
+            disabled
+          >
+          </vc-date-picker>
+        </div>
+        <div>
+          <pre><code>&lt;vc-date-picker 
+  id="disabled-date-picker" 
+  label="Disabled date picker" 
+  value="2023-06-10" 
+  disabled&gt;
+&lt;/vc-date-picker&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>Required Date Picker</h2>
+      <div class="container">
+        <div>
+          <vc-date-picker
+            id="required-date-picker"
+            label="Required date picker"
+            required
+          >
+          </vc-date-picker>
+        </div>
+        <div>
+          <pre><code>&lt;vc-date-picker 
+  id="required-date-picker" 
+  label="Required date picker" 
+  required&gt;
+&lt;/vc-date-picker&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Set up event listeners for the demo
+      document.addEventListener("DOMContentLoaded", () => {
+        // Basic date picker
+        const basicDatePicker = document.getElementById("basic-date-picker");
+        const basicDateValue = document.getElementById("basic-date-value");
+
+        basicDatePicker.addEventListener("change", (event) => {
+          basicDateValue.textContent = event.detail.value || "none";
+        });
+
+        // Range date picker
+        const rangeDatePicker = document.getElementById("range-date-picker");
+        const rangeDateValue = document.getElementById("range-date-value");
+
+        rangeDatePicker.addEventListener("change", (event) => {
+          rangeDateValue.textContent = event.detail.value || "none";
+        });
+
+        // Initial value date picker
+        const initialDatePicker = document.getElementById(
+          "initial-date-picker"
+        );
+        const initialDateValue = document.getElementById("initial-date-value");
+
+        initialDatePicker.addEventListener("change", (event) => {
+          initialDateValue.textContent = event.detail.value || "none";
+        });
+      });
+    </script>
+  </body>
+</html>

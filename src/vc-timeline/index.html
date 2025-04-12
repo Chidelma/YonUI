@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Timeline Example</title>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        margin-bottom: 40px;
+        color: #1976d2;
+      }
+
+      .example-container {
+        margin-bottom: 60px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 4px;
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .timeline-heading {
+        font-weight: 500;
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+
+      .timeline-subheading {
+        color: #757575;
+        font-weight: 400;
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+
+      .timeline-content {
+        color: #616161;
+      }
+
+      .date-label {
+        color: #757575;
+        font-size: 14px;
+      }
+
+      .material-icons {
+        font-family: "Material Icons";
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+      }
+    </style>
+    <!-- Load Material Icons font -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Load Roboto font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Load the web component -->
+    <script src="vc-timeline.js"></script>
+  </head>
+  <body>
+    <h1>Material 2 Timeline Examples</h1>
+
+    <!-- Basic Timeline -->
+    <div class="example-container">
+      <h2>Basic Timeline</h2>
+      <vc-timeline>
+        <vc-timeline-item dot-color="primary">
+          <div class="card">
+            <h3 class="timeline-heading">Released Stable Version 1.0</h3>
+            <h4 class="timeline-subheading">January 15, 2024</h4>
+            <div class="timeline-content">
+              Initial stable release with core features implemented.
+            </div>
+          </div>
+        </vc-timeline-item>
+
+        <vc-timeline-item dot-color="success" fill-dot>
+          <div class="card">
+            <h3 class="timeline-heading">Beta Testing Completed</h3>
+            <h4 class="timeline-subheading">December 2, 2023</h4>
+            <div class="timeline-content">
+              All critical bugs fixed and performance optimized based on beta
+              feedback.
+            </div>
+          </div>
+        </vc-timeline-item>
+
+        <vc-timeline-item dot-color="info">
+          <div class="card">
+            <h3 class="timeline-heading">Alpha Testing Phase</h3>
+            <h4 class="timeline-subheading">November 10, 2023</h4>
+            <div class="timeline-content">
+              Internal testing with a small group of users to gather initial
+              feedback.
+            </div>
+          </div>
+        </vc-timeline-item>
+      </vc-timeline>
+    </div>
+
+    <!-- Dense Timeline with Custom Dots -->
+    <div class="example-container">
+      <h2>Dense Timeline with Custom Dots</h2>
+      <vc-timeline dense side="start" line-color="#E91E63" line-thickness="4px">
+        <vc-timeline-item
+          dot='<span class="material-icons">code</span>'
+          dot-color="#E91E63"
+          fill-dot
+        >
+          <div class="card">
+            <h3 class="timeline-heading">Started Development</h3>
+            <div class="timeline-content">
+              Initial repository setup and architecture planning.
+            </div>
+          </div>
+        </vc-timeline-item>
+
+        <vc-timeline-item
+          dot='<span class="material-icons">design_services</span>'
+          dot-color="#9C27B0"
+          fill-dot
+        >
+          <div class="card">
+            <h3 class="timeline-heading">UI/UX Design Phase</h3>
+            <div class="timeline-content">
+              Created wireframes and visual design for the application.
+            </div>
+          </div>
+        </vc-timeline-item>
+
+        <vc-timeline-item
+          dot='<span class="material-icons">integration_instructions</span>'
+          dot-color="#3F51B5"
+          fill-dot
+        >
+          <div class="card">
+            <h3 class="timeline-heading">Integration Testing</h3>
+            <div class="timeline-content">
+              Connected all modules and ensured proper data flow.
+            </div>
+          </div>
+        </vc-timeline-item>
+      </vc-timeline>
+    </div>
+
+    <!-- Center Aligned Timeline with Opposite Content -->
+    <div class="example-container">
+      <h2>Center Aligned Timeline with Opposite Content</h2>
+      <vc-timeline side="center" align="center">
+        <vc-timeline-item dot-color="error" fill-dot size="large">
+          <div slot="opposite" class="date-label">April 10, 2024</div>
+          <div class="card">
+            <h3 class="timeline-heading">Feature Launch</h3>
+            <div class="timeline-content">
+              Released new analytics dashboard for all users.
+            </div>
+          </div>
+        </vc-timeline-item>
+
+        <vc-timeline-item dot-color="warning" fill-dot size="large">
+          <div slot="opposite" class="date-label">March 22, 2024</div>
+          <div class="card">
+            <h3 class="timeline-heading">User Testing</h3>
+            <div class="timeline-content">
+              Conducted A/B testing with focus groups to validate the new
+              design.
+            </div>
+          </div>
+        </vc-timeline-item>
+
+        <vc-timeline-item dot-color="success" fill-dot size="large">
+          <div slot="opposite" class="date-label">March 5, 2024</div>
+          <div class="card">
+            <h3 class="timeline-heading">Design Completed</h3>
+            <div class="timeline-content">
+              Finalized the design for the new analytics dashboard.
+            </div>
+          </div>
+        </vc-timeline-item>
+      </vc-timeline>
+    </div>
+
+    <!-- Reversed Timeline -->
+    <div class="example-container">
+      <h2>Reversed Timeline (Newest First)</h2>
+      <vc-timeline reverse line-color="#FF9800">
+        <vc-timeline-item dot-color="#FF9800">
+          <div class="card">
+            <h3 class="timeline-heading">Started Project</h3>
+            <h4 class="timeline-subheading">January 15, 2023</h4>
+            <div class="timeline-content">
+              Initial planning and team assembly.
+            </div>
+          </div>
+        </vc-timeline-item>
+
+        <vc-timeline-item dot-color="#FF9800">
+          <div class="card">
+            <h3 class="timeline-heading">Design Phase</h3>
+            <h4 class="timeline-subheading">March 10, 2023</h4>
+            <div class="timeline-content">Created mockups and user flows.</div>
+          </div>
+        </vc-timeline-item>
+
+        <vc-timeline-item dot-color="#FF9800">
+          <div class="card">
+            <h3 class="timeline-heading">Development Completed</h3>
+            <h4 class="timeline-subheading">June 20, 2023</h4>
+            <div class="timeline-content">
+              Finished implementing all planned features.
+            </div>
+          </div>
+        </vc-timeline-item>
+      </vc-timeline>
+    </div>
+  </body>
+</html>

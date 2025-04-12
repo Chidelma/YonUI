@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Expansion Panels Example</title>
+    <script src="vc-expansion-panels.js"></script>
+    <style>
+      body {
+        font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      h1 {
+        color: #1976d2;
+        margin-bottom: 24px;
+      }
+
+      .example-section {
+        margin-bottom: 40px;
+      }
+
+      .example-section h2 {
+        margin-bottom: 16px;
+        color: #333;
+      }
+
+      /* Custom styling for expansion panels */
+      .custom-panels {
+        --panel-border-radius: 8px;
+        --panel-header-active-color: #ff5722;
+        --panel-elevation: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --panel-elevation-expanded: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Expansion Panels</h1>
+
+    <div class="example-section">
+      <h2>Basic Expansion Panels</h2>
+      <vc-expansion-panels>
+        <vc-expansion-panel expanded>
+          <div slot="header">Panel 1</div>
+          <div slot="content">
+            <p>
+              This is the content for Panel 1. The panel is expanded by default
+              because it has the 'expanded' attribute.
+            </p>
+            <p>You can put any content here.</p>
+          </div>
+        </vc-expansion-panel>
+
+        <vc-expansion-panel>
+          <div slot="header">Panel 2</div>
+          <div slot="content">
+            <p>This is the content for Panel 2.</p>
+            <ul>
+              <li>You can include lists</li>
+              <li>And other HTML elements</li>
+              <li>Inside the content slot</li>
+            </ul>
+          </div>
+        </vc-expansion-panel>
+
+        <vc-expansion-panel>
+          <div slot="header">Panel 3</div>
+          <div slot="content">
+            <p>This is the content for Panel 3.</p>
+            <p>
+              Multiple panels can be open at the same time in the default mode.
+            </p>
+          </div>
+        </vc-expansion-panel>
+      </vc-expansion-panels>
+    </div>
+
+    <div class="example-section">
+      <h2>Accordion Mode (Only one panel open at a time)</h2>
+      <vc-expansion-panels accordion>
+        <vc-expansion-panel>
+          <div slot="header">Accordion Item 1</div>
+          <div slot="content">
+            <p>This is the content for Accordion Item 1.</p>
+            <p>In accordion mode, only one panel can be open at a time.</p>
+          </div>
+        </vc-expansion-panel>
+
+        <vc-expansion-panel>
+          <div slot="header">Accordion Item 2</div>
+          <div slot="content">
+            <p>This is the content for Accordion Item 2.</p>
+            <p>
+              When you open this panel, any other open panel will close
+              automatically.
+            </p>
+          </div>
+        </vc-expansion-panel>
+
+        <vc-expansion-panel expanded>
+          <div slot="header">Accordion Item 3</div>
+          <div slot="content">
+            <p>This is the content for Accordion Item 3.</p>
+            <p>
+              This panel is expanded by default. If you expand another panel,
+              this one will close.
+            </p>
+          </div>
+        </vc-expansion-panel>
+      </vc-expansion-panels>
+    </div>
+
+    <div class="example-section">
+      <h2>Disabled Panel</h2>
+      <vc-expansion-panels>
+        <vc-expansion-panel>
+          <div slot="header">Enabled Panel</div>
+          <div slot="content">
+            <p>This is a normal, enabled panel.</p>
+          </div>
+        </vc-expansion-panel>
+
+        <vc-expansion-panel disabled>
+          <div slot="header">Disabled Panel</div>
+          <div slot="content">
+            <p>This panel is disabled and cannot be expanded or collapsed.</p>
+          </div>
+        </vc-expansion-panel>
+
+        <vc-expansion-panel>
+          <div slot="header">Another Enabled Panel</div>
+          <div slot="content">
+            <p>This is another normal, enabled panel.</p>
+          </div>
+        </vc-expansion-panel>
+      </vc-expansion-panels>
+    </div>
+
+    <div class="example-section">
+      <h2>Customized Styling</h2>
+      <vc-expansion-panels class="custom-panels">
+        <vc-expansion-panel>
+          <div slot="header">
+            <strong>Custom Styled Panel 1</strong>
+          </div>
+          <div slot="content">
+            <p>This panel has custom styling applied through CSS variables.</p>
+            <p>
+              Notice the different border radius, active color, and elevation.
+            </p>
+          </div>
+        </vc-expansion-panel>
+
+        <vc-expansion-panel>
+          <div slot="header">
+            <strong>Custom Styled Panel 2</strong>
+          </div>
+          <div slot="content">
+            <p>
+              The custom styling is applied to all panels within the container.
+            </p>
+            <p>You can customize the appearance using CSS variables.</p>
+          </div>
+        </vc-expansion-panel>
+      </vc-expansion-panels>
+    </div>
+
+    <script>
+      // You can also control panels programmatically
+      document.addEventListener("DOMContentLoaded", () => {
+        // Example of programmatic control
+        const panels = document.querySelectorAll("vc-expansion-panel");
+
+        // Just as an example - after 3 seconds, toggle the first panel
+        setTimeout(() => {
+          if (panels.length > 0) {
+            console.log("Toggling first panel programmatically");
+            panels[0].toggle();
+          }
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>

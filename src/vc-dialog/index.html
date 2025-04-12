@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Design 2 Dialog Web Component</title>
+    <script src="vc-dialog.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+        line-height: 1.5;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #6200ee;
+        margin-top: 0;
+      }
+
+      .button {
+        display: inline-block;
+        margin: 8px 0;
+        padding: 8px 16px;
+        background-color: #6200ee;
+        color: white;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.0892857143em;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .button:hover {
+        background-color: #5000d1;
+      }
+
+      .example {
+        margin: 40px 0;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+      }
+
+      code {
+        font-family: "Courier New", monospace;
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 2px;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 16px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      /* Dialog trigger buttons */
+      #openSimpleDialog,
+      #openConfirmDialog,
+      #openCustomDialog {
+        margin-right: 16px;
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material Design 2 Dialog Examples</h1>
+
+      <p>
+        This page demonstrates how to use the <code>vc-dialog</code> Web
+        Component to create Material Design 2 styled dialogs.
+      </p>
+
+      <div class="example">
+        <h2>Basic Usage</h2>
+        <button id="openSimpleDialog" class="button">Open Simple Dialog</button>
+
+        <!-- Simple Dialog -->
+        <vc-dialog id="simpleDialog">
+          <span slot="title">Simple Dialog</span>
+          <p>This is a basic dialog with a single action button.</p>
+          <button slot="actions" id="closeSimpleDialog">Close</button>
+        </vc-dialog>
+      </div>
+
+      <div class="example">
+        <h2>Confirmation Dialog</h2>
+        <button id="openConfirmDialog" class="button">
+          Open Confirmation Dialog
+        </button>
+
+        <!-- Confirmation Dialog -->
+        <vc-dialog id="confirmDialog">
+          <span slot="title">Confirm Action</span>
+          <p>
+            Are you sure you want to perform this action? This cannot be undone.
+          </p>
+          <div slot="actions">
+            <button id="cancelConfirmDialog">Cancel</button>
+            <button id="confirmAction" data-primary>Confirm</button>
+          </div>
+        </vc-dialog>
+      </div>
+
+      <div class="example">
+        <h2>Modal Dialog</h2>
+        <button id="openCustomDialog" class="button">Open Modal Dialog</button>
+
+        <!-- Custom Modal Dialog -->
+        <vc-dialog id="customDialog" modal>
+          <span slot="title">Modal Dialog</span>
+          <p>
+            This is a modal dialog that can only be closed by clicking a button
+            (not by clicking outside or pressing ESC).
+          </p>
+          <p>
+            Modal dialogs are useful when the user needs to acknowledge or
+            complete an action before continuing.
+          </p>
+          <div slot="actions">
+            <button id="closeModalDialog" data-primary>Understood</button>
+          </div>
+        </vc-dialog>
+      </div>
+    </div>
+
+    <script>
+      // Simple Dialog
+      const simpleDialog = document.getElementById("simpleDialog");
+      document
+        .getElementById("openSimpleDialog")
+        .addEventListener("click", () => {
+          simpleDialog.open();
+        });
+      document
+        .getElementById("closeSimpleDialog")
+        .addEventListener("click", () => {
+          simpleDialog.close();
+        });
+
+      // Confirmation Dialog
+      const confirmDialog = document.getElementById("confirmDialog");
+      document
+        .getElementById("openConfirmDialog")
+        .addEventListener("click", () => {
+          confirmDialog.open();
+        });
+      document
+        .getElementById("cancelConfirmDialog")
+        .addEventListener("click", () => {
+          confirmDialog.close();
+        });
+      document.getElementById("confirmAction").addEventListener("click", () => {
+        // Do something when confirmed
+        alert("Action confirmed!");
+        confirmDialog.close();
+      });
+
+      // Custom Modal Dialog
+      const customDialog = document.getElementById("customDialog");
+      document
+        .getElementById("openCustomDialog")
+        .addEventListener("click", () => {
+          customDialog.open();
+        });
+      document
+        .getElementById("closeModalDialog")
+        .addEventListener("click", () => {
+          customDialog.close();
+        });
+
+      // Listen for dialog events
+      document.querySelectorAll("vc-dialog").forEach((dialog) => {
+        dialog.addEventListener("vc-dialog-open", (e) => {
+          console.log("Dialog opened:", e.target.id);
+        });
+        dialog.addEventListener("vc-dialog-close", (e) => {
+          console.log("Dialog closed:", e.target.id);
+        });
+      });
+    </script>
+  </body>
+</html>

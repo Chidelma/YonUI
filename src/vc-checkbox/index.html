@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Checkbox Example</title>
+    <script src="vc-checkbox.js"></script>
+    <style>
+      body {
+        font-family: Roboto, Arial, sans-serif;
+        margin: 40px;
+        line-height: 1.6;
+      }
+
+      .example-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+      }
+
+      h1 {
+        color: #1976d2;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        color: #333;
+        margin-top: 0;
+      }
+
+      .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .code-block {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 4px;
+        margin-top: 15px;
+        font-family: monospace;
+        white-space: pre;
+        overflow-x: auto;
+      }
+
+      .controls {
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 8px;
+        font-size: 14px;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Checkbox Web Component</h1>
+
+    <div class="example-section">
+      <h2>Basic Usage</h2>
+      <div class="checkbox-group">
+        <vc-checkbox label="Unchecked checkbox"></vc-checkbox>
+        <vc-checkbox checked label="Checked checkbox"></vc-checkbox>
+        <vc-checkbox indeterminate label="Indeterminate checkbox"></vc-checkbox>
+        <vc-checkbox disabled label="Disabled checkbox"></vc-checkbox>
+        <vc-checkbox
+          checked
+          disabled
+          label="Disabled checked checkbox"
+        ></vc-checkbox>
+      </div>
+
+      <div class="code-block">
+        &lt;vc-checkbox label="Unchecked checkbox"&gt;&lt;/vc-checkbox&gt;
+        &lt;vc-checkbox checked label="Checked checkbox"&gt;&lt;/vc-checkbox&gt;
+        &lt;vc-checkbox indeterminate label="Indeterminate
+        checkbox"&gt;&lt;/vc-checkbox&gt; &lt;vc-checkbox disabled
+        label="Disabled checkbox"&gt;&lt;/vc-checkbox&gt; &lt;vc-checkbox
+        checked disabled label="Disabled checked
+        checkbox"&gt;&lt;/vc-checkbox&gt;
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>Interactive Example</h2>
+      <vc-checkbox
+        id="interactive-checkbox"
+        label="Click me or use the buttons below"
+      ></vc-checkbox>
+
+      <div class="controls">
+        <button id="toggle-checked">Toggle Checked</button>
+        <button id="toggle-indeterminate">Toggle Indeterminate</button>
+        <button id="toggle-disabled">Toggle Disabled</button>
+        <button id="change-label">Change Label</button>
+      </div>
+
+      <div class="code-block">
+        // JavaScript const checkbox =
+        document.getElementById('interactive-checkbox'); // Listen for change
+        events checkbox.addEventListener('change', (event) => {
+        console.log('Checkbox changed:', event.detail.checked); }); // Using the
+        API methods
+        document.getElementById('toggle-checked').addEventListener('click', ()
+        => { checkbox.checked = !checkbox.checked; });
+        document.getElementById('toggle-indeterminate').addEventListener('click',
+        () => { checkbox.indeterminate = !checkbox.indeterminate; });
+        document.getElementById('toggle-disabled').addEventListener('click', ()
+        => { checkbox.disabled = !checkbox.disabled; });
+        document.getElementById('change-label').addEventListener('click', () =>
+        { checkbox.label = 'Label changed at ' + new
+        Date().toLocaleTimeString(); });
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>Form Integration</h2>
+      <form id="demo-form">
+        <div class="checkbox-group">
+          <vc-checkbox
+            id="terms-checkbox"
+            label="I agree to terms and conditions"
+            value="agreed"
+          ></vc-checkbox>
+          <vc-checkbox
+            id="newsletter-checkbox"
+            label="Subscribe to newsletter"
+            value="subscribe"
+          ></vc-checkbox>
+        </div>
+        <button type="submit" style="margin-top: 16px">Submit</button>
+      </form>
+
+      <div class="code-block">
+        &lt;form id="demo-form"&gt; &lt;vc-checkbox id="terms-checkbox" label="I
+        agree to terms and conditions" value="agreed"&gt;&lt;/vc-checkbox&gt;
+        &lt;vc-checkbox id="newsletter-checkbox" label="Subscribe to newsletter"
+        value="subscribe"&gt;&lt;/vc-checkbox&gt; &lt;button
+        type="submit"&gt;Submit&lt;/button&gt; &lt;/form&gt; // JavaScript
+        document.getElementById('demo-form').addEventListener('submit', (event)
+        => { event.preventDefault(); const termsChecked =
+        document.getElementById('terms-checkbox').checked; const
+        newsletterChecked =
+        document.getElementById('newsletter-checkbox').checked;
+        console.log('Form submitted:', { termsAccepted: termsChecked,
+        newsletterSubscribed: newsletterChecked }); // You can also get the
+        values if needed if (termsChecked) { console.log('Terms value:',
+        document.getElementById('terms-checkbox').value); } });
+      </div>
+    </div>
+
+    <script>
+      // Interactive example
+      const checkbox = document.getElementById("interactive-checkbox");
+
+      checkbox.addEventListener("change", (event) => {
+        console.log("Checkbox changed:", event.detail.checked);
+      });
+
+      document
+        .getElementById("toggle-checked")
+        .addEventListener("click", () => {
+          checkbox.checked = !checkbox.checked;
+        });
+
+      document
+        .getElementById("toggle-indeterminate")
+        .addEventListener("click", () => {
+          checkbox.indeterminate = !checkbox.indeterminate;
+        });
+
+      document
+        .getElementById("toggle-disabled")
+        .addEventListener("click", () => {
+          checkbox.disabled = !checkbox.disabled;
+        });
+
+      document.getElementById("change-label").addEventListener("click", () => {
+        checkbox.label = "Label changed at " + new Date().toLocaleTimeString();
+      });
+
+      // Form example
+      document
+        .getElementById("demo-form")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const termsChecked =
+            document.getElementById("terms-checkbox").checked;
+          const newsletterChecked = document.getElementById(
+            "newsletter-checkbox"
+          ).checked;
+
+          alert(
+            `Form submitted:\nTerms accepted: ${termsChecked}\nNewsletter subscribed: ${newsletterChecked}`
+          );
+
+          console.log("Form submitted:", {
+            termsAccepted: termsChecked,
+            newsletterSubscribed: newsletterChecked,
+          });
+
+          // You can also get the values if needed
+          if (termsChecked) {
+            console.log(
+              "Terms value:",
+              document.getElementById("terms-checkbox").value
+            );
+          }
+        });
+    </script>
+  </body>
+</html>

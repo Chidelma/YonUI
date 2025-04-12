@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Carousel Web Component Example</title>
+    <script src="./vc-carousel.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 24px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: #1976d2;
+        font-weight: 400;
+        margin-bottom: 24px;
+      }
+
+      .demo-section {
+        margin-bottom: 32px;
+        background-color: white;
+        padding: 24px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: #424242;
+        font-weight: 400;
+      }
+
+      .controls {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      button {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+
+      .slide {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .slide h3 {
+        font-size: 32px;
+        margin: 0;
+      }
+
+      .slide p {
+        margin-top: 8px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material 2 Carousel Web Component</h1>
+
+      <div class="demo-section">
+        <h2>Basic Carousel</h2>
+        <vc-carousel height="300px">
+          <div class="slide" style="background-color: #1976d2">
+            <div>
+              <h3>Slide 1</h3>
+              <p>This is the first slide of the carousel</p>
+            </div>
+          </div>
+          <div class="slide" style="background-color: #388e3c">
+            <div>
+              <h3>Slide 2</h3>
+              <p>This is the second slide of the carousel</p>
+            </div>
+          </div>
+          <div class="slide" style="background-color: #e53935">
+            <div>
+              <h3>Slide 3</h3>
+              <p>This is the third slide of the carousel</p>
+            </div>
+          </div>
+          <div class="slide" style="background-color: #8e24aa">
+            <div>
+              <h3>Slide 4</h3>
+              <p>This is the fourth slide of the carousel</p>
+            </div>
+          </div>
+        </vc-carousel>
+      </div>
+
+      <div class="demo-section">
+        <h2>Carousel with Autoplay</h2>
+        <vc-carousel
+          id="autoplay-carousel"
+          height="300px"
+          autoplay
+          interval="3000"
+        >
+          <div class="slide" style="background-color: #f57c00">
+            <div>
+              <h3>Automatic Slide 1</h3>
+              <p>This carousel changes slides automatically every 3 seconds</p>
+            </div>
+          </div>
+          <div class="slide" style="background-color: #546e7a">
+            <div>
+              <h3>Automatic Slide 2</h3>
+              <p>Hover over the carousel to pause the autoplay</p>
+            </div>
+          </div>
+          <div class="slide" style="background-color: #6d4c41">
+            <div>
+              <h3>Automatic Slide 3</h3>
+              <p>Move away from the carousel to resume autoplay</p>
+            </div>
+          </div>
+        </vc-carousel>
+
+        <div class="controls">
+          <button id="toggle-autoplay">Pause Autoplay</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h2>Carousel with Custom Controls</h2>
+        <vc-carousel
+          id="custom-carousel"
+          height="300px"
+          show-arrows="false"
+          show-delimiters="false"
+        >
+          <div class="slide" style="background-color: #00acc1">
+            <div>
+              <h3>Custom Control Slide 1</h3>
+              <p>This carousel uses external controls</p>
+            </div>
+          </div>
+          <div class="slide" style="background-color: #ec407a">
+            <div>
+              <h3>Custom Control Slide 2</h3>
+              <p>Navigation is handled through buttons below</p>
+            </div>
+          </div>
+          <div class="slide" style="background-color: #fdd835">
+            <div>
+              <h3>Custom Control Slide 3</h3>
+              <p>You can implement custom navigation UI</p>
+            </div>
+          </div>
+        </vc-carousel>
+
+        <div class="controls">
+          <button id="prev-slide">Previous Slide</button>
+          <button id="next-slide">Next Slide</button>
+          <button id="go-to-1">Go to Slide 1</button>
+          <button id="go-to-2">Go to Slide 2</button>
+          <button id="go-to-3">Go to Slide 3</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Set up event listeners for the custom controls
+      document.addEventListener("DOMContentLoaded", () => {
+        // Autoplay toggle
+        const autoplayCarousel = document.getElementById("autoplay-carousel");
+        const toggleAutoplayBtn = document.getElementById("toggle-autoplay");
+        let isPlaying = true;
+
+        toggleAutoplayBtn.addEventListener("click", () => {
+          if (isPlaying) {
+            autoplayCarousel.setAttribute("autoplay", "false");
+            toggleAutoplayBtn.textContent = "Resume Autoplay";
+          } else {
+            autoplayCarousel.setAttribute("autoplay", "true");
+            toggleAutoplayBtn.textContent = "Pause Autoplay";
+          }
+          isPlaying = !isPlaying;
+        });
+
+        // Custom navigation controls
+        const customCarousel = document.getElementById("custom-carousel");
+
+        document.getElementById("prev-slide").addEventListener("click", () => {
+          customCarousel.prev();
+        });
+
+        document.getElementById("next-slide").addEventListener("click", () => {
+          customCarousel.next();
+        });
+
+        document.getElementById("go-to-1").addEventListener("click", () => {
+          customCarousel.goTo(0);
+        });
+
+        document.getElementById("go-to-2").addEventListener("click", () => {
+          customCarousel.goTo(1);
+        });
+
+        document.getElementById("go-to-3").addEventListener("click", () => {
+          customCarousel.goTo(2);
+        });
+
+        // Listen for slide change events
+        customCarousel.addEventListener("change", (event) => {
+          console.log("Slide changed to index:", event.detail.index);
+        });
+      });
+    </script>
+  </body>
+</html>

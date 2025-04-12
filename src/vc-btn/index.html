@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Button Web Component Example</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="vc-btn.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 0;
+      }
+
+      h2 {
+        color: #555;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+      }
+
+      .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material 2 Button Web Component</h1>
+
+      <div class="section">
+        <h2>Button Variants</h2>
+        <div class="button-group">
+          <vc-btn variant="contained" color="primary">Contained</vc-btn>
+          <vc-btn variant="outlined" color="primary">Outlined</vc-btn>
+          <vc-btn variant="text" color="primary">Text</vc-btn>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Button Colors</h2>
+        <div class="button-group">
+          <vc-btn variant="contained" color="primary">Primary</vc-btn>
+          <vc-btn variant="contained" color="secondary">Secondary</vc-btn>
+          <vc-btn variant="contained" color="default">Default</vc-btn>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Button Sizes</h2>
+        <div class="button-group">
+          <vc-btn variant="contained" color="primary" size="small"
+            >Small</vc-btn
+          >
+          <vc-btn variant="contained" color="primary" size="medium"
+            >Medium</vc-btn
+          >
+          <vc-btn variant="contained" color="primary" size="large"
+            >Large</vc-btn
+          >
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Outlined Buttons</h2>
+        <div class="button-group">
+          <vc-btn variant="outlined" color="primary">Primary</vc-btn>
+          <vc-btn variant="outlined" color="secondary">Secondary</vc-btn>
+          <vc-btn variant="outlined" color="default">Default</vc-btn>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Text Buttons</h2>
+        <div class="button-group">
+          <vc-btn variant="text" color="primary">Primary</vc-btn>
+          <vc-btn variant="text" color="secondary">Secondary</vc-btn>
+          <vc-btn variant="text" color="default">Default</vc-btn>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Disabled Buttons</h2>
+        <div class="button-group">
+          <vc-btn variant="contained" color="primary" disabled
+            >Contained</vc-btn
+          >
+          <vc-btn variant="outlined" color="primary" disabled>Outlined</vc-btn>
+          <vc-btn variant="text" color="primary" disabled>Text</vc-btn>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Usage Example</h2>
+        <pre><code>&lt;!-- Include the Web Component --&gt;
+&lt;script src="vc-btn.js"&gt;&lt;/script&gt;
+
+&lt;!-- Use the button --&gt;
+&lt;vc-btn variant="contained" color="primary"&gt;Click Me&lt;/vc-btn&gt;
+
+&lt;!-- Outlined variant --&gt;
+&lt;vc-btn variant="outlined" color="secondary"&gt;Outlined&lt;/vc-btn&gt;
+
+&lt;!-- Text variant --&gt;
+&lt;vc-btn variant="text" color="default"&gt;Text Button&lt;/vc-btn&gt;
+
+&lt;!-- Disabled state --&gt;
+&lt;vc-btn variant="contained" color="primary" disabled&gt;Disabled&lt;/vc-btn&gt;
+
+&lt;!-- Different sizes --&gt;
+&lt;vc-btn variant="contained" color="primary" size="small"&gt;Small&lt;/vc-btn&gt;
+&lt;vc-btn variant="contained" color="primary" size="medium"&gt;Medium&lt;/vc-btn&gt;
+&lt;vc-btn variant="contained" color="primary" size="large"&gt;Large&lt;/vc-btn&gt;</code></pre>
+      </div>
+    </div>
+  </body>
+</html>

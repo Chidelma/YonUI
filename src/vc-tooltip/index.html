@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Tooltips - Web Component Example</title>
+    <style>
+      body {
+        font-family: "Roboto", "Helvetica Neue", sans-serif;
+        margin: 0;
+        padding: 40px;
+        color: #333;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #673ab7;
+        margin-top: 0;
+      }
+
+      .demo-section {
+        margin: 40px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      button {
+        background-color: #673ab7;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: #5e35b1;
+      }
+
+      .icon-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        background-color: #e0e0e0;
+        color: #616161;
+        border: none;
+        cursor: pointer;
+      }
+
+      .config-section {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #f1f1f1;
+        border-radius: 8px;
+      }
+
+      .control-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      select,
+      input {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+    </style>
+    <!-- Import our tooltip web component -->
+    <script src="vc-tooltip.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material 2 Tooltips Web Component</h1>
+      <p>
+        Here are examples of the <code>vc-tooltip</code> web component with
+        various configurations:
+      </p>
+
+      <h2>Basic Tooltips</h2>
+      <div class="demo-section">
+        <vc-tooltip text="Default top tooltip" position="top" delay="500">
+          <button>Hover Me (Top)</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Bottom tooltip" position="bottom">
+          <button>Hover Me (Bottom)</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Left tooltip" position="left">
+          <button>Hover Me (Left)</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Right tooltip" position="right">
+          <button>Hover Me (Right)</button>
+        </vc-tooltip>
+      </div>
+
+      <h2>Icon Tooltips</h2>
+      <div class="demo-section">
+        <vc-tooltip text="Home" position="top">
+          <button class="icon-button">🏠</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Settings" position="top">
+          <button class="icon-button">⚙️</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Search" position="top">
+          <button class="icon-button">🔍</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Profile" position="top">
+          <button class="icon-button">👤</button>
+        </vc-tooltip>
+      </div>
+
+      <h2>Delay Configuration</h2>
+      <div class="demo-section">
+        <vc-tooltip text="No delay" position="top" delay="0">
+          <button>No Delay</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Short delay (200ms)" position="top" delay="200">
+          <button>Short Delay</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Default delay (500ms)" position="top" delay="500">
+          <button>Default Delay</button>
+        </vc-tooltip>
+
+        <vc-tooltip text="Long delay (1000ms)" position="top" delay="1000">
+          <button>Long Delay</button>
+        </vc-tooltip>
+      </div>
+
+      <h2>Hide Delay Configuration</h2>
+      <div class="demo-section">
+        <vc-tooltip text="No hide delay" position="top" hide-delay="0">
+          <button>No Hide Delay</button>
+        </vc-tooltip>
+
+        <vc-tooltip
+          text="With hide delay (500ms)"
+          position="top"
+          hide-delay="500"
+        >
+          <button>500ms Hide Delay</button>
+        </vc-tooltip>
+
+        <vc-tooltip
+          text="With hide delay (1000ms)"
+          position="top"
+          hide-delay="1000"
+        >
+          <button>1000ms Hide Delay</button>
+        </vc-tooltip>
+      </div>
+
+      <div class="config-section">
+        <h2>Live Configuration Example</h2>
+        <p>Adjust the settings below to see the tooltip change in real-time:</p>
+
+        <div class="control-group">
+          <label for="tooltip-text">Tooltip Text:</label>
+          <input type="text" id="tooltip-text" value="Customizable tooltip" />
+        </div>
+
+        <div class="control-group">
+          <label for="tooltip-position">Position:</label>
+          <select id="tooltip-position">
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="tooltip-delay">Show Delay (ms):</label>
+          <input
+            type="number"
+            id="tooltip-delay"
+            value="500"
+            min="0"
+            step="100"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="tooltip-hide-delay">Hide Delay (ms):</label>
+          <input
+            type="number"
+            id="tooltip-hide-delay"
+            value="0"
+            min="0"
+            step="100"
+          />
+        </div>
+
+        <vc-tooltip
+          id="configurable-tooltip"
+          text="Customizable tooltip"
+          position="top"
+          delay="500"
+          hide-delay="0"
+        >
+          <button>Customizable Tooltip</button>
+        </vc-tooltip>
+      </div>
+    </div>
+
+    <script>
+      // Live configuration
+      const configurableTooltip = document.getElementById(
+        "configurable-tooltip"
+      );
+      const tooltipText = document.getElementById("tooltip-text");
+      const tooltipPosition = document.getElementById("tooltip-position");
+      const tooltipDelay = document.getElementById("tooltip-delay");
+      const tooltipHideDelay = document.getElementById("tooltip-hide-delay");
+
+      tooltipText.addEventListener("input", () => {
+        configurableTooltip.setAttribute("text", tooltipText.value);
+      });
+
+      tooltipPosition.addEventListener("change", () => {
+        configurableTooltip.setAttribute("position", tooltipPosition.value);
+      });
+
+      tooltipDelay.addEventListener("input", () => {
+        configurableTooltip.setAttribute("delay", tooltipDelay.value);
+      });
+
+      tooltipHideDelay.addEventListener("input", () => {
+        configurableTooltip.setAttribute("hide-delay", tooltipHideDelay.value);
+      });
+    </script>
+  </body>
+</html>

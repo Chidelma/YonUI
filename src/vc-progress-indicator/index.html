@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Progress Indicator Example</title>
+    <script src="vc-progress-indicator.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .example-container {
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        color: #202124;
+      }
+
+      h2 {
+        color: #5f6368;
+        margin-top: 2rem;
+      }
+
+      .controls {
+        margin: 1rem 0;
+      }
+
+      button {
+        background-color: #6200ee;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      button:hover {
+        background-color: #7c4dff;
+      }
+
+      input[type="range"] {
+        width: 200px;
+        margin-right: 1rem;
+      }
+
+      input[type="color"] {
+        vertical-align: middle;
+      }
+
+      .variant {
+        margin-bottom: 1.5rem;
+      }
+
+      .label {
+        display: inline-block;
+        width: 120px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Progress Indicator Examples</h1>
+
+    <div class="example-container">
+      <h2>Determinate Progress</h2>
+      <div class="variant">
+        <p>Default style:</p>
+        <vc-progress-indicator
+          id="determinate"
+          value="30"
+        ></vc-progress-indicator>
+
+        <div class="controls">
+          <input type="range" id="value-slider" min="0" max="100" value="30" />
+          <span id="value-display">30%</span>
+        </div>
+      </div>
+
+      <div class="variant">
+        <p>Custom colors:</p>
+        <vc-progress-indicator
+          id="custom-color"
+          value="60"
+          color="#e91e63"
+          track-color="#ffcdd2"
+        >
+        </vc-progress-indicator>
+
+        <div class="controls">
+          <span class="label">Progress color:</span>
+          <input type="color" id="progress-color" value="#e91e63" />
+        </div>
+        <div class="controls">
+          <span class="label">Track color:</span>
+          <input type="color" id="track-color" value="#ffcdd2" />
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Indeterminate Progress</h2>
+      <div class="variant">
+        <p>Default indeterminate:</p>
+        <vc-progress-indicator indeterminate></vc-progress-indicator>
+      </div>
+
+      <div class="variant">
+        <p>Custom color indeterminate:</p>
+        <vc-progress-indicator
+          id="custom-indeterminate"
+          indeterminate
+          color="#2196f3"
+          track-color="#bbdefb"
+        >
+        </vc-progress-indicator>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Interactive Demo</h2>
+      <div class="variant">
+        <vc-progress-indicator
+          id="interactive"
+          value="50"
+        ></vc-progress-indicator>
+
+        <div class="controls">
+          <button id="toggle-indeterminate">Toggle Indeterminate</button>
+          <button id="increment">+10%</button>
+          <button id="decrement">-10%</button>
+          <button id="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Determinate progress control
+      const valueSlider = document.getElementById("value-slider");
+      const valueDisplay = document.getElementById("value-display");
+      const determinateProgress = document.getElementById("determinate");
+
+      valueSlider.addEventListener("input", () => {
+        const value = valueSlider.value;
+        determinateProgress.value = value;
+        valueDisplay.textContent = `${value}%`;
+      });
+
+      // Custom color control
+      const progressColor = document.getElementById("progress-color");
+      const trackColor = document.getElementById("track-color");
+      const customColorProgress = document.getElementById("custom-color");
+
+      progressColor.addEventListener("input", () => {
+        customColorProgress.setAttribute("color", progressColor.value);
+      });
+
+      trackColor.addEventListener("input", () => {
+        customColorProgress.setAttribute("track-color", trackColor.value);
+      });
+
+      // Interactive demo
+      const interactiveProgress = document.getElementById("interactive");
+      const toggleIndeterminate = document.getElementById(
+        "toggle-indeterminate"
+      );
+      const incrementBtn = document.getElementById("increment");
+      const decrementBtn = document.getElementById("decrement");
+      const resetBtn = document.getElementById("reset");
+
+      toggleIndeterminate.addEventListener("click", () => {
+        interactiveProgress.indeterminate = !interactiveProgress.indeterminate;
+      });
+
+      incrementBtn.addEventListener("click", () => {
+        interactiveProgress.value = Math.min(
+          100,
+          interactiveProgress.value + 10
+        );
+      });
+
+      decrementBtn.addEventListener("click", () => {
+        interactiveProgress.value = Math.max(0, interactiveProgress.value - 10);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        interactiveProgress.value = 0;
+        interactiveProgress.indeterminate = false;
+      });
+    </script>
+  </body>
+</html>

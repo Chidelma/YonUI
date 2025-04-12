@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vc-text-field Demo</title>
+    <script src="vc-text-field.js"></script>
+    <style>
+      body {
+        font-family: Roboto, Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .example-container {
+        margin-bottom: 40px;
+      }
+
+      h1 {
+        color: #6200ee;
+      }
+
+      h2 {
+        color: #333;
+        margin-top: 30px;
+      }
+
+      .field-container {
+        margin-bottom: 20px;
+      }
+
+      button {
+        background-color: #6200ee;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+
+      button:hover {
+        background-color: #3700b3;
+      }
+
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 16px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Text Field Web Component Demo</h1>
+
+    <div class="example-container">
+      <h2>Basic Usage</h2>
+
+      <div class="field-container">
+        <vc-text-field label="Username" helper-text="Enter your username">
+        </vc-text-field>
+      </div>
+
+      <pre><code>&lt;vc-text-field 
+  label="Username" 
+  helper-text="Enter your username"&gt;
+&lt;/vc-text-field&gt;</code></pre>
+    </div>
+
+    <div class="example-container">
+      <h2>Required Field</h2>
+
+      <div class="field-container">
+        <vc-text-field
+          label="Email"
+          required
+          helper-text="We'll never share your email"
+        >
+        </vc-text-field>
+      </div>
+
+      <pre><code>&lt;vc-text-field 
+  label="Email" 
+  required 
+  helper-text="We'll never share your email"&gt;
+&lt;/vc-text-field&gt;</code></pre>
+    </div>
+
+    <div class="example-container">
+      <h2>Password Field</h2>
+
+      <div class="field-container">
+        <vc-text-field
+          label="Password"
+          type="password"
+          helper-text="At least 8 characters"
+        >
+        </vc-text-field>
+      </div>
+
+      <pre><code>&lt;vc-text-field 
+  label="Password" 
+  type="password" 
+  helper-text="At least 8 characters"&gt;
+&lt;/vc-text-field&gt;</code></pre>
+    </div>
+
+    <div class="example-container">
+      <h2>With Character Counter</h2>
+
+      <div class="field-container">
+        <vc-text-field
+          label="Bio"
+          max-length="50"
+          helper-text="Tell us about yourself"
+        >
+        </vc-text-field>
+      </div>
+
+      <pre><code>&lt;vc-text-field 
+  label="Bio" 
+  max-length="50" 
+  helper-text="Tell us about yourself"&gt;
+&lt;/vc-text-field&gt;</code></pre>
+    </div>
+
+    <div class="example-container">
+      <h2>Disabled Field</h2>
+
+      <div class="field-container">
+        <vc-text-field label="Username" value="johndoe" disabled>
+        </vc-text-field>
+      </div>
+
+      <pre><code>&lt;vc-text-field 
+  label="Username" 
+  value="johndoe" 
+  disabled&gt;
+&lt;/vc-text-field&gt;</code></pre>
+    </div>
+
+    <div class="example-container">
+      <h2>Read-only Field</h2>
+
+      <div class="field-container">
+        <vc-text-field label="User ID" value="USR12345" readonly>
+        </vc-text-field>
+      </div>
+
+      <pre><code>&lt;vc-text-field 
+  label="User ID" 
+  value="USR12345" 
+  readonly&gt;
+&lt;/vc-text-field&gt;</code></pre>
+    </div>
+
+    <div class="example-container">
+      <h2>With Error</h2>
+
+      <div class="field-container">
+        <vc-text-field
+          id="error-field"
+          label="Email"
+          value="invalid-email"
+          error-message="Please enter a valid email address"
+        >
+        </vc-text-field>
+      </div>
+
+      <button id="clear-error">Clear Error</button>
+      <button id="set-error">Set Error</button>
+
+      <pre><code>&lt;vc-text-field 
+  label="Email" 
+  value="invalid-email" 
+  error-message="Please enter a valid email address"&gt;
+&lt;/vc-text-field&gt;</code></pre>
+    </div>
+
+    <div class="example-container">
+      <h2>JavaScript API</h2>
+
+      <div class="field-container">
+        <vc-text-field
+          id="js-field"
+          label="Your Name"
+          helper-text="Enter your full name"
+        >
+        </vc-text-field>
+      </div>
+
+      <button id="set-value">Set Value</button>
+      <button id="get-value">Get Value</button>
+      <button id="focus-field">Focus</button>
+      <button id="check-validity">Check Validity</button>
+
+      <pre><code>// Get reference to the element
+const textField = document.getElementById('js-field');
+
+// Set value programmatically
+textField.value = 'John Doe';
+
+// Get current value
+console.log(textField.value);
+
+// Set focus
+textField.focus();
+
+// Check validity
+console.log(textField.checkValidity());</code></pre>
+    </div>
+
+    <script>
+      // JS API Example
+      document.getElementById("set-value").addEventListener("click", () => {
+        const field = document.getElementById("js-field");
+        field.value = "John Doe";
+        alert('Value set to "John Doe"');
+      });
+
+      document.getElementById("get-value").addEventListener("click", () => {
+        const field = document.getElementById("js-field");
+        alert("Current value: " + field.value);
+      });
+
+      document.getElementById("focus-field").addEventListener("click", () => {
+        const field = document.getElementById("js-field");
+        field.focus();
+      });
+
+      document
+        .getElementById("check-validity")
+        .addEventListener("click", () => {
+          const field = document.getElementById("js-field");
+          alert("Field is " + (field.checkValidity() ? "valid" : "invalid"));
+        });
+
+      // Error handling example
+      document.getElementById("clear-error").addEventListener("click", () => {
+        const field = document.getElementById("error-field");
+        field.clearError();
+      });
+
+      document.getElementById("set-error").addEventListener("click", () => {
+        const field = document.getElementById("error-field");
+        field.setError("Please enter a valid email address");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material OTP Input Example</title>
+    <style>
+      body {
+        font-family: Roboto, "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+        max-width: 500px;
+        width: 100%;
+      }
+
+      h1 {
+        color: #1976d2;
+        margin-top: 0;
+      }
+
+      .section {
+        margin-bottom: 24px;
+      }
+
+      .section h2 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      .button-group {
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      button {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+
+      button.secondary {
+        background-color: #f5f5f5;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      button.secondary:hover {
+        background-color: #e0e0e0;
+      }
+
+      .output {
+        margin-top: 16px;
+        padding: 12px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 14px;
+      }
+
+      .controls {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+
+      .control {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .control input[type="checkbox"] {
+        margin: 0;
+      }
+
+      .control input[type="number"] {
+        width: 60px;
+        padding: 6px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      /* Demo section styles */
+      .demo-row {
+        margin-bottom: 12px;
+      }
+
+      .demo-label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
+      }
+    </style>
+    <script src="vc-otp-input.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material OTP Input</h1>
+
+      <div class="section">
+        <h2>Basic Usage</h2>
+        <vc-otp-input id="basic-otp" length="6" autofocus></vc-otp-input>
+        <div class="output" id="basic-output">Value:</div>
+        <div class="button-group">
+          <button id="get-value">Get Value</button>
+          <button id="clear" class="secondary">Clear</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Customization</h2>
+        <div class="controls">
+          <div class="control">
+            <label>Length:</label>
+            <input type="number" id="length-input" min="1" max="12" value="6" />
+          </div>
+          <div class="control">
+            <label>Disabled:</label>
+            <input type="checkbox" id="disabled-input" />
+          </div>
+          <div class="control">
+            <label>Loading:</label>
+            <input type="checkbox" id="loading-input" />
+          </div>
+          <div class="control">
+            <label>Type:</label>
+            <select id="type-input">
+              <option value="text">Text</option>
+              <option value="password">Password</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Demo Examples</h2>
+
+        <div class="demo-row">
+          <span class="demo-label">Password Mode:</span>
+          <vc-otp-input length="4" type="password"></vc-otp-input>
+        </div>
+
+        <div class="demo-row">
+          <span class="demo-label">Loading State:</span>
+          <vc-otp-input length="4" loading></vc-otp-input>
+        </div>
+
+        <div class="demo-row">
+          <span class="demo-label">Disabled State:</span>
+          <vc-otp-input length="4" disabled value="1234"></vc-otp-input>
+        </div>
+
+        <div class="demo-row">
+          <span class="demo-label">Different Length (8):</span>
+          <vc-otp-input length="8"></vc-otp-input>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Basic example
+        const basicOtp = document.getElementById("basic-otp");
+        const basicOutput = document.getElementById("basic-output");
+        const getValueBtn = document.getElementById("get-value");
+        const clearBtn = document.getElementById("clear");
+
+        // Update output on change
+        basicOtp.addEventListener("change", (e) => {
+          basicOutput.textContent = `Value: ${e.detail.value} (Complete: ${e.detail.complete})`;
+        });
+
+        // Get value button
+        getValueBtn.addEventListener("click", () => {
+          basicOutput.textContent = `Value: ${basicOtp.value}`;
+        });
+
+        // Clear button
+        clearBtn.addEventListener("click", () => {
+          basicOtp.clear();
+          basicOutput.textContent = "Value: ";
+        });
+
+        // Customization controls
+        const lengthInput = document.getElementById("length-input");
+        const disabledInput = document.getElementById("disabled-input");
+        const loadingInput = document.getElementById("loading-input");
+        const typeInput = document.getElementById("type-input");
+
+        lengthInput.addEventListener("change", () => {
+          basicOtp.length = lengthInput.value;
+        });
+
+        disabledInput.addEventListener("change", () => {
+          basicOtp.disabled = disabledInput.checked;
+        });
+
+        loadingInput.addEventListener("change", () => {
+          basicOtp.loading = loadingInput.checked;
+        });
+
+        typeInput.addEventListener("change", () => {
+          basicOtp.setAttribute("type", typeInput.value);
+        });
+      });
+    </script>
+  </body>
+</html>

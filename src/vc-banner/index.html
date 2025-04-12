@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Banner Examples</title>
+
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <!-- Roboto Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .section {
+        margin-bottom: 30px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 0;
+      }
+
+      h2 {
+        color: #555;
+        margin-top: 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .controls {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px dashed #eee;
+      }
+
+      button {
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 8px;
+        font-size: 14px;
+      }
+
+      button:hover {
+        background-color: #1976d2;
+      }
+
+      .secondary {
+        background-color: #e0e0e0;
+        color: #333;
+      }
+
+      .secondary:hover {
+        background-color: #d5d5d5;
+      }
+
+      pre {
+        background-color: #f7f7f7;
+        padding: 16px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: "Consolas", "Monaco", monospace;
+      }
+
+      #interactiveDemo {
+        margin-bottom: 30px;
+      }
+    </style>
+
+    <!-- Import the vc-banner web component -->
+    <script src="vc-banner.js"></script>
+  </head>
+  <body>
+    <h1>Material 2 Banner Examples</h1>
+
+    <div class="section">
+      <h2>Basic Types</h2>
+
+      <vc-banner
+        type="info"
+        message="This is an informational banner message."
+      ></vc-banner>
+
+      <vc-banner
+        type="warning"
+        message="Warning: This action cannot be undone."
+      ></vc-banner>
+
+      <vc-banner
+        type="error"
+        message="Error: Unable to connect to the server. Please try again later."
+      ></vc-banner>
+
+      <vc-banner
+        type="success"
+        message="Success! Your changes have been saved."
+      ></vc-banner>
+
+      <pre><code>&lt;vc-banner type="info" message="This is an informational banner message."&gt;&lt;/vc-banner&gt;
+
+&lt;vc-banner type="warning" message="Warning: This action cannot be undone."&gt;&lt;/vc-banner&gt;
+
+&lt;vc-banner type="error" message="Error: Unable to connect to the server. Please try again later."&gt;&lt;/vc-banner&gt;
+
+&lt;vc-banner type="success" message="Success! Your changes have been saved."&gt;&lt;/vc-banner&gt;</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>With Actions</h2>
+
+      <vc-banner
+        type="info"
+        message="Your free trial ends in 3 days."
+        actions='[{"label":"Upgrade Now","action":"upgrade","primary":true}, {"label":"Remind Me Later","action":"remind"}]'
+      >
+      </vc-banner>
+
+      <vc-banner
+        type="warning"
+        message="You are about to delete 3 items."
+        actions='[{"label":"Delete","action":"delete","primary":true}, {"label":"Cancel","action":"cancel"}]'
+      >
+      </vc-banner>
+
+      <pre><code>&lt;vc-banner 
+  type="info" 
+  message="Your free trial ends in 3 days."
+  actions='[{"label":"Upgrade Now","action":"upgrade","primary":true}, {"label":"Remind Me Later","action":"remind"}]'&gt;
+&lt;/vc-banner&gt;
+
+&lt;vc-banner 
+  type="warning" 
+  message="You are about to delete 3 items." 
+  actions='[{"label":"Delete","action":"delete","primary":true}, {"label":"Cancel","action":"cancel"}]'&gt;
+&lt;/vc-banner&gt;</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>Dismissible Banners</h2>
+
+      <vc-banner
+        type="info"
+        message="This is a dismissible banner. Click the X to close it."
+        dismissible
+      >
+      </vc-banner>
+
+      <vc-banner
+        type="success"
+        message="Operation completed successfully."
+        dismissible
+        actions='[{"label":"View Result","action":"view"}]'
+      >
+      </vc-banner>
+
+      <pre><code>&lt;vc-banner 
+  type="info" 
+  message="This is a dismissible banner. Click the X to close it." 
+  dismissible&gt;
+&lt;/vc-banner&gt;
+
+&lt;vc-banner 
+  type="success" 
+  message="Operation completed successfully." 
+  dismissible
+  actions='[{"label":"View Result","action":"view"}]'&gt;
+&lt;/vc-banner&gt;</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>Custom Icons</h2>
+
+      <vc-banner
+        type="info"
+        message="This banner uses a custom icon."
+        icon="star"
+      >
+      </vc-banner>
+
+      <vc-banner
+        type="warning"
+        message="Low battery. Connect your device to power."
+        icon="battery_alert"
+      >
+      </vc-banner>
+
+      <pre><code>&lt;vc-banner 
+  type="info" 
+  message="This banner uses a custom icon." 
+  icon="star"&gt;
+&lt;/vc-banner&gt;
+
+&lt;vc-banner 
+  type="warning" 
+  message="Low battery. Connect your device to power." 
+  icon="battery_alert"&gt;
+&lt;/vc-banner&gt;</code></pre>
+    </div>
+
+    <div class="section" id="interactiveDemo">
+      <h2>Interactive Demo</h2>
+
+      <vc-banner
+        id="interactiveBanner"
+        type="info"
+        message="This is an interactive banner that you can control with the buttons below."
+        dismissible
+      >
+      </vc-banner>
+
+      <div class="controls">
+        <button onclick="changeBannerType('info')">Info</button>
+        <button onclick="changeBannerType('warning')">Warning</button>
+        <button onclick="changeBannerType('error')">Error</button>
+        <button onclick="changeBannerType('success')">Success</button>
+
+        <button class="secondary" onclick="toggleDismissible()">
+          Toggle Dismissible
+        </button>
+        <button class="secondary" onclick="addActions()">Add Actions</button>
+        <button class="secondary" onclick="removeActions()">
+          Remove Actions
+        </button>
+        <button class="secondary" onclick="changeMessage()">
+          Change Message
+        </button>
+        <button class="secondary" onclick="resetBanner()">Reset</button>
+      </div>
+
+      <div class="event-log" style="margin-top: 16px">
+        <h3>Event Log:</h3>
+        <pre
+          id="eventLog"
+          style="height: 100px; overflow-y: auto; margin-bottom: 0"
+        ></pre>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>JavaScript API</h2>
+
+      <pre><code>// Get a reference to the banner
+const banner = document.querySelector('#interactiveBanner');
+
+// Change properties
+banner.type = 'success';
+banner.message = 'Operation completed successfully';
+banner.dismissible = true;
+banner.actions = [
+  { label: 'View Details', action: 'view', primary: true },
+  { label: 'Dismiss', action: 'dismiss' }
+];
+
+// Listen for events
+banner.addEventListener('action', (e) => {
+  console.log('Action clicked:', e.detail.action);
+});
+
+banner.addEventListener('dismiss', () => {
+  console.log('Banner dismissed');
+});</code></pre>
+    </div>
+
+    <script>
+      // Get a reference to the interactive banner
+      const interactiveBanner = document.getElementById("interactiveBanner");
+      const eventLog = document.getElementById("eventLog");
+
+      // Log events
+      function logEvent(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        eventLog.textContent = `[${timestamp}] ${message}\n${eventLog.textContent}`;
+      }
+
+      // Add event listeners to the interactive banner
+      interactiveBanner.addEventListener("action", (e) => {
+        logEvent(`Action clicked: ${e.detail.action}`);
+      });
+
+      interactiveBanner.addEventListener("dismiss", () => {
+        logEvent("Banner dismissed");
+
+        // Create a new banner after dismissal for demo purposes
+        setTimeout(() => {
+          interactiveBanner.visible = true;
+          logEvent("Banner recreated for demo");
+        }, 2000);
+      });
+
+      // Interactive functions
+      function changeBannerType(type) {
+        interactiveBanner.type = type;
+        logEvent(`Type changed to: ${type}`);
+      }
+
+      function toggleDismissible() {
+        interactiveBanner.dismissible = !interactiveBanner.dismissible;
+        logEvent(`Dismissible toggled to: ${interactiveBanner.dismissible}`);
+      }
+
+      function addActions() {
+        interactiveBanner.actions = [
+          { label: "Primary Action", action: "primary", primary: true },
+          { label: "Secondary Action", action: "secondary" },
+        ];
+        logEvent("Actions added");
+      }
+
+      function removeActions() {
+        interactiveBanner.actions = [];
+        logEvent("Actions removed");
+      }
+
+      function changeMessage() {
+        const messages = [
+          "This is a new message for the banner.",
+          "Another example message to demonstrate dynamic content.",
+          "Banner messages can be changed programmatically.",
+          "This banner is fully interactive.",
+        ];
+
+        const randomMessage =
+          messages[Math.floor(Math.random() * messages.length)];
+        interactiveBanner.message = randomMessage;
+        logEvent(`Message changed to: "${randomMessage}"`);
+      }
+
+      function resetBanner() {
+        interactiveBanner.type = "info";
+        interactiveBanner.message =
+          "This is an interactive banner that you can control with the buttons below.";
+        interactiveBanner.dismissible = true;
+        interactiveBanner.actions = [];
+        interactiveBanner.visible = true;
+        logEvent("Banner reset to default state");
+      }
+    </script>
+  </body>
+</html>

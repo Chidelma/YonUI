@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Steppers Example</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./vc-stepper.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        padding: 24px;
+      }
+
+      h1 {
+        color: #1976d2;
+        margin-top: 0;
+      }
+
+      .example-section {
+        margin-bottom: 36px;
+      }
+
+      .section-title {
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 14px;
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .checkbox-group input {
+        width: auto;
+      }
+
+      .option-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+
+      button {
+        padding: 8px 16px;
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+
+      button.secondary {
+        background-color: transparent;
+        color: #1976d2;
+        border: 1px solid #1976d2;
+      }
+
+      button.secondary:hover {
+        background-color: rgba(25, 118, 210, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material 2 Steppers Web Components</h1>
+
+      <div class="example-section">
+        <h2 class="section-title">Default Stepper</h2>
+        <vc-stepper>
+          <vc-step
+            title="Personal Information"
+            subtitle="Name and contact details"
+          >
+            <h3>Personal Information</h3>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="John Doe" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="john.doe@example.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="+1 (123) 456-7890" />
+            </div>
+          </vc-step>
+
+          <vc-step title="Address" subtitle="Your shipping address">
+            <h3>Address Information</h3>
+            <div class="form-group">
+              <label for="street">Street Address</label>
+              <input type="text" id="street" placeholder="123 Main St" />
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" placeholder="New York" />
+            </div>
+            <div class="form-group">
+              <label for="zip">Zip/Postal Code</label>
+              <input type="text" id="zip" placeholder="10001" />
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country">
+                <option value="">Select Country</option>
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+                <option value="uk">United Kingdom</option>
+              </select>
+            </div>
+          </vc-step>
+
+          <vc-step title="Review" subtitle="Review your information">
+            <h3>Review Your Information</h3>
+            <div id="review-info">
+              <p>
+                Please review your information and make sure everything is
+                correct before submitting.
+              </p>
+              <div id="review-summary">
+                <!-- Will be filled dynamically with JavaScript -->
+                <p>
+                  This would typically show a summary of all information entered
+                  in previous steps.
+                </p>
+              </div>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms" />
+              <label for="terms">I agree to the terms and conditions</label>
+            </div>
+          </vc-step>
+        </vc-stepper>
+      </div>
+
+      <div class="example-section">
+        <h2 class="section-title">Vertical Stepper with Editable Steps</h2>
+        <vc-stepper vertical editable>
+          <vc-step
+            title="Select Campaign"
+            subtitle="Choose your campaign settings"
+          >
+            <h3>Campaign Settings</h3>
+            <div class="form-group">
+              <label for="campaign-name">Campaign Name</label>
+              <input
+                type="text"
+                id="campaign-name"
+                placeholder="Spring Sale 2025"
+              />
+            </div>
+            <div class="form-group">
+              <label for="campaign-type">Campaign Type</label>
+              <select id="campaign-type">
+                <option value="">Select Type</option>
+                <option value="email">Email</option>
+                <option value="social">Social Media</option>
+                <option value="ads">Online Ads</option>
+              </select>
+            </div>
+          </vc-step>
+
+          <vc-step title="Create Ad" subtitle="Create your advertisement">
+            <h3>Create Your Advertisement</h3>
+            <div class="form-group">
+              <label for="ad-title">Ad Title</label>
+              <input
+                type="text"
+                id="ad-title"
+                placeholder="Spring Collection - 50% Off"
+              />
+            </div>
+            <div class="form-group">
+              <label for="ad-description">Ad Description</label>
+              <textarea
+                id="ad-description"
+                placeholder="Describe your promotion here..."
+              ></textarea>
+            </div>
+          </vc-step>
+
+          <vc-step
+            title="Target Audience"
+            subtitle="Select your target audience"
+          >
+            <h3>Target Audience</h3>
+            <div class="form-group">
+              <label for="audience-age">Age Range</label>
+              <select id="audience-age">
+                <option value="">Select Age Range</option>
+                <option value="18-24">18-24</option>
+                <option value="25-34">25-34</option>
+                <option value="35-44">35-44</option>
+                <option value="45+">45+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="audience-location">Location</label>
+              <input
+                type="text"
+                id="audience-location"
+                placeholder="New York, United States"
+              />
+            </div>
+            <div class="form-group">
+              <label for="audience-interests">Interests</label>
+              <input
+                type="text"
+                id="audience-interests"
+                placeholder="Fashion, Technology, Sports"
+              />
+            </div>
+          </vc-step>
+
+          <vc-step title="Confirm" subtitle="Review and submit">
+            <h3>Confirm Campaign Details</h3>
+            <p>
+              All your campaign details look good! Click Finish to submit your
+              campaign.
+            </p>
+          </vc-step>
+        </vc-stepper>
+      </div>
+
+      <div class="option-buttons">
+        <button id="enable-nonlinear" class="secondary">
+          Enable Non-Linear
+        </button>
+        <button id="toggle-vertical" class="secondary">Toggle Vertical</button>
+        <button id="reset-stepper" class="secondary">
+          Reset First Stepper
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Get references to the steppers
+      const defaultStepper = document.querySelector(
+        "vc-stepper:not([vertical])"
+      );
+      const verticalStepper = document.querySelector("vc-stepper[vertical]");
+
+      // Option buttons functionality
+      document
+        .getElementById("enable-nonlinear")
+        .addEventListener("click", function () {
+          if (defaultStepper.hasAttribute("non-linear")) {
+            defaultStepper.removeAttribute("non-linear");
+            this.textContent = "Enable Non-Linear";
+          } else {
+            defaultStepper.setAttribute("non-linear", "");
+            this.textContent = "Disable Non-Linear";
+          }
+        });
+
+      document
+        .getElementById("toggle-vertical")
+        .addEventListener("click", function () {
+          if (defaultStepper.hasAttribute("vertical")) {
+            defaultStepper.removeAttribute("vertical");
+            this.textContent = "Toggle Vertical";
+          } else {
+            defaultStepper.setAttribute("vertical", "");
+            this.textContent = "Toggle Horizontal";
+          }
+        });
+
+      document
+        .getElementById("reset-stepper")
+        .addEventListener("click", function () {
+          defaultStepper.reset();
+        });
+
+      // Listen for stepper events
+      defaultStepper.addEventListener("step-change", function (e) {
+        console.log("Step changed:", e.detail);
+      });
+
+      defaultStepper.addEventListener("stepper-complete", function () {
+        console.log("Stepper completed!");
+        alert("Form submission complete!");
+      });
+
+      // Example of programmatically updating a step
+      setTimeout(() => {
+        // After 5 seconds, mark the second step of the vertical stepper as having an error
+        const secondStep = verticalStepper.querySelector(
+          "vc-step:nth-child(2)"
+        );
+        if (secondStep) {
+          secondStep.setAttribute("error", "");
+        }
+      }, 5000);
+    </script>
+  </body>
+</html>

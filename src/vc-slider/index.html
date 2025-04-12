@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vc-slider Web Component Example</title>
+    <script src="vc-slider.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", "Segoe UI", sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .container {
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        color: #333;
+        font-weight: 400;
+      }
+
+      h2 {
+        color: #555;
+        font-weight: 400;
+        margin-top: 30px;
+      }
+
+      .label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        color: #666;
+      }
+
+      .value {
+        font-weight: 500;
+      }
+
+      .controls {
+        margin-top: 40px;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        background-color: #6200ee;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #7722ff;
+      }
+
+      .color-picker {
+        display: flex;
+        margin-top: 24px;
+        gap: 8px;
+      }
+
+      .color {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+
+      .color.active {
+        border-color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Material 2 Slider Web Component</h1>
+
+    <div class="container">
+      <h2>Basic Slider</h2>
+      <div class="label">
+        <span>Value:</span>
+        <span class="value" id="basic-value">50</span>
+      </div>
+      <vc-slider id="basic-slider" value="50"></vc-slider>
+    </div>
+
+    <div class="container">
+      <h2>Discrete Slider</h2>
+      <div class="label">
+        <span>Value:</span>
+        <span class="value" id="discrete-value">25</span>
+      </div>
+      <vc-slider id="discrete-slider" discrete value="25"></vc-slider>
+    </div>
+
+    <div class="container">
+      <h2>Custom Range</h2>
+      <div class="label">
+        <span>Value:</span>
+        <span class="value" id="range-value">5</span>
+      </div>
+      <vc-slider
+        id="range-slider"
+        min="0"
+        max="10"
+        value="5"
+        step="0.5"
+      ></vc-slider>
+    </div>
+
+    <div class="container">
+      <h2>Colored Slider</h2>
+      <div class="label">
+        <span>Value:</span>
+        <span class="value" id="color-value">75</span>
+      </div>
+      <vc-slider id="color-slider" value="75" color="#f44336"></vc-slider>
+
+      <div class="color-picker">
+        <div
+          class="color active"
+          style="background-color: #f44336"
+          data-color="#f44336"
+        ></div>
+        <div
+          class="color"
+          style="background-color: #2196f3"
+          data-color="#2196f3"
+        ></div>
+        <div
+          class="color"
+          style="background-color: #4caf50"
+          data-color="#4caf50"
+        ></div>
+        <div
+          class="color"
+          style="background-color: #ff9800"
+          data-color="#ff9800"
+        ></div>
+        <div
+          class="color"
+          style="background-color: #9c27b0"
+          data-color="#9c27b0"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Disabled Slider</h2>
+      <div class="label">
+        <span>Value:</span>
+        <span class="value" id="disabled-value">30</span>
+      </div>
+      <vc-slider id="disabled-slider" value="30" disabled></vc-slider>
+    </div>
+
+    <div class="controls">
+      <button id="toggle-disabled">Toggle Disabled</button>
+      <button id="toggle-discrete">Toggle Discrete</button>
+      <button id="reset-all">Reset All Sliders</button>
+    </div>
+
+    <script>
+      // Setup event listeners for the sliders
+      document.addEventListener("DOMContentLoaded", () => {
+        // Basic slider
+        const basicSlider = document.getElementById("basic-slider");
+        const basicValue = document.getElementById("basic-value");
+
+        basicSlider.addEventListener("input", () => {
+          basicValue.textContent = basicSlider.value;
+        });
+
+        // Discrete slider
+        const discreteSlider = document.getElementById("discrete-slider");
+        const discreteValue = document.getElementById("discrete-value");
+
+        discreteSlider.addEventListener("input", () => {
+          discreteValue.textContent = discreteSlider.value;
+        });
+
+        // Range slider
+        const rangeSlider = document.getElementById("range-slider");
+        const rangeValue = document.getElementById("range-value");
+
+        rangeSlider.addEventListener("input", () => {
+          rangeValue.textContent = rangeSlider.value;
+        });
+
+        // Color slider
+        const colorSlider = document.getElementById("color-slider");
+        const colorValue = document.getElementById("color-value");
+
+        colorSlider.addEventListener("input", () => {
+          colorValue.textContent = colorSlider.value;
+        });
+
+        // Color picker
+        const colorPicker = document.querySelectorAll(".color");
+
+        colorPicker.forEach((color) => {
+          color.addEventListener("click", () => {
+            // Update active class
+            document.querySelector(".color.active").classList.remove("active");
+            color.classList.add("active");
+
+            // Update slider color
+            colorSlider.color = color.dataset.color;
+          });
+        });
+
+        // Disabled slider
+        const disabledSlider = document.getElementById("disabled-slider");
+        const disabledValue = document.getElementById("disabled-value");
+
+        disabledSlider.addEventListener("input", () => {
+          disabledValue.textContent = disabledSlider.value;
+        });
+
+        // Controls
+        const toggleDisabled = document.getElementById("toggle-disabled");
+        const toggleDiscrete = document.getElementById("toggle-discrete");
+        const resetAll = document.getElementById("reset-all");
+
+        toggleDisabled.addEventListener("click", () => {
+          disabledSlider.disabled = !disabledSlider.disabled;
+        });
+
+        toggleDiscrete.addEventListener("click", () => {
+          basicSlider.discrete = !basicSlider.discrete;
+          rangeSlider.discrete = !rangeSlider.discrete;
+          colorSlider.discrete = !colorSlider.discrete;
+        });
+
+        resetAll.addEventListener("click", () => {
+          basicSlider.value = 50;
+          basicValue.textContent = 50;
+
+          discreteSlider.value = 25;
+          discreteValue.textContent = 25;
+
+          rangeSlider.value = 5;
+          rangeValue.textContent = 5;
+
+          colorSlider.value = 75;
+          colorValue.textContent = 75;
+
+          disabledSlider.value = 30;
+          disabledValue.textContent = 30;
+        });
+      });
+    </script>
+  </body>
+</html>

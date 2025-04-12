@@ -1,0 +1,17 @@
+{
+    "name": "yon-ui",
+    "version": "1.0.0",
+    "description": "Yon UI - A modern and lightweight UI component library.",
+    "keywords": [
+        "ui",
+        "components",
+        "library",
+        "frontend",
+        "design"
+    ],
+    "author": "Chidelma",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/bun": "^1.2.9"
+    }
+}

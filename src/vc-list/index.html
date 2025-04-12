@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Lists - Web Component Example</title>
+    <script src="vc-list.js"></script>
+    <style>
+      body {
+        font-family: Roboto, Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .demo-section {
+        margin-bottom: 32px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+      }
+
+      h2 {
+        color: #333;
+        margin-top: 0;
+      }
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #673ab7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+      }
+
+      .meta-icon {
+        color: rgba(0, 0, 0, 0.54);
+      }
+
+      .material-icons {
+        font-family: "Material Icons";
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: "liga";
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Material 2 Lists - Web Component Examples</h1>
+
+    <!-- Single-line list -->
+    <div class="demo-section">
+      <h2>Single-line List</h2>
+      <vc-list>
+        <vc-list-item>
+          <span slot="primary">List item 1</span>
+        </vc-list-item>
+        <vc-list-item>
+          <span slot="primary">List item 2</span>
+        </vc-list-item>
+        <vc-list-item>
+          <span slot="primary">List item 3</span>
+        </vc-list-item>
+      </vc-list>
+    </div>
+
+    <!-- Two-line list -->
+    <div class="demo-section">
+      <h2>Two-line List</h2>
+      <vc-list two-line>
+        <vc-list-item>
+          <span slot="primary">List item with secondary text</span>
+          <span slot="secondary">Secondary text</span>
+        </vc-list-item>
+        <vc-list-item>
+          <span slot="primary">Another list item</span>
+          <span slot="secondary">More secondary text</span>
+        </vc-list-item>
+        <vc-list-item>
+          <span slot="primary">Third list item</span>
+          <span slot="secondary">Even more secondary text</span>
+        </vc-list-item>
+      </vc-list>
+    </div>
+
+    <!-- List with avatars -->
+    <div class="demo-section">
+      <h2>List with Avatars</h2>
+      <vc-list avatar>
+        <vc-list-item>
+          <div slot="avatar" class="avatar">A</div>
+          <span slot="primary">Alice Johnson</span>
+        </vc-list-item>
+        <vc-list-item>
+          <div slot="avatar" class="avatar">B</div>
+          <span slot="primary">Bob Smith</span>
+        </vc-list-item>
+        <vc-list-item>
+          <div slot="avatar" class="avatar">C</div>
+          <span slot="primary">Carol Williams</span>
+        </vc-list-item>
+      </vc-list>
+    </div>
+
+    <!-- Interactive list with avatars and two lines -->
+    <div class="demo-section">
+      <h2>Interactive List with Avatars and Two Lines</h2>
+      <vc-list avatar two-line interactive>
+        <vc-list-item>
+          <div slot="avatar" class="avatar">A</div>
+          <span slot="primary">Alice Johnson</span>
+          <span slot="secondary">Software Engineer</span>
+        </vc-list-item>
+        <vc-list-item>
+          <div slot="avatar" class="avatar">B</div>
+          <span slot="primary">Bob Smith</span>
+          <span slot="secondary">Product Manager</span>
+        </vc-list-item>
+        <vc-list-item selected>
+          <div slot="avatar" class="avatar">C</div>
+          <span slot="primary">Carol Williams</span>
+          <span slot="secondary">UX Designer</span>
+        </vc-list-item>
+      </vc-list>
+    </div>
+
+    <!-- Dense list with dividers and metadata -->
+    <div class="demo-section">
+      <h2>Dense List with Dividers and Metadata</h2>
+      <vc-list dense dividers>
+        <vc-list-item>
+          <span slot="primary">Inbox</span>
+          <span slot="meta" class="meta-icon material-icons">mail</span>
+        </vc-list-item>
+        <vc-list-item>
+          <span slot="primary">Starred</span>
+          <span slot="meta" class="meta-icon material-icons">star</span>
+        </vc-list-item>
+        <vc-list-item>
+          <span slot="primary">Sent</span>
+          <span slot="meta" class="meta-icon material-icons">send</span>
+        </vc-list-item>
+        <vc-list-item>
+          <span slot="primary">Drafts</span>
+          <span slot="meta" class="meta-icon material-icons">drafts</span>
+        </vc-list-item>
+      </vc-list>
+    </div>
+
+    <script>
+      // Event listener example
+      document.addEventListener("vc-list-item-click", (event) => {
+        console.log("List item clicked:", event.detail);
+
+        // Optional: Toggle selected state
+        const item = event.detail.item;
+        if (!item.hasAttribute("selected")) {
+          // Deselect all others in the same list
+          const list = item.closest("vc-list");
+          list
+            .querySelectorAll("vc-list-item[selected]")
+            .forEach((selected) => {
+              selected.removeAttribute("selected");
+            });
+
+          // Select this item
+          item.setAttribute("selected", "");
+        }
+      });
+    </script>
+  </body>
+</html>

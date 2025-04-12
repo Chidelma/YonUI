@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 2 Parallax Component Example</title>
+    <script src="vc-parallax.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto", sans-serif;
+      }
+
+      section {
+        padding: 60px 20px;
+        background-color: #f5f5f5;
+      }
+
+      .content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+      }
+
+      .parallax-content {
+        color: white;
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        max-width: 80%;
+      }
+
+      .parallax-content h2 {
+        margin-top: 0;
+        font-size: 2.5rem;
+      }
+
+      .parallax-content p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="content">
+        <h1>Material 2 Parallax Example</h1>
+        <p>Scroll down to see the parallax effect in action.</p>
+      </div>
+    </section>
+
+    <!-- Basic Parallax Example -->
+    <vc-parallax
+      src="https://picsum.photos/1920/1080?random=1"
+      alt="Parallax background"
+      height="500"
+    >
+      <div class="parallax-content">
+        <h2>Basic Parallax</h2>
+        <p>This is a basic parallax effect with default speed (0.5).</p>
+      </div>
+    </vc-parallax>
+
+    <section>
+      <div class="content">
+        <h2>Some Content</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id
+          felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed
+          aliquam dictum sapien, id sagittis augue mattis eu.
+        </p>
+      </div>
+    </section>
+
+    <!-- Slow Parallax Example -->
+    <vc-parallax
+      src="https://picsum.photos/1920/1080?random=2"
+      alt="Parallax background - slow"
+      height="400"
+      speed="0.2"
+    >
+      <div class="parallax-content">
+        <h2>Slow Parallax</h2>
+        <p>This parallax has a slower scroll speed (0.2).</p>
+      </div>
+    </vc-parallax>
+
+    <section>
+      <div class="content">
+        <h2>More Content</h2>
+        <p>
+          Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet
+          arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus
+          id.
+        </p>
+      </div>
+    </section>
+
+    <!-- Fast Parallax Example -->
+    <vc-parallax
+      src="https://picsum.photos/1920/1080?random=3"
+      alt="Parallax background - fast"
+      height="600"
+      speed="0.8"
+    >
+      <div class="parallax-content">
+        <h2>Fast Parallax</h2>
+        <p>This parallax has a faster scroll speed (0.8).</p>
+      </div>
+    </vc-parallax>
+
+    <section>
+      <div class="content">
+        <h2>Final Section</h2>
+        <p>
+          Aliquam sagittis rhoncus vulputate. Cras non luctus sem. Aenean rutrum
+          porta diam, in gravida metus pretium vel. Cras id nibh at massa
+          pellentesque efficitur.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

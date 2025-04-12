@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VC-Card Web Component Examples</title>
+    <script src="./vc-card.js"></script>
+    <style>
+      body {
+        font-family: "Roboto", "Helvetica Neue", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 24px;
+        text-align: center;
+        grid-column: 1 / -1;
+      }
+
+      section {
+        margin-bottom: 40px;
+        grid-column: 1 / -1;
+      }
+
+      h2 {
+        margin-bottom: 16px;
+        color: #555;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 8px;
+      }
+
+      .button {
+        background-color: transparent;
+        color: #6200ee;
+        border: none;
+        padding: 8px 16px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      .button:hover {
+        background-color: rgba(98, 0, 238, 0.04);
+      }
+
+      .button-filled {
+        background-color: #6200ee;
+        color: white;
+      }
+
+      .button-filled:hover {
+        background-color: #5000d1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Material 2 Card Examples</h1>
+
+      <!-- Basic Cards -->
+      <section>
+        <h2>Basic Cards</h2>
+        <div class="container">
+          <!-- Simple Card -->
+          <vc-card title="Simple Card" elevation="1">
+            <div slot="content">
+              This is a basic card with title only.
+              <p>Cards contain content and actions about a single subject.</p>
+            </div>
+          </vc-card>
+
+          <!-- Card with Subtitle -->
+          <vc-card title="Card Title" subtitle="Secondary text" elevation="2">
+            <div slot="content">
+              A card with both title and subtitle.
+              <p>
+                Cards can contain various kinds of content including text,
+                images, and actions.
+              </p>
+            </div>
+            <div slot="actions">
+              <button class="button">Action</button>
+            </div>
+          </vc-card>
+
+          <!-- Outlined Card -->
+          <vc-card
+            title="Outlined Card"
+            subtitle="No elevation shadow"
+            outlined
+          >
+            <div slot="content">
+              This card uses the outlined style instead of elevation.
+              <p>Outlined cards have a border instead of a shadow.</p>
+            </div>
+            <div slot="actions">
+              <button class="button">Cancel</button>
+              <button class="button button-filled">Submit</button>
+            </div>
+          </vc-card>
+        </div>
+      </section>
+
+      <!-- Media Cards -->
+      <section>
+        <h2>Media Cards</h2>
+        <div class="container">
+          <!-- Media Card with Top Image -->
+          <vc-card
+            title="Media Card"
+            subtitle="With top image"
+            image="https://source.unsplash.com/random/800x600/?nature"
+            elevation="3"
+          >
+            <div slot="content">
+              Cards can include images that reinforce the content.
+            </div>
+            <div slot="actions">
+              <button class="button">Share</button>
+              <button class="button">Learn More</button>
+            </div>
+          </vc-card>
+
+          <!-- Media Card with Title Overlay -->
+          <vc-card
+            title="Travel Destinations"
+            subtitle="Top places to visit in 2023"
+            image="https://source.unsplash.com/random/800x600/?travel"
+            elevation="4"
+          >
+            <div slot="content">
+              Explore the most beautiful places around the world.
+            </div>
+            <div slot="actions">
+              <button class="button">Save</button>
+              <button class="button button-filled">Book Now</button>
+            </div>
+          </vc-card>
+        </div>
+      </section>
+
+      <!-- Action Cards -->
+      <section>
+        <h2>Action Cards</h2>
+        <div class="container">
+          <!-- Card with Multiple Actions -->
+          <vc-card
+            title="Action Card"
+            subtitle="With multiple actions"
+            elevation="2"
+          >
+            <div slot="content">
+              <p>
+                Cards can contain actions that relate to specific sections of
+                the card.
+              </p>
+              <p>The actions are typically placed at the bottom of the card.</p>
+            </div>
+            <div slot="actions">
+              <button class="button">Cancel</button>
+              <button class="button">Reset</button>
+              <button class="button button-filled">Submit</button>
+            </div>
+          </vc-card>
+
+          <!-- Action Card with Higher Elevation -->
+          <vc-card
+            title="Prominent Card"
+            subtitle="With higher elevation"
+            elevation="5"
+          >
+            <div slot="content">
+              <p>
+                Cards with higher elevation appear more prominent on the page.
+              </p>
+              <p>
+                Use higher elevation sparingly to draw attention to important
+                cards.
+              </p>
+            </div>
+            <div slot="actions">
+              <button class="button">Dismiss</button>
+              <button class="button button-filled">Accept</button>
+            </div>
+          </vc-card>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
