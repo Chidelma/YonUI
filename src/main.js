@@ -44,8 +44,10 @@ import TextArea from './vc-textarea/vc-textarea.js';
 import { Timeline } from './vc-timeline/vc-timeline.js';
 import TopAppBar from './vc-top-app-bar/vc-top-app-bar.js';
 import Spacer from './vc-spacer/vc-spacer.js';
+import Container from './vc-container/vc-container.js';
 
 export {
+    Container,
     Spacer,
     TopAppBar,
     Timeline,

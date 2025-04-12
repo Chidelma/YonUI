@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Container Example</title>
+    <script src="vc-container.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .demo-box {
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .demo-title {
+        font-size: 24px;
+        margin-bottom: 16px;
+        color: #1976d2;
+      }
+
+      .demo-content {
+        color: #333;
+      }
+
+      .custom-container {
+        background-color: rgba(25, 118, 210, 0.05);
+        border: 1px dashed #1976d2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center; margin: 20px 0">
+      Material Container Examples
+    </h1>
+
+    <!-- Default Container -->
+    <vc-container>
+      <div class="demo-box">
+        <h2 class="demo-title">Default Container</h2>
+        <p class="demo-content">
+          This is a default Material Container with responsive width based on
+          screen size. It will have different max-widths at different
+          breakpoints.
+        </p>
+      </div>
+    </vc-container>
+
+    <!-- Fluid Container -->
+    <vc-container fluid>
+      <div class="demo-box">
+        <h2 class="demo-title">Fluid Container</h2>
+        <p class="demo-content">
+          This is a fluid container that will always take up 100% of the
+          available width.
+        </p>
+      </div>
+    </vc-container>
+
+    <!-- Custom Max Width Container -->
+    <vc-container max-width="800px">
+      <div class="demo-box">
+        <h2 class="demo-title">Custom Max Width</h2>
+        <p class="demo-content">
+          This container has a custom max-width of 800px.
+        </p>
+      </div>
+    </vc-container>
+
+    <!-- Container with Custom Class -->
+    <vc-container class="custom-container">
+      <div class="demo-box">
+        <h2 class="demo-title">Custom Class</h2>
+        <p class="demo-content">
+          This container has a custom class applied to it.
+        </p>
+      </div>
+    </vc-container>
+  </body>
+</html>
