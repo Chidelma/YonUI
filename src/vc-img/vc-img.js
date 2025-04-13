@@ -244,3 +244,5 @@ class Material2Image extends HTMLElement {
 
 // Register the web component
 customElements.define('vc-img', Material2Image);
+
+export default Material2Image;
