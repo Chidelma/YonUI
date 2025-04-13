@@ -1,4 +1,34 @@
-# Material 2 Image Lists Web Component
+### Responsive Layouts
+
+The `vc-image-list` component supports responsive breakpoints similar to Vuetify's `v-col` component, allowing you to define different column counts and gap sizes for different screen sizes:
+
+```html
+<vc-image-list 
+  variant="standard" 
+  columns="3"
+  cols-xs="1"  <!-- Extra small screens (< 600px) -->
+  cols-sm="2"  <!-- Small screens (600px - 959px) -->
+  cols-md="3"  <!-- Medium screens (960px - 1263px) -->
+  cols-lg="4"  <!-- Large screens (1264px - 1903px) -->
+  cols-xl="6"  <!-- Extra large screens (≥ 1904px) -->
+  gap="8"
+  gap-xs="4"   <!-- Extra small screens gap -->
+  gap-sm="8"   <!-- Small screens gap -->
+  gap-md="12"  <!-- Medium screens gap -->
+  gap-lg="16"  <!-- Large screens gap -->
+  gap-xl="24"> <!-- Extra large screens gap -->
+  <!-- Image list items -->
+</vc-image-list>
+```
+
+The component uses the following breakpoint definitions:
+- **xs**: < 600px (Extra small devices)
+- **sm**: 600px - 959px (Small devices)
+- **md**: 960px - 1263px (Medium devices)
+- **lg**: 1264px - 1903px (Large devices)
+- **xl**: ≥ 1904px (Extra large devices)
+
+If a breakpoint-specific value is not provided, the component will fall back to the default `columns` and `gap` values, or to the value of the next smaller breakpoint that has a defined value.# Material 2 Image Lists Web Component
 
 A lightweight, customizable implementation of Material Design 2 Image Lists using Web Components technology. This library provides a reusable `<vc-image-list>` component that can be easily integrated into any web project without framework dependencies.
 
@@ -60,8 +90,18 @@ import 'vc-image-list';
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `variant` | String | `'standard'` | Layout variant: `'standard'`, `'masonry'`, or `'quilted'` |
-| `columns` | Number | `3` | Number of columns in the grid |
-| `gap` | Number | `8` | Gap between items in pixels |
+| `columns` | Number | `3` | Default number of columns in the grid |
+| `gap` | Number | `8` | Default gap between items in pixels |
+| `cols-xs` | Number | null | Number of columns for extra small screens (< 600px) |
+| `cols-sm` | Number | null | Number of columns for small screens (600px - 959px) |
+| `cols-md` | Number | null | Number of columns for medium screens (960px - 1263px) |
+| `cols-lg` | Number | null | Number of columns for large screens (1264px - 1903px) |
+| `cols-xl` | Number | null | Number of columns for extra large screens (≥ 1904px) |
+| `gap-xs` | Number | null | Gap size for extra small screens (< 600px) |
+| `gap-sm` | Number | null | Gap size for small screens (600px - 959px) |
+| `gap-md` | Number | null | Gap size for medium screens (960px - 1263px) |
+| `gap-lg` | Number | null | Gap size for large screens (1264px - 1903px) |
+| `gap-xl` | Number | null | Gap size for extra large screens (≥ 1904px) |
 
 #### `<vc-image-list-item>` Component
 
@@ -122,10 +162,23 @@ You can also interact with the components programmatically:
 // Get reference to the image list
 const imageList = document.querySelector('vc-image-list');
 
-// Change properties
+// Change basic properties
 imageList.variant = 'masonry';
 imageList.columns = 4;
 imageList.gap = 12;
+
+// Set responsive properties
+imageList.colsXs = 1;
+imageList.colsSm = 2;
+imageList.colsMd = 3;
+imageList.colsLg = 4;
+imageList.colsXl = 6;
+
+imageList.gapXs = 4;
+imageList.gapSm = 8;
+imageList.gapMd = 12;
+imageList.gapLg = 16;
+imageList.gapXl = 24;
 
 // Create new items
 const newItem = document.createElement('vc-image-list-item');

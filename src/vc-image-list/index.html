@@ -31,6 +31,19 @@
         margin-bottom: 16px;
       }
 
+      .breakpoints-info {
+        background-color: #e3f2fd;
+        padding: 10px 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        border-left: 4px solid #1976d2;
+      }
+
+      .breakpoints-info ul {
+        margin: 5px 0;
+        padding-left: 20px;
+      }
+
       button {
         background-color: #1976d2;
         color: white;
@@ -57,25 +70,66 @@
         border: 1px solid #ddd;
         margin-right: 16px;
       }
+
+      /* Current breakpoint indicator */
+      .breakpoint-indicator {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #1976d2;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
     </style>
   </head>
   <body>
     <h1>Material 2 Image List Examples</h1>
 
-    <!-- Standard Image List Example -->
+    <!-- Standard Image List Example with Responsive Breakpoints -->
     <section>
-      <h2>Standard Image List</h2>
+      <h2>Standard Image List (Responsive)</h2>
       <div class="controls">
-        <label for="standard-columns">Columns:</label>
+        <label for="standard-columns">Default Columns:</label>
         <input type="number" id="standard-columns" min="1" max="6" value="3" />
 
-        <label for="standard-gap">Gap (px):</label>
+        <label for="standard-gap">Default Gap (px):</label>
         <input type="number" id="standard-gap" min="0" max="24" value="8" />
 
         <button id="standard-update">Update</button>
       </div>
 
-      <vc-image-list variant="standard" columns="3" gap="8">
+      <div class="breakpoints-info">
+        <p>
+          <strong>Responsive breakpoints:</strong> Resize the window to see the
+          grid change:
+        </p>
+        <ul>
+          <li>xs (< 600px): 1 column</li>
+          <li>sm (600px - 959px): 2 columns</li>
+          <li>md (960px - 1263px): 3 columns</li>
+          <li>lg (1264px - 1903px): 4 columns</li>
+          <li>xl (≥ 1904px): 6 columns</li>
+        </ul>
+      </div>
+
+      <vc-image-list
+        variant="standard"
+        columns="3"
+        gap="8"
+        cols-xs="1"
+        cols-sm="2"
+        cols-md="3"
+        cols-lg="4"
+        cols-xl="6"
+        gap-xs="4"
+        gap-sm="8"
+        gap-md="12"
+        gap-lg="16"
+        gap-xl="24"
+      >
         <vc-image-list-item
           primary-text="Mountain View"
           secondary-text="Landscape"
@@ -241,6 +295,11 @@
       </vc-image-list>
     </section>
 
+    <!-- Breakpoint Indicator -->
+    <div id="breakpoint-indicator" class="breakpoint-indicator">
+      Current Breakpoint: <span id="current-breakpoint">md</span>
+    </div>
+
     <script>
       // Add controls for each image list variant
       document
@@ -281,6 +340,29 @@
           imageList.columns = columns;
           imageList.gap = gap;
         });
+
+      // Display current breakpoint
+      function updateBreakpointIndicator() {
+        const width = window.innerWidth;
+        let currentBreakpoint = "xs";
+
+        if (width >= 1904) {
+          currentBreakpoint = "xl";
+        } else if (width >= 1264) {
+          currentBreakpoint = "lg";
+        } else if (width >= 960) {
+          currentBreakpoint = "md";
+        } else if (width >= 600) {
+          currentBreakpoint = "sm";
+        }
+
+        document.getElementById("current-breakpoint").textContent =
+          currentBreakpoint;
+      }
+
+      // Update on load and resize
+      window.addEventListener("resize", updateBreakpointIndicator);
+      updateBreakpointIndicator();
     </script>
   </body>
 </html>
