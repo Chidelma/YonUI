@@ -1,194 +1,164 @@
-// vc-footer.js
-// Material 2 Footer Web Component inspired by Vuetify v3
+// vc-footer.js - Material 2 Footer Web Component
+// Inspired by Vuetify v3 Footer
 
-class VcFooter extends HTMLElement {
+class VCFooter extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-
-        // Default properties
-        this._color = 'primary';
-        this._dark = false;
-        this._elevation = 4;
-        this._app = false;
-        this._absolute = false;
-        this._padless = false;
-        this._inset = false;
-        this._height = 'auto';
-        this._border = false;
     }
 
     static get observedAttributes() {
-        return [
-            'color',
-            'dark',
-            'elevation',
-            'app',
-            'absolute',
-            'padless',
-            'inset',
-            'height',
-            'border'
-        ];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        switch (name) {
-            case 'color':
-                this._color = newValue || 'primary';
-                break;
-            case 'dark':
-                this._dark = newValue !== null;
-                break;
-            case 'elevation':
-                this._elevation = newValue || 4;
-                break;
-            case 'app':
-                this._app = newValue !== null;
-                break;
-            case 'absolute':
-                this._absolute = newValue !== null;
-                break;
-            case 'padless':
-                this._padless = newValue !== null;
-                break;
-            case 'inset':
-                this._inset = newValue !== null;
-                break;
-            case 'height':
-                this._height = newValue || 'auto';
-                break;
-            case 'border':
-                this._border = newValue !== null;
-                break;
-        }
-        this.render();
+        return ['app', 'absolute', 'fixed', 'padless', 'color', 'elevation', 'height', 'theme'];
     }
 
     connectedCallback() {
         this.render();
     }
 
-    render() {
-        const style = this._generateStyles();
-        const content = `
-        <style>
-          ${style}
-        </style>
-        <footer class="vc-footer ${this._dark ? 'vc-footer--dark' : ''} ${this._app ? 'vc-footer--app' : ''} ${this._absolute ? 'vc-footer--absolute' : ''} ${this._padless ? 'vc-footer--padless' : ''} ${this._inset ? 'vc-footer--inset' : ''} ${this._border ? 'vc-footer--border' : ''}">
-          <div class="vc-footer__content">
-            <slot></slot>
-          </div>
-        </footer>
-      `;
-
-        this.shadowRoot.innerHTML = content;
+    attributeChangedCallback() {
+        this.render();
     }
 
-    _generateStyles() {
-        const baseColor = this._getBaseColor();
-        const elevation = this._getElevationClass(this._elevation);
+    get app() {
+        return this.hasAttribute('app');
+    }
 
-        return `
+    get absolute() {
+        return this.hasAttribute('absolute');
+    }
+
+    get fixed() {
+        return this.hasAttribute('fixed');
+    }
+
+    get padless() {
+        return this.hasAttribute('padless');
+    }
+
+    get color() {
+        return this.getAttribute('color') || 'primary';
+    }
+
+    get elevation() {
+        return this.getAttribute('elevation') || '0';
+    }
+
+    get height() {
+        return this.getAttribute('height') || 'auto';
+    }
+
+    get theme() {
+        return this.getAttribute('theme') || 'light';
+    }
+
+    getColorClass() {
+        const colorMap = {
+            'primary': '#1976D2',
+            'secondary': '#424242',
+            'accent': '#82B1FF',
+            'error': '#FF5252',
+            'info': '#2196F3',
+            'success': '#4CAF50',
+            'warning': '#FFC107',
+        };
+
+        return colorMap[this.color] || this.color;
+    }
+
+    getElevationClass() {
+        const elevation = parseInt(this.elevation);
+        if (isNaN(elevation) || elevation < 0 || elevation > 24) {
+            return '0px 0px 0px rgba(0,0,0,0)';
+        }
+
+        // Generate box shadow based on elevation level
+        const umbra = `0px ${elevation}px ${elevation}px 0px rgba(0,0,0,0.2)`;
+        const penumbra = `0px ${elevation / 2}px ${elevation}px 0px rgba(0,0,0,0.14)`;
+        const ambient = `0px ${elevation / 3}px ${elevation * 1.5}px 0px rgba(0,0,0,0.12)`;
+
+        return `${umbra}, ${penumbra}, ${ambient}`;
+    }
+
+    render() {
+        const backgroundColor = this.getColorClass();
+        const boxShadow = this.getElevationClass();
+        const themeTextColor = this.theme === 'dark' ? '#FFFFFF' : '#000000';
+        const themeBgColor = this.theme === 'dark' ? '#212121' : '#FFFFFF';
+
+        // Set the actual background color based on the color attribute or theme
+        const actualBgColor = (this.color && this.color !== 'primary') ? backgroundColor : themeBgColor;
+
+        // Base styles
+        const baseCSS = `
         :host {
           display: block;
-        }
-        
-        .vc-footer {
-          display: flex;
-          position: relative;
-          align-items: center;
-          background-color: ${baseColor};
-          color: ${this._dark ? '#fff' : 'rgba(0, 0, 0, 0.87)'};
-          min-height: 36px;
-          padding: ${this._padless ? '0' : '8px 16px'};
+          box-sizing: border-box;
+          flex: 0 1 auto;
+          padding: ${this.padless ? '0' : '16px'};
           transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+  
+        .vc-footer {
           width: 100%;
-          ${elevation}
+          background-color: ${actualBgColor};
+          color: ${themeTextColor};
+          box-shadow: ${boxShadow};
+          box-sizing: border-box;
+          outline: none;
+          transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          height: ${this.height !== 'auto' ? `${this.height}px` : 'auto'};
+          padding: ${this.padless ? '0' : '16px'};
+          display: flex;
+          flex-direction: column;
         }
-        
-        .vc-footer--dark {
-          background-color: ${this._color === 'primary' ? '#272727' : baseColor};
-          color: #fff;
-        }
-        
-        .vc-footer--app {
-          bottom: 0;
-          left: 0;
-          position: fixed;
-          right: 0;
-          z-index: 5;
-        }
-        
-        .vc-footer--absolute {
+  
+        ${this.absolute ? `
+        .vc-footer {
           position: absolute;
           bottom: 0;
           left: 0;
           right: 0;
+          z-index: 1;
         }
-        
-        .vc-footer--inset {
-          margin-left: 72px;
-          width: calc(100% - 72px);
+        ` : ''}
+  
+        ${this.fixed ? `
+        .vc-footer {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 5;
         }
-        
-        .vc-footer--padless {
-          padding: 0;
+        ` : ''}
+  
+        ${this.app ? `
+        .vc-footer {
+          padding-left: var(--vc-app-bar-left-width, 0px);
+          padding-right: var(--vc-app-bar-right-width, 0px);
         }
-        
-        .vc-footer--border {
-          border-top: 1px solid rgba(0, 0, 0, 0.12);
+        ` : ''}
+  
+        ::slotted(*) {
+          margin-bottom: 8px;
         }
-        
-        .vc-footer__content {
-          align-items: center;
-          display: flex;
-          flex: 1 1 auto;
-          justify-content: space-between;
-          height: ${this._height};
-          max-width: 100%;
-          width: 100%;
+  
+        ::slotted(*:last-child) {
+          margin-bottom: 0;
         }
       `;
-    }
 
-    _getBaseColor() {
-        const colorMap = {
-            'primary': '#6200ee',
-            'secondary': '#03dac6',
-            'success': '#4caf50',
-            'error': '#f44336',
-            'info': '#2196f3',
-            'warning': '#fb8c00',
-        };
-
-        if (this._color.startsWith('#') || this._color.startsWith('rgb')) {
-            return this._color;
-        }
-
-        return colorMap[this._color] || colorMap.primary;
-    }
-
-    _getElevationClass(elevation) {
-        const shadowMap = {
-            0: 'none',
-            1: '0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)',
-            2: '0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)',
-            3: '0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12)',
-            4: '0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)',
-            6: '0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12)',
-            8: '0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)',
-            12: '0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)',
-            16: '0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12)',
-            24: '0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)'
-        };
-
-        const shadowValue = shadowMap[elevation] || shadowMap[4];
-        return `box-shadow: ${shadowValue};`;
+        // Create the HTML structure
+        this.shadowRoot.innerHTML = `
+        <style>${baseCSS}</style>
+        <footer class="vc-footer">
+          <slot></slot>
+        </footer>
+      `;
     }
 }
 
-// Define the custom element
-customElements.define('vc-footer', VcFooter);
+// Define the new custom element
+customElements.define('vc-footer', VCFooter);
 
-export default VcFooter;
+export default VCFooter;

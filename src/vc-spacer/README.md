@@ -1,30 +1,34 @@
-# Material Spacer Web Component
+# Material 2 Spacer Web Component
 
-A lightweight, customizable spacer web component inspired by Vuetify v3's spacer component. This component provides a simple way to add spacing between elements in your layouts without additional markup.
+A lightweight and flexible spacing component inspired by Vuetify v3's spacer, built using native Web Components technology.
 
 ## Features
 
-- Create horizontal, vertical, or both-direction spacing
-- Customizable sizing using the `size` attribute
-- Flexible spacing with the `grow` attribute
-- Zero dependencies
-- Built using native Web Components for framework-agnostic usage
+- **Simple API**: Easy to use with intuitive attributes
+- **Two Directions**: Support for both vertical and horizontal spacing
+- **Customizable Size**: Define the amount of space with a simple size multiplier
+- **Framework Agnostic**: Works with any framework or vanilla JavaScript
+- **Small Footprint**: Lightweight with no dependencies
 
 ## Installation
 
-### Option 1: Include directly in your HTML
+### Option 1: Copy the file directly
+
+Simply copy the `vc-spacer.js` file to your project.
+
+### Option 2: Include from CDN (if published)
 
 ```html
-<script src="material-spacer.js"></script>
+<script src="https://cdn.example.com/vc-spacer.js"></script>
 ```
 
-### Option 2: Install via npm (if packaged)
+### Option 3: npm (if published)
 
 ```bash
 npm install material-spacer-component
 ```
 
-Then import it in your JavaScript:
+Then import in your JavaScript:
 
 ```javascript
 import 'material-spacer-component';
@@ -32,72 +36,111 @@ import 'material-spacer-component';
 
 ## Usage
 
-Once the component is loaded, you can use the `<vc-spacer>` element in your HTML:
+### Basic Usage
 
 ```html
-<!-- Basic usage with default values -->
+<!-- Default vertical spacer (4px height) -->
 <vc-spacer></vc-spacer>
 
-<!-- Horizontal spacer with custom size -->
+<!-- Vertical spacer with custom size (16px height) -->
+<vc-spacer size="4"></vc-spacer>
+
+<!-- Horizontal spacer (8px width) -->
 <vc-spacer direction="horizontal" size="2"></vc-spacer>
-
-<!-- Vertical spacer -->
-<vc-spacer direction="vertical" size="4"></vc-spacer>
-
-<!-- Flexible spacer that grows to fill available space -->
-<vc-spacer grow></vc-spacer>
 ```
 
-## Attributes
+### API
 
-| Attribute   | Description                                    | Values                                    | Default |
-|-------------|------------------------------------------------|-------------------------------------------|---------|
-| `size`      | The size multiplier (multiplied by 8px)        | Any positive number                       | `1`     |
-| `direction` | The direction in which the spacer extends      | `horizontal`, `vertical`, `both`          | `both`  |
-| `grow`      | Whether the spacer should grow to fill space   | Boolean attribute (present or not present)| `false` |
+#### Attributes
+
+| Attribute  | Type    | Default    | Description                                          |
+|------------|---------|------------|------------------------------------------------------|
+| `size`     | Number  | `1`        | Size multiplier (base unit is 4px × size)            |
+| `direction`| String  | `vertical` | Direction of spacing (`vertical` or `horizontal`)    |
+
+#### Properties
+
+The component also exposes JavaScript properties that match the attributes:
+
+```javascript
+const spacer = document.querySelector('vc-spacer');
+
+// Get current values
+console.log(spacer.size);        // => 1
+console.log(spacer.direction);   // => "vertical"
+
+// Set new values
+spacer.size = 4;
+spacer.direction = "horizontal";
+```
+
+## Sizing Guide
+
+The spacing size is calculated as `size × 4px`:
+
+| Size Value | Actual Space |
+|------------|--------------|
+| 1          | 4px          |
+| 2          | 8px          |
+| 4          | 16px         |
+| 6          | 24px         |
+| 8          | 32px         |
+| 10         | 40px         |
+| etc.       | size × 4px   |
 
 ## Examples
 
-### Creating space between flex items
+### Card Layout with Vertical Spacing
 
 ```html
-<div style="display: flex; align-items: center;">
+<div class="card">
+  <h3 class="card-title">Card Title</h3>
+  <vc-spacer size="2"></vc-spacer>
+  <p class="card-content">First paragraph of content.</p>
+  <vc-spacer size="4"></vc-spacer>
+  <p class="card-content">Second paragraph with more space above it.</p>
+</div>
+```
+
+### Toolbar with Horizontal Spacing
+
+```html
+<div class="toolbar">
+  <button>Action 1</button>
+  <vc-spacer direction="horizontal" size="2"></vc-spacer>
+  <button>Action 2</button>
+  <vc-spacer direction="horizontal" size="6"></vc-spacer>
+  <button>Action 3</button>
+</div>
+```
+
+### Dynamic Spacing
+
+```html
+<button onclick="changeSpacing()">Increase Space</button>
+
+<div class="container">
   <div>Element 1</div>
-  <vc-spacer size="2" direction="horizontal"></vc-spacer>
+  <vc-spacer id="dynamic-spacer" size="2"></vc-spacer>
   <div>Element 2</div>
-  <vc-spacer grow></vc-spacer>
-  <div>Element 3</div>
 </div>
-```
 
-### Creating vertical spacing
-
-```html
-<div style="display: flex; flex-direction: column;">
-  <div>Top element</div>
-  <vc-spacer size="3" direction="vertical"></vc-spacer>
-  <div>Bottom element</div>
-</div>
-```
-
-## Customization
-
-The spacer uses CSS custom properties internally, so you can override the base unit size by setting a custom property:
-
-```css
-vc-spacer {
-  --size-multiplier: 2; /* Override the size multiplier */
-}
+<script>
+  function changeSpacing() {
+    const spacer = document.getElementById('dynamic-spacer');
+    spacer.size = spacer.size + 2;
+  }
+</script>
 ```
 
 ## Browser Support
 
-This component uses standard Web Components APIs and should work in all modern browsers that support the Custom Elements v1 spec.
+Works in all modern browsers that support Web Components:
+- Chrome
+- Firefox
+- Safari
+- Edge (Chromium-based)
 
 ## License
 
-MIT
-
-## Credits
-
-Inspired by the Vuetify v3 spacer component.
+MIT License

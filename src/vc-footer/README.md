@@ -1,116 +1,134 @@
-# Material 2 Footer Web Component
+# VC-Footer Web Component
 
-A customizable Material Design 2 inspired footer web component based on Vuetify v3 styling and functionality.
+A Material 2 Footer web component inspired by Vuetify v3, implemented using native Web Component technology.
 
 ## Features
 
-- Uses Web Component technology for framework-agnostic integration
-- Consistent with Material Design 2 guidelines
-- Highly customizable with various props
-- Shadow DOM encapsulation for style isolation
-- Lightweight with no dependencies
+- **Modern Design**: Follows Material 2 design principles
+- **Responsive**: Adapts to different screen sizes
+- **Customizable**: Multiple attributes for easy customization
+- **No Dependencies**: Pure vanilla JavaScript implementation
+- **Framework Agnostic**: Works with any framework or no framework
 
 ## Installation
 
-### Method 1: Direct inclusion in HTML
+### Option 1: Include via CDN (example)
+```html
+<script src="https://unpkg.com/vc-footer@1.0.0/vc-footer.js"></script>
+```
 
+### Option 2: Download and include locally
+1. Download the `vc-footer.js` file
+2. Include it in your HTML file:
 ```html
 <script src="path/to/vc-footer.js"></script>
 ```
 
-### Method 2: NPM (if you package this as an npm module)
-
+### Option 3: Install via npm (if published)
 ```bash
-npm install vc-footer-component
+npm install vc-footer
 ```
 
-Then import in your JavaScript:
-
+Then import it in your JavaScript:
 ```javascript
-import 'vc-footer-component';
+import 'vc-footer';
 ```
 
 ## Usage
 
-Once the component is included in your project, you can use it like any other HTML element:
+Basic usage:
 
 ```html
-<vc-footer color="primary">
-  <div>© 2025 My Company</div>
+<vc-footer>
+  © 2025 My Company
 </vc-footer>
 ```
 
-### Advanced Usage
+Styled footer with custom color and elevation:
 
 ```html
-<!-- Dark themed footer with app (fixed) positioning -->
-<vc-footer 
-  color="primary" 
-  dark 
-  app 
-  elevation="4">
-  <div class="footer-links">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-  </div>
-  <div class="copyright">
-    © 2025 My Company
+<vc-footer color="primary" elevation="4" theme="dark">
+  <div class="footer-content">
+    <!-- Your footer content here -->
+    <p>© 2025 My Company</p>
   </div>
 </vc-footer>
 ```
 
-## Props/Attributes
+Fixed footer at the bottom of the page:
 
-| Attribute  | Type      | Default    | Description                                      |
-|------------|-----------|------------|--------------------------------------------------|
-| color      | String    | 'primary'  | Sets the background color of the footer          |
-| dark       | Boolean   | false      | Applies dark theme styling                       |
-| elevation  | Number    | 4          | Sets the elevation (box-shadow) level (0-24)     |
-| app        | Boolean   | false      | Positions the footer fixed at the bottom         |
-| absolute   | Boolean   | false      | Positions the footer absolutely                  |
-| padless    | Boolean   | false      | Removes default padding from the footer          |
-| inset      | Boolean   | false      | Applies inset styling (indented from left)       |
-| height     | String    | 'auto'     | Sets the height of the footer                    |
-| border     | Boolean   | false      | Adds a top border to the footer                  |
+```html
+<vc-footer fixed color="secondary">
+  <!-- Fixed footer content -->
+</vc-footer>
+```
 
-### Available Color Options
+## API
 
-- `primary` - #6200ee (Default purple)
-- `secondary` - #03dac6 (Teal)
-- `success` - #4caf50 (Green)
-- `error` - #f44336 (Red)
-- `info` - #2196f3 (Blue)
-- `warning` - #fb8c00 (Orange)
-- Custom colors - Pass any valid CSS color value (hex, rgb, etc.)
+### Properties/Attributes
 
-## Slots
+| Attribute  | Type    | Default   | Description                                                  |
+|------------|---------|-----------|--------------------------------------------------------------|
+| `app`      | Boolean | `false`   | Designates the footer for use with an application layout     |
+| `absolute` | Boolean | `false`   | Applies `position: absolute` to the component                |
+| `fixed`    | Boolean | `false`   | Applies `position: fixed` to the component                   |
+| `padless`  | Boolean | `false`   | Remove padding from the footer                               |
+| `color`    | String  | `primary` | Sets the background color ('primary', 'secondary', etc)      |
+| `elevation`| String  | `0`       | Sets the elevation of the footer (0-24)                      |
+| `height`   | String  | `auto`    | Sets the height of the footer                                |
+| `theme`    | String  | `light`   | Sets the theme ('light' or 'dark')                           |
 
-The footer component uses a default slot where you can place any content you want to appear inside the footer.
+### Predefined Colors
 
-## CSS Customization
+The component recognizes the following color names:
+- `primary`: #1976D2
+- `secondary`: #424242
+- `accent`: #82B1FF
+- `error`: #FF5252
+- `info`: #2196F3
+- `success`: #4CAF50
+- `warning`: #FFC107
 
-The component uses Shadow DOM, which encapsulates the styles. However, you can still style your content inside the slots with your own CSS.
+You can also provide any valid CSS color value (hex, rgb, rgba, etc).
+
+## Styling
+
+The component uses Shadow DOM for encapsulation. To style the content inside the footer, you'll need to add your own styles to the elements you place inside the component.
+
+Example:
+
+```html
+<style>
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+</style>
+
+<vc-footer>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+    </div>
+    <p>© 2025 My Company</p>
+  </div>
+</vc-footer>
+```
 
 ## Browser Support
 
-This component uses modern web standards and should work in all browsers that support Web Components:
-
+This component uses modern Web Component APIs and should work in all modern browsers:
 - Chrome/Edge (latest)
 - Firefox (latest)
 - Safari (latest)
 - Opera (latest)
 
-For older browsers, you may need to include polyfills for Web Components.
-
-## Examples
-
-Check out the `example.html` file for various implementation examples.
-
 ## License
 
-MIT
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+MIT License

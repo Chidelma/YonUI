@@ -3,143 +3,142 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Material Spacer Web Component Demo</title>
-    <script src="vc-spacer.js"></script>
+    <title>Material 2 Spacer Example</title>
+    <script src="./vc-spacer.js"></script>
     <style>
       body {
-        font-family: "Roboto", sans-serif;
+        font-family: "Roboto", Arial, sans-serif;
         margin: 0;
         padding: 20px;
-        color: #424242;
       }
 
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .demo-section {
-        margin-bottom: 30px;
-        border: 1px solid #e0e0e0;
+      .card {
+        background-color: #fff;
         border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 16px;
+        max-width: 400px;
       }
 
-      .demo-title {
-        margin-top: 0;
-        margin-bottom: 16px;
-        color: #1976d2;
+      .card-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0;
       }
 
-      .flex-row {
+      .card-content {
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .horizontal-container {
         display: flex;
-        flex-direction: row;
         align-items: center;
         background-color: #f5f5f5;
-        padding: 8px;
-      }
-
-      .flex-column {
-        display: flex;
-        flex-direction: column;
-        background-color: #f5f5f5;
-        padding: 8px;
-        height: 200px;
+        padding: 16px;
+        border-radius: 4px;
+        margin-top: 20px;
       }
 
       .box {
-        background-color: #2196f3;
+        background-color: #1976d2;
         color: white;
-        padding: 16px;
+        padding: 8px 16px;
         border-radius: 4px;
-        text-align: center;
-      }
-
-      code {
-        background-color: #f5f5f5;
-        padding: 2px 4px;
-        border-radius: 2px;
-        font-family: monospace;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>Material Spacer Web Component Demo</h1>
-      <p>
-        A demonstration of the <code>vc-spacer</code> web component inspired by
-        Vuetify.
+    <h1>Material 2 Spacer Examples</h1>
+
+    <h2>Vertical Spacing Example</h2>
+    <div class="card">
+      <h3 class="card-title">Card Title</h3>
+      <!-- Default vertical spacer (size=1, 4px) -->
+      <vc-spacer></vc-spacer>
+      <p class="card-content">This is the first paragraph of content.</p>
+      <!-- Medium vertical spacer (size=4, 16px) -->
+      <vc-spacer size="4"></vc-spacer>
+      <p class="card-content">
+        This is the second paragraph with more space above it.
       </p>
-
-      <section class="demo-section">
-        <h2 class="demo-title">1. Basic Horizontal Spacing</h2>
-        <div class="flex-row">
-          <div class="box">Box 1</div>
-          <vc-spacer direction="horizontal" size="2"></vc-spacer>
-          <div class="box">Box 2</div>
-          <vc-spacer direction="horizontal" size="4"></vc-spacer>
-          <div class="box">Box 3</div>
-        </div>
-        <p>
-          Using
-          <code
-            >&lt;vc-spacer direction="horizontal"
-            size="2"&gt;&lt;/vc-spacer&gt;</code
-          >
-          and <code>size="4"</code>
-        </p>
-      </section>
-
-      <section class="demo-section">
-        <h2 class="demo-title">2. Vertical Spacing</h2>
-        <div class="flex-column">
-          <div class="box">Box 1</div>
-          <vc-spacer direction="vertical" size="2"></vc-spacer>
-          <div class="box">Box 2</div>
-          <vc-spacer direction="vertical" size="4"></vc-spacer>
-          <div class="box">Box 3</div>
-        </div>
-        <p>
-          Using
-          <code
-            >&lt;vc-spacer direction="vertical"
-            size="2"&gt;&lt;/vc-spacer&gt;</code
-          >
-          and <code>size="4"</code>
-        </p>
-      </section>
-
-      <section class="demo-section">
-        <h2 class="demo-title">3. Grow Attribute (Flexible Space)</h2>
-        <div class="flex-row">
-          <div class="box">Left</div>
-          <vc-spacer grow></vc-spacer>
-          <div class="box">Right</div>
-        </div>
-        <p>
-          Using <code>&lt;vc-spacer grow&gt;&lt;/vc-spacer&gt;</code> to push
-          content apart
-        </p>
-      </section>
-
-      <section class="demo-section">
-        <h2 class="demo-title">4. Both Directions (Default)</h2>
-        <div
-          style="position: relative; height: 200px; background-color: #f5f5f5"
-        >
-          <div style="position: absolute; top: 0; left: 0" class="box">
-            Top Left
-          </div>
-          <vc-spacer size="3"></vc-spacer>
-          <div style="position: absolute; bottom: 0; right: 0" class="box">
-            Bottom Right
-          </div>
-        </div>
-        <p>
-          Using <code>&lt;vc-spacer size="3"&gt;&lt;/vc-spacer&gt;</code> with
-          default direction="both"
-        </p>
-      </section>
+      <!-- Large vertical spacer (size=8, 32px) -->
+      <vc-spacer size="8"></vc-spacer>
+      <p class="card-content">
+        This is the third paragraph with even more space above it.
+      </p>
     </div>
+
+    <h2>Horizontal Spacing Example</h2>
+    <div class="horizontal-container">
+      <div class="box">Box 1</div>
+      <!-- Small horizontal spacer (size=2, 8px) -->
+      <vc-spacer direction="horizontal" size="2"></vc-spacer>
+      <div class="box">Box 2</div>
+      <!-- Medium horizontal spacer (size=6, 24px) -->
+      <vc-spacer direction="horizontal" size="6"></vc-spacer>
+      <div class="box">Box 3</div>
+      <!-- Large horizontal spacer (size=10, 40px) -->
+      <vc-spacer direction="horizontal" size="10"></vc-spacer>
+      <div class="box">Box 4</div>
+    </div>
+
+    <h2>Dynamic Spacer Example</h2>
+    <div>
+      <button id="increase">Increase Size</button>
+      <button id="decrease">Decrease Size</button>
+      <button id="toggle">Toggle Direction</button>
+      <div class="horizontal-container" id="dynamic-container">
+        <div class="box">Start</div>
+        <vc-spacer
+          id="dynamic-spacer"
+          size="4"
+          direction="horizontal"
+        ></vc-spacer>
+        <div class="box">End</div>
+      </div>
+    </div>
+
+    <script>
+      // Dynamic example
+      const dynamicSpacer = document.getElementById("dynamic-spacer");
+      const increaseBtn = document.getElementById("increase");
+      const decreaseBtn = document.getElementById("decrease");
+      const toggleBtn = document.getElementById("toggle");
+
+      increaseBtn.addEventListener("click", () => {
+        const currentSize = parseInt(
+          dynamicSpacer.getAttribute("size") || "4",
+          10
+        );
+        dynamicSpacer.setAttribute("size", currentSize + 2);
+      });
+
+      decreaseBtn.addEventListener("click", () => {
+        const currentSize = parseInt(
+          dynamicSpacer.getAttribute("size") || "4",
+          10
+        );
+        if (currentSize > 2) {
+          dynamicSpacer.setAttribute("size", currentSize - 2);
+        }
+      });
+
+      toggleBtn.addEventListener("click", () => {
+        const currentDirection = dynamicSpacer.getAttribute("direction");
+        const newDirection =
+          currentDirection === "horizontal" ? "vertical" : "horizontal";
+        dynamicSpacer.setAttribute("direction", newDirection);
+
+        // Adjust container layout based on direction
+        const container = document.getElementById("dynamic-container");
+        if (newDirection === "vertical") {
+          container.style.flexDirection = "column";
+          container.style.alignItems = "flex-start";
+        } else {
+          container.style.flexDirection = "row";
+          container.style.alignItems = "center";
+        }
+      });
+    </script>
   </body>
 </html>

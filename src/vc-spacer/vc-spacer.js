@@ -1,74 +1,76 @@
-// material-spacer.js
-// A Material 2 Spacer web component inspired by Vuetify v3
+// Material 2 Spacer Web Component inspired by Vuetify v3
+// vc-spacer.js
 
 class MaterialSpacer extends HTMLElement {
     static get observedAttributes() {
-        return ['size', 'grow', 'direction'];
+        return ['size', 'direction'];
     }
 
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.render();
+        this._size = 1;
+        this._direction = 'vertical';
+        this._render();
     }
 
     connectedCallback() {
-        this.render();
+        this._render();
     }
 
-    attributeChangedCallback() {
-        this.render();
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue === newValue) return;
+
+        if (name === 'size') {
+            this._size = newValue ? parseInt(newValue, 10) : 1;
+        } else if (name === 'direction') {
+            this._direction = newValue === 'horizontal' ? 'horizontal' : 'vertical';
+        }
+
+        this._render();
     }
 
     get size() {
-        return this.getAttribute('size') || '1';
+        return this._size;
     }
 
-    get grow() {
-        return this.hasAttribute('grow');
+    set size(value) {
+        this.setAttribute('size', value);
     }
 
     get direction() {
-        return this.getAttribute('direction') || 'both';
+        return this._direction;
     }
 
-    render() {
-        const style = document.createElement('style');
-        style.textContent = `
+    set direction(value) {
+        this.setAttribute('direction', value);
+    }
+
+    _render() {
+        const styles = `
         :host {
           display: block;
-          --size-multiplier: ${this.size};
-          --space-amount: calc(var(--size-multiplier) * 8px);
         }
-        
-        :host([grow]) {
-          flex-grow: 1;
+        .spacer {
+          display: block;
         }
-        
-        :host([direction="vertical"]) {
-          height: var(--space-amount);
-          min-height: var(--space-amount);
-          width: initial;
-          min-width: initial;
+        .vertical {
+          height: ${this._size * 4}px;
+          min-height: ${this._size * 4}px;
+          max-height: ${this._size * 4}px;
         }
-        
-        :host([direction="horizontal"]) {
-          width: var(--space-amount);
-          min-width: var(--space-amount);
-          height: initial;
-          min-height: initial;
-        }
-        
-        :host([direction="both"]) {
-          width: var(--space-amount);
-          min-width: var(--space-amount);
-          height: var(--space-amount);
-          min-height: var(--space-amount);
+        .horizontal {
+          width: ${this._size * 4}px;
+          min-width: ${this._size * 4}px;
+          max-width: ${this._size * 4}px;
+          display: inline-block;
         }
       `;
 
-        this.shadowRoot.innerHTML = '';
-        this.shadowRoot.appendChild(style);
+        this.shadowRoot.innerHTML = `
+        <style>${styles}</style>
+        <div class="spacer ${this._direction}"></div>
+      `;
     }
 }
 
