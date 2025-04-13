@@ -45,8 +45,10 @@ import { Timeline } from './vc-timeline/vc-timeline.js';
 import TopAppBar from './vc-top-app-bar/vc-top-app-bar.js';
 import Spacer from './vc-spacer/vc-spacer.js';
 import Container from './vc-container/vc-container.js';
+import Footer from './vc-footer/vc-footer.js';
 
 export {
+    Footer,
     Container,
     Spacer,
     TopAppBar,
